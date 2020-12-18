@@ -42,15 +42,17 @@ public class GeneTest {
     values[3] = (char) boundedRandomValue;
     values[4] = (char) boundedRandomValue;
 
-
     Gene gene = new Gene(randomProviderMock);
 
-    when(randomProviderMock.getRandom(0, 5)).thenReturn((int) values[1]);
+    for (int i = 0; i < values.length; i++) {
 
-    // When
-    int valueUnderTheIndex = gene.values[1];
+      when(randomProviderMock.getRandom(any(), any())).thenReturn((int) values[i]);
 
-    // then
-    Assert.assertEquals(values[1], valueUnderTheIndex);
+      // When
+      int valueUnderTheIndex = gene.values[i];
+
+      // then
+      Assert.assertEquals(values[i], valueUnderTheIndex);
+    }
   }
 }
