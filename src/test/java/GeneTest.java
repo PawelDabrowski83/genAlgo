@@ -9,31 +9,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RandomProviderTest {
+public class GeneTest {
 
   @Test
   public void testArraySizeGeneWithMock() {
     // Given
-    int boundedRandomValue = ThreadLocalRandom.current().nextInt(0, 5);
+
     RandomProvider randomProviderMock = mock(RandomProvider.class);
 
-    char[] values = new char[5];
+    // given
+    int numberExpected = 113;
+    when(randomProviderMock.getRandom(0, 2)).thenReturn(numberExpected);
 
-    values[0] = (char) boundedRandomValue;
-    values[1] = (char) boundedRandomValue;
-    values[2] = (char) boundedRandomValue;
-    values[3] = (char) boundedRandomValue;
-    values[4] = (char) boundedRandomValue;
+    // when
+    Gene actual = new Gene(randomProviderMock);
 
-    Gene gene = new Gene(randomProviderMock);
-
-    when(randomProviderMock.getRandom()).thenReturn(values.length);
-
-    // When
-    int quantityOfNumbersInGene = gene.getValues().length;
-
-    // Then
-    Assert.assertEquals(5, quantityOfNumbersInGene);
+    // then
+    assertEquals(numberExpected, actual.getValues().length);
   }
 
   @Test
@@ -52,7 +44,7 @@ public class RandomProviderTest {
 
     Gene gene = new Gene(randomProviderMock);
 
-    when(randomProviderMock.getRandom()).thenReturn((int) values[1]);
+    when(randomProviderMock.getRandom(0, 5)).thenReturn((int) values[1]);
 
     // When
     int valueUnderTheIndex = gene.values[1];
