@@ -5,6 +5,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -13,13 +14,12 @@ public class GeneTest {
 
   @Test
   public void testArraySizeGeneWithMock() {
-    // Given
 
+    // Given
     RandomProvider randomProviderMock = mock(RandomProvider.class);
 
-    // given
     int numberExpected = 113;
-    when(randomProviderMock.getRandom(0, 2)).thenReturn(numberExpected);
+    when(randomProviderMock.getRandom(any(), any())).thenReturn(numberExpected);
 
     // when
     Gene actual = new Gene(randomProviderMock);
@@ -41,6 +41,7 @@ public class GeneTest {
     values[2] = (char) boundedRandomValue;
     values[3] = (char) boundedRandomValue;
     values[4] = (char) boundedRandomValue;
+
 
     Gene gene = new Gene(randomProviderMock);
 
