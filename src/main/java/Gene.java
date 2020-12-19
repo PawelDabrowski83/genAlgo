@@ -1,9 +1,22 @@
 public class Gene {
 
     private RandomProvider randomProvider;
-    private char[] values;
+    char[] values;
 
     public Gene(RandomProvider randomProvider) {
         this.randomProvider = randomProvider;
+        generateValuesSize();
+        assignValues();
+    }
+
+    public char[] getValues() {
+        return values;
+    }
+
+    private void generateValuesSize() {
+    }
+
+    private void assignValues() {
+
     }
 }
