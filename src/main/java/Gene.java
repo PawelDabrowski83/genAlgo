@@ -16,9 +16,13 @@ public class Gene {
     }
 
     private void generateValuesSize() {
+        int randomSize = randomProvider.getRandom();
+        values = new char[randomSize];
     }
 
     private void assignValues() {
-
+        for (int i = 0; i < values.length; i++) {
+            values[i] = (char) randomProvider.getRandom();
+        }
     }
 }
