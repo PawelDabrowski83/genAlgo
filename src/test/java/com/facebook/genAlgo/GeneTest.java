@@ -1,6 +1,9 @@
 package com.facebook.genAlgo;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.anyInt;
@@ -11,10 +14,11 @@ public class GeneTest {
 
   RandomProvider randomProviderMock = mock(RandomProvider.class);
 
-  @Test
-  public void shouldGeneValuesLengthBeRandomized() {
+  @DisplayName("Should Gene.values have random length")
+  @ParameterizedTest
+  @ValueSource(ints = {0, 2, 100, 145, 257})
+  public void testGeneValuesLength(int lengthExpected) {
     // given
-    int lengthExpected = 113;
     when(randomProviderMock.getRandom(anyInt())).thenReturn(lengthExpected);
 
     // when
@@ -24,10 +28,11 @@ public class GeneTest {
     assertEquals(lengthExpected, actual.getValues().length);
   }
 
-  @Test
-  public void shouldGeneValuesBeFilledRandomly() {
+  @DisplayName("Should Gene.values are filled randomly")
+  @ParameterizedTest
+  @ValueSource(ints = {0, 1, 13, 98, 278, Character.MAX_VALUE})
+  public void testGeneValues(int valueExpected) {
     // given
-    int valueExpected = 113;
     when(randomProviderMock.getRandom(anyInt())).thenReturn(valueExpected);
 
     // when
