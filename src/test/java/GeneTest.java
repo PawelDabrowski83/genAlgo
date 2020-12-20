@@ -1,15 +1,12 @@
+import com.facebook.genAlgo.RandomProvider;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
-
-import java.util.concurrent.ThreadLocalRandom;
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
 public class GeneTest {
 
   @Test
@@ -19,7 +16,7 @@ public class GeneTest {
     RandomProvider randomProviderMock = mock(RandomProvider.class);
 
     int numberExpected = 113;
-    when(randomProviderMock.getRandom(any(), any())).thenReturn(numberExpected);
+    when(randomProviderMock.getRandom()).thenReturn(numberExpected);
 
     // when
     Gene actual = new Gene(randomProviderMock);
