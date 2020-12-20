@@ -1,7 +1,7 @@
 public class Gene {
 
     private RandomProvider randomProvider;
-    char[] values;
+    private char[] values;
     private float mutability;
     private float fitness;
 
