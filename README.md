@@ -12,11 +12,11 @@
 <p>We are working to develop functioning Stage 1 on 21.12.2020</p>
 
 ## Stage 1
-<p>Creation of Gene class, which is base fundament of our model. Adding com.facebook.genAlgo.RandomProvider interface to test creation of random genes.</p>
+<p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
 
 > class Gene
 > 
-> private final com.facebook.genAlgo.RandomProvider
+> private final RandomProvider
 > 
 > private char[] values;
 
