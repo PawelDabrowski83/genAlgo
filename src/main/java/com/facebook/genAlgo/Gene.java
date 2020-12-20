@@ -10,6 +10,6 @@ public class Gene {
     }
 
     public char[] getValues() {
-        return null;
+        return values;
     }
 }

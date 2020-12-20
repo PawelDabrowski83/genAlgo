@@ -3,7 +3,7 @@ package com.facebook.genAlgo;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -15,7 +15,7 @@ public class GeneTest {
   public void shouldGeneValuesLengthBeRandomized() {
     // given
     int lengthExpected = 113;
-    when(randomProviderMock.getRandom(any())).thenReturn(lengthExpected);
+    when(randomProviderMock.getRandom(anyInt())).thenReturn(lengthExpected);
 
     // when
     Gene actual = new Gene(randomProviderMock);
@@ -28,7 +28,7 @@ public class GeneTest {
   public void shouldGeneValuesBeFilledRandomly() {
     // given
     int valueExpected = 113;
-    when(randomProviderMock.getRandom(any())).thenReturn(valueExpected);
+    when(randomProviderMock.getRandom(anyInt())).thenReturn(valueExpected);
 
     // when
     Gene actual = new Gene(randomProviderMock);
