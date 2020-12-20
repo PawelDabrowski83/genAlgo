@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -42,5 +43,15 @@ public class GeneTest {
     for (char value : actual.getValues()) {
         assertEquals(valueExpected, value);
     }
+  }
+
+  @DisplayName("Should Gene.values be initialized")
+  @Test
+  public void shouldGeneValuesBeInitialized() {
+    // when
+    Gene actual = new Gene(randomProviderMock);
+
+    // then
+    assertNotNull(actual.getValues());
   }
 }
