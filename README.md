@@ -9,7 +9,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 1 on 21.12.2020</p>
+<p>We are working to develop functioning Stage 2 on 28.12.2020</p>
 
 ## Stage 1
 <p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
