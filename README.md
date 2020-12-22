@@ -13,7 +13,7 @@
 
 ## Workflow
 - We use separate branches to develop each stage of project.
-- Each stage consist of at least three steps: documentation, tests and implementation. They are developed in this order and depend on each another.
+- Each stage consist of at least three steps: documentation, tests and implementation. They are developed in this order and depend on each other.
     - Documentation describes the task.
     - Tests are our specification of product and we want them to describe acceptance conditions for implementation.
     - Implementation is developed at the end of the stage and it should pass all of the tests before release.
