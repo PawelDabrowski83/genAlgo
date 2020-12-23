@@ -38,3 +38,21 @@
 
 ![Gene class](images/genAlgo-stage1.jpg)
 <p>Gene should have <b>char[] values</b> initialized with random char length and random char values on each element.</p>
+
+## Stage 2
+<p>Creation of Evaluator interface and its implementation. Evaluator has one method setFitness() which is used to count fitness of gene. </p> 
+<p>Evaluator count fitness only by comparing two char. One current in gene wiht target char. </p>
+<p>Target char should be passed to Evaluator as argument in constructor </p> 
+
+> interface Evaluator
+>
+>setFitness(Gene)
+
+![Evaluator interface](images/genAlgo-stage2.png)
+
+<p>Formulas for setFitness() method: </p>
+<p>variant 1:  1 / (1+log(1+delta)) </p>
+<p>variant 2: (65535 - delta) / 65535 </p>
+<p>where: </p>
+<p>delta - difference between target and current char </p>
+<p>65535 - value equal to Character.MAX_VALUE </p>
