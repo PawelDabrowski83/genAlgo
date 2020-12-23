@@ -33,3 +33,7 @@
 >setFitness(Gene)
 
 ![Evaluator interface](images/genAlgo-stage2.png)
+
+<p>Formulas for setFitness() method: </p>
+<p>variant 1:  1 / (1+log(1+delta)) </p>
+<p>variant 2: (65535 - delta) / 65535 </p>
