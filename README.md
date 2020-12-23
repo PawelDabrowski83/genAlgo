@@ -24,4 +24,8 @@
 <p>Gene should have <b>char[] values</b> initialized with random char length and random char values on each element.</p>
 
 ## Stage 2
-<p>Creation of Evaluator interface and its implementation. Evaluator has one method setFitness() which is used to count fitness of gene. </p>                                                                                                                                 
+<p>Creation of Evaluator interface and its implementation. Evaluator has one method setFitness() which is used to count fitness of gene. </p>   
+
+> interface Evaluator
+>
+>setFitness(Gene)
