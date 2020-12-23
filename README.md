@@ -29,3 +29,5 @@
 > interface Evaluator
 >
 >setFitness(Gene)
+
+![Evaluator interface](images/genAlgo-stage2.png)
