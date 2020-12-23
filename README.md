@@ -37,3 +37,6 @@
 <p>Formulas for setFitness() method: </p>
 <p>variant 1:  1 / (1+log(1+delta)) </p>
 <p>variant 2: (65535 - delta) / 65535 </p>
+<p>where: </p>
+<p>delta - difference between target and current char </p>
+<p>65535 - value equal to Character.MAX_VALUE </p>
