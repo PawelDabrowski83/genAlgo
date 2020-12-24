@@ -1,4 +1,6 @@
-package com.facebook.genAlgo;
+package com.facebook.genAlgo.gene;
+
+import com.facebook.genAlgo.utils.RandomProvider;
 
 public class Gene {
 

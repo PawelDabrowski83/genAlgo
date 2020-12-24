@@ -1,5 +1,7 @@
-package com.facebook.genAlgo;
+package com.facebook.genAlgo.gene;
 
+import com.facebook.genAlgo.gene.Gene;
+import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
