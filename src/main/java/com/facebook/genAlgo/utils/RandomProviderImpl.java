@@ -1,4 +1,6 @@
-package com.facebook.genAlgo;
+package com.facebook.genAlgo.utils;
+
+import com.facebook.genAlgo.utils.RandomProvider;
 
 import java.util.concurrent.ThreadLocalRandom;
 
