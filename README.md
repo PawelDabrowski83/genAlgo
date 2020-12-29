@@ -50,8 +50,6 @@
 
 Gene has field char value, generateValue() method use RandomProvider interface to randomly generate char value.
 
-
-
 > interface Evaluator
 >
 > setFitness(Gene)
