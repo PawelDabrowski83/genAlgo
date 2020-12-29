@@ -69,8 +69,14 @@
 
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value.
 
+
 > interface Evaluator
 >
 > setFitness(Gene)
+> countFitness(Gene)
+
+Evaluator has two method setFitness() which set caluleted fitness to given gene, and countFitness(Gene) method to count fitness of gene.
+Evaluator count fitness only by comparing two char. One current value in gene wiht target char
+Target char should be passed to Evaluator as argument in constructor
 
 
