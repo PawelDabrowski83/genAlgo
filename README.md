@@ -30,26 +30,12 @@
 ## Stage 1
 <p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
 
-> class Gene
-> 
-> private final RandomProvider
-> 
-> private char[] values;
-
-![Gene class](images/genAlgo-stage1.jpg)
-<p>Gene should have <b>char[] values</b> initialized with random char length and random char values on each element.</p>
-
 ## Stage 2
-<p>Creation of Evaluator interface and its implementation. Evaluator has one method setFitness() which is used to count fitness of gene. </p> 
-<p>Evaluator count fitness only by comparing two char. One current in gene wiht target char. </p>
-<p>Target char should be passed to Evaluator as argument in constructor </p> 
+<p>Creation of Evaluator interface and its implementation. </p>
 
-> interface Evaluator
->
->setFitness(Gene)
-
-![Evaluator interface](images/genAlgo-stage2.png)
-
+## Stage 3
+<p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
+<p>Gene class refactor, gene has field with single char insted of char array.</p>
 
 
 ## Code Structure
@@ -60,11 +46,10 @@
 >
 > private char value
 >
-> private float fitness
->
 > private void generateValue()
 
 Gene has field char value, generateValue() method use RandomProvider interface to randomly generate char value.
+
 
 
 > interface Evaluator
