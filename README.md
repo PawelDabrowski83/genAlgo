@@ -82,4 +82,6 @@ where:
 delta - difference between target and current char
 65535 - value equal to Character.MAX_VALUE
 
+![Code structure](images/genAlgo-stage3.png)
+
 
