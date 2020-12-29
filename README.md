@@ -62,12 +62,12 @@
 > class Gene
 > 
 > private final RandomProvider 
-> private char value;
-> private float fitness;
+> private char value
+> private float fitness
 >
 > private void generateValue()
 
-Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value.
+Gene has field char value, generateValue() method use RandomProvider interface to randomly generate char value.
 
 
 > interface Evaluator
@@ -75,7 +75,7 @@ Gene has two fields char value and float fitness, generateValue() method use Ran
 > setFitness(Gene)
 > countFitness(Gene)
 
-Evaluator has two method setFitness() which set caluleted fitness to given gene, and countFitness(Gene) method to count fitness of gene.
+Evaluator has method setFitness() to calculate fitness of gene
 Evaluator count fitness only by comparing two char. One current value in gene wiht target char
 Target char should be passed to Evaluator as argument in constructor
 
