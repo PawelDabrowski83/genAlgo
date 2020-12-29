@@ -50,19 +50,16 @@
 
 ![Evaluator interface](images/genAlgo-stage2.png)
 
-<p>Formulas for setFitness() method: </p>
-<p>variant 1:  1 / (1+log(1+delta)) </p>
-<p>variant 2: (65535 - delta) / 65535 </p>
-<p>where: </p>
-<p>delta - difference between target and current char </p>
-<p>65535 - value equal to Character.MAX_VALUE </p>
+
 
 ## Code Structure
 
 > class Gene
 > 
-> private final RandomProvider 
+> private final RandomProvider
+>
 > private char value
+>
 > private float fitness
 >
 > private void generateValue()
@@ -73,10 +70,16 @@ Gene has field char value, generateValue() method use RandomProvider interface t
 > interface Evaluator
 >
 > setFitness(Gene)
-> countFitness(Gene)
 
 Evaluator has method setFitness() to calculate fitness of gene
 Evaluator count fitness only by comparing two char. One current value in gene wiht target char
 Target char should be passed to Evaluator as argument in constructor
+
+Formulas for setFitness() method:
+variant 1:  1 / (1+log(1+delta))
+variant 2: (65535 - delta) / 65535
+where:
+delta - difference between target and current char
+65535 - value equal to Character.MAX_VALUE
 
 
