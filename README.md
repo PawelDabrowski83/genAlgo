@@ -75,12 +75,17 @@ Evaluator has method setFitness() to calculate fitness of gene
 Evaluator count fitness only by comparing two char. One current value in gene wiht target char
 Target char should be passed to Evaluator as argument in constructor
 
-Formulas for setFitness() method:
-variant 1:  1 / (1+log(1+delta))
-variant 2: (65535 - delta) / 65535
-where:
-delta - difference between target and current char
-65535 - value equal to Character.MAX_VALUE
+> Formulas for setFitness() method:
+>
+> variant 1:  1 / (1+log(1+delta))
+>
+> variant 2: (65535 - delta) / 65535
+>
+> where:
+>
+> delta - difference between target and current char
+>
+> 65535 - value equal to Character.MAX_VALUE
 
 ![Code structure](images/genAlgo-stage3.png)
 
