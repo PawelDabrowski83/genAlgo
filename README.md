@@ -56,3 +56,21 @@
 <p>where: </p>
 <p>delta - difference between target and current char </p>
 <p>65535 - value equal to Character.MAX_VALUE </p>
+
+## Code Structure
+
+> class Gene
+> 
+> private final RandomProvider 
+> private char value;
+> private float fitness;
+>
+> private void generateValue()
+
+Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value.
+
+> interface Evaluator
+>
+> setFitness(Gene)
+
+
