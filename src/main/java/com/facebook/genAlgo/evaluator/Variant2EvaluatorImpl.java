@@ -12,7 +12,7 @@ public class Variant2EvaluatorImpl implements Evaluator {
 
     @Override
     public float setFitness(Gene gene) {
-        float delta = gene.getValues()[0] - target;
-        return(float) ((655- delta) / 65535);
+        float delta = Math.abs(gene.getValues()[0] - target);
+        return(float) ((65535- delta) / 65535);
     }
 }
