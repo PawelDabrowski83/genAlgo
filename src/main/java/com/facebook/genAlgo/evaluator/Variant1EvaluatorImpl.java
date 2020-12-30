@@ -2,6 +2,8 @@ package com.facebook.genAlgo.evaluator;
 
 import com.facebook.genAlgo.gene.Gene;
 
+import static java.lang.Math.log;
+
 public class Variant1EvaluatorImpl implements Evaluator {
 
     private final char target;
@@ -12,6 +14,7 @@ public class Variant1EvaluatorImpl implements Evaluator {
 
     @Override
     public float setFitness(Gene gene) {
-        return 0;
+        float delta = gene.getValues()[0] - target;
+        return (float) (1 / (1+log(1 + delta)));
     }
 }
