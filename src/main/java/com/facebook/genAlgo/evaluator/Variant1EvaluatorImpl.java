@@ -11,7 +11,6 @@ public class Variant1EvaluatorImpl implements Evaluator {
   public Variant1EvaluatorImpl(char target) {
     this.target = target;
   }
-
   @Override
   public float setFitness(Gene gene) {
     float delta = gene.getValues()[0] - target;
