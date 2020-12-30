@@ -30,29 +30,46 @@
 ## Stage 1
 <p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
 
+## Stage 2
+<p>Creation of Evaluator interface and its implementation. </p>
+
+## Stage 3
+<p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
+<p>Gene class refactor, gene has field with single char insted of char array.</p>
+
+
+## Code Structure
+
 > class Gene
 > 
 > private final RandomProvider
-> 
-> private char[] values;
+>
+> private char value
+>
+> private void generateValue()
 
-![Gene class](images/genAlgo-stage1.jpg)
-<p>Gene should have <b>char[] values</b> initialized with random char length and random char values on each element.</p>
-
-## Stage 2
-<p>Creation of Evaluator interface and its implementation. Evaluator has one method setFitness() which is used to count fitness of gene. </p> 
-<p>Evaluator count fitness only by comparing two char. One current in gene wiht target char. </p>
-<p>Target char should be passed to Evaluator as argument in constructor </p> 
+Gene has field char value, generateValue() method use RandomProvider interface to randomly generate char value.
 
 > interface Evaluator
 >
->setFitness(Gene)
+> setFitness(Gene)
 
-![Evaluator interface](images/genAlgo-stage2.png)
+Evaluator has method setFitness() to calculate fitness of gene
+Evaluator count fitness only by comparing two char. One current value in gene with target char
+Target char should be passed to Evaluator as argument in constructor
 
-<p>Formulas for setFitness() method: </p>
-<p>variant 1:  1 / (1+log(1+delta)) </p>
-<p>variant 2: (65535 - delta) / 65535 </p>
-<p>where: </p>
-<p>delta - difference between target and current char </p>
-<p>65535 - value equal to Character.MAX_VALUE </p>
+> Formulas for setFitness() method:
+>
+> variant 1:  1 / (1+log(1+delta))
+>
+> variant 2: (65535 - delta) / 65535
+>
+> where:
+>
+> delta - difference between target and current char
+>
+> 65535 - value equal to Character.MAX_VALUE
+
+![Code structure](images/genAlgo-stage3.png)
+
+
