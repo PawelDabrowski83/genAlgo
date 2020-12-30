@@ -55,7 +55,7 @@ Gene has field char value, generateValue() method use RandomProvider interface t
 > setFitness(Gene)
 
 Evaluator has method setFitness() to calculate fitness of gene
-Evaluator count fitness only by comparing two char. One current value in gene wiht target char
+Evaluator count fitness only by comparing two char. One current value in gene with target char
 Target char should be passed to Evaluator as argument in constructor
 
 > Formulas for setFitness() method:
