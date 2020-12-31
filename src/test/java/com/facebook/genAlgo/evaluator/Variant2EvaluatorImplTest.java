@@ -51,7 +51,7 @@ public class Variant2EvaluatorImplTest {
     @MethodSource("setFitnessCloseMatchArgumentsProvider")
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant1EvaluatorImpl(target);
+        evaluator = new Variant2EvaluatorImpl(target);
         when(gene.getValues()).thenReturn(new char[]{evaluatedValue});
 
         // when
@@ -89,7 +89,7 @@ public class Variant2EvaluatorImplTest {
     @MethodSource("setFitnessAnyMatchArgumentsProvider")
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant1EvaluatorImpl(target);
+        evaluator = new Variant2EvaluatorImpl(target);
         when(gene.getValues()).thenReturn(new char[]{evaluatedValue});
 
         // when
