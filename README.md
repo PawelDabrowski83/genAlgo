@@ -60,7 +60,7 @@ Target char should be passed to Evaluator as argument in constructor
 
 > Formulas for setFitness() method:
 >
-> variant 1:  1 / (1+log(1+delta))
+> variant 1:  1 / (1+log<sub>10</sub>(1+delta))
 >
 > variant 2: (65535 - delta) / 65535
 >
