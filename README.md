@@ -66,7 +66,7 @@ Target char should be passed to Evaluator as argument in constructor
 >
 > where:
 >
-> delta - difference between target and current char
+> delta - Absolute value of difference between target and current char
 >
 > 65535 - value equal to Character.MAX_VALUE
 
