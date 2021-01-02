@@ -90,7 +90,7 @@ public class Variant1EvaluatorImplTest {
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant1EvaluatorImpl(target);
-        when(gene.getValues()).thenReturn(evaluatedValue);
+        when(gene.getValue()).thenReturn(evaluatedValue);
 
         // when
         evaluator.setFitness(gene);
