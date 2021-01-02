@@ -60,13 +60,13 @@ Target char should be passed to Evaluator as argument in constructor
 
 > Formulas for setFitness() method:
 >
-> variant 1:  1 / (1+log(1+delta))
+> variant 1:  1 / (1+log<sub>10</sub>(1+delta))
 >
 > variant 2: (65535 - delta) / 65535
 >
 > where:
 >
-> delta - difference between target and current char
+> delta - Absolute value of difference between target and current char
 >
 > 65535 - value equal to Character.MAX_VALUE
 
