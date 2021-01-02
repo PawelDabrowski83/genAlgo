@@ -26,13 +26,14 @@ public class Variant1EvaluatorImplTest {
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant1EvaluatorImpl(target);
-        when(gene.getValues()).thenReturn(new char[]{evaluatedValue});
+        when(gene.getValue()).thenReturn(evaluatedValue);
 
         // when
-        float fitnessActual = evaluator.setFitness(gene);
+        float fitnessActual = evaluator.calculateFitness(gene);
+        evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, fitnessActual, 0.0001);
+        assertEquals(fitnessExpected, gene.fitness, 0.0001);
     }
 
     private static Stream<Arguments> setFitnessFullMatchArgumentsProvider() {
@@ -51,13 +52,13 @@ public class Variant1EvaluatorImplTest {
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant1EvaluatorImpl(target);
-        when(gene.getValues()).thenReturn(new char[]{evaluatedValue});
+        when(gene.getValue()).thenReturn(evaluatedValue);
 
         // when
-        float fitnessActual = evaluator.setFitness(gene);
+        evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, fitnessActual, 0.0001);
+        assertEquals(fitnessExpected, gene.fitness, 0.0001);
     }
 
     private static Stream<Arguments> setFitnessCloseMatchArgumentsProvider() {
@@ -89,13 +90,13 @@ public class Variant1EvaluatorImplTest {
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant1EvaluatorImpl(target);
-        when(gene.getValues()).thenReturn(new char[]{evaluatedValue});
+        when(gene.getValues()).thenReturn(evaluatedValue);
 
         // when
-        float fitnessActual = evaluator.setFitness(gene);
+        evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, fitnessActual, 0.0001);
+        assertEquals(fitnessExpected, gene.fitness, 0.0001);
     }
 
     private static Stream<Arguments> setFitnessAnyMatchArgumentsProvider() {
