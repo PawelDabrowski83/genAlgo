@@ -74,6 +74,6 @@ Target char should be passed to Evaluator as argument in constructor
 >
 > 65535 - value equal to Character.MAX_VALUE
 
-![Code structure](images/genAlgo-stage3.png)
+![Code structure](images/genAlgo-stage3-update.png)
 
 
