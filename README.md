@@ -45,6 +45,8 @@
 > private final RandomProvider
 >
 > private char value
+> 
+> private float fitness
 >
 > private void generateValue()
 
