@@ -29,7 +29,6 @@ public class Variant1EvaluatorImplTest {
         when(gene.getValue()).thenReturn(evaluatedValue);
 
         // when
-        float fitnessActual = evaluator.calculateFitness(gene);
         evaluator.setFitness(gene);
 
         // then
