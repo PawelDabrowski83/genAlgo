@@ -1,6 +1,5 @@
 package com.facebook.genAlgo.gene;
 
-import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ public class GeneTest {
         Gene actual = new Gene(randomProviderMock);
 
         // then
-        assertEquals(lengthExpected, actual.getValues().length);
+        assertEquals(lengthExpected, actual.getValue().length);
     }
 
     @DisplayName("Should Gene.values are filled randomly")
@@ -42,7 +41,7 @@ public class GeneTest {
         Gene actual = new Gene(randomProviderMock);
 
         // then
-        for (char value : actual.getValues()) {
+        for (char value : actual.getValue()) {
             assertEquals(valueExpected, value);
         }
     }
@@ -54,6 +53,6 @@ public class GeneTest {
         Gene actual = new Gene(randomProviderMock);
 
         // then
-        assertNotNull(actual.getValues());
+        assertNotNull(actual.getValue());
     }
 }
