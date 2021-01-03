@@ -4,7 +4,7 @@ import com.facebook.genAlgo.utils.RandomProvider;
 
 public class Gene {
 
-    private RandomProvider randomProvider;
+    private final RandomProvider randomProvider;
     private char[] values;
 
     public Gene(RandomProvider randomProvider) {
