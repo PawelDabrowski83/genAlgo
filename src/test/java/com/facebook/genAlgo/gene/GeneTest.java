@@ -16,10 +16,10 @@ public class GeneTest {
 
     RandomProvider randomProviderMock = mock(RandomProvider.class);
 
-    @DisplayName("Should Gene.values are filled randomly")
+    @DisplayName("Should Gene.value is filled randomly")
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 13, 98, 278, Character.MAX_VALUE})
-    public void testGeneValues(int valueExpected) {
+    public void testGeneValue(int valueExpected) {
         // given
         when(randomProviderMock.getRandom(anyInt())).thenReturn(valueExpected);
 
@@ -27,9 +27,7 @@ public class GeneTest {
         Gene actual = new Gene(randomProviderMock);
 
         // then
-        for (char value : actual.getValue()) {
-            assertEquals(valueExpected, value);
-        }
+        assertEquals(valueExpected, actual.getValue());
     }
 
     @DisplayName("Should Gene.values be initialized")
