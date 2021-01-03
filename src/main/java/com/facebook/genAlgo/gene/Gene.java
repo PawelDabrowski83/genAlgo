@@ -4,28 +4,28 @@ import com.facebook.genAlgo.utils.RandomProvider;
 
 public class Gene {
 
-    private RandomProvider randomProvider;
-    private char[] values;
+    private final RandomProvider randomProvider;
+    private char value;
+    private float fitness;
 
     public Gene(RandomProvider randomProvider) {
         this.randomProvider = randomProvider;
-        generateValuesLength();
-        generateValues();
+        generateValue();
     }
 
-    private void generateValuesLength() {
-        int length = randomProvider.getRandom(10);
-        values = new char[length];
+    private void generateValue() {
+        value = (char) randomProvider.getRandom(1000);
     }
 
-    private void generateValues() {
-        for (int i = 0; i < values.length; i++) {
-            values[i] = (char) randomProvider.getRandom(100);
-
-        }
+    public char getValue() {
+        return value;
     }
 
-    public char[] getValues() {
-        return values;
+    public float getFitness() {
+        return fitness;
+    }
+
+    public void setFitness(float fitness) {
+        this.fitness = fitness;
     }
 }
