@@ -5,12 +5,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.ArgumentCaptor;
 
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /*
 evaluation formula:
@@ -20,6 +20,8 @@ public class Variant2EvaluatorImplTest {
 
     Evaluator evaluator;
     Gene gene = mock(Gene.class);
+
+    ArgumentCaptor<Float> floatArgumentCaptor = ArgumentCaptor.forClass(Float.class);
 
     @DisplayName("Should setFitness calculate fitness for full match")
     @ParameterizedTest
@@ -31,9 +33,10 @@ public class Variant2EvaluatorImplTest {
 
         // when
         evaluator.setFitness(gene);
+        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
+        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessFullMatchArgumentsProvider() {
@@ -56,9 +59,10 @@ public class Variant2EvaluatorImplTest {
 
         // when
         evaluator.setFitness(gene);
+        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
+        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessCloseMatchArgumentsProvider() {
@@ -94,9 +98,10 @@ public class Variant2EvaluatorImplTest {
 
         // when
         evaluator.setFitness(gene);
+        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
+        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessAnyMatchArgumentsProvider() {
