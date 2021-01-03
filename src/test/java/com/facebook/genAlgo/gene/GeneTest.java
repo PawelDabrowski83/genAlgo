@@ -29,14 +29,4 @@ public class GeneTest {
         // then
         assertEquals(valueExpected, actual.getValue());
     }
-
-    @DisplayName("Should Gene.values be initialized")
-    @Test
-    public void shouldGeneValuesBeInitialized() {
-        // when
-        Gene actual = new Gene(randomProviderMock);
-
-        // then
-        assertNotNull(actual.getValue());
-    }
 }
