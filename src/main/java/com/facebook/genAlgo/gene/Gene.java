@@ -6,6 +6,7 @@ public class Gene {
 
     private final RandomProvider randomProvider;
     private char value;
+    private float fitness;
 
     public Gene(RandomProvider randomProvider) {
         this.randomProvider = randomProvider;
@@ -18,5 +19,13 @@ public class Gene {
 
     public char getValue() {
         return value;
+    }
+
+    public float getFitness() {
+        return fitness;
+    }
+
+    public void setFitness(float fitness) {
+        this.fitness = fitness;
     }
 }
