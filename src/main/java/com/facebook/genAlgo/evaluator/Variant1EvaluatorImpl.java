@@ -14,7 +14,7 @@ public class Variant1EvaluatorImpl implements Evaluator {
   }
   @Override
   public float setFitness(Gene gene) {
-    float delta = Math.abs(gene.getValue()[0] - target);
+    float delta = Math.abs(gene.getValue() - target);
     return (float) (1 / (1 + log10(1 + delta)));
   }
 }

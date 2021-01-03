@@ -32,7 +32,7 @@ public class Variant1EvaluatorImplTest {
         evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness, 0.0001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.0001);
     }
 
     private static Stream<Arguments> setFitnessFullMatchArgumentsProvider() {
@@ -57,7 +57,7 @@ public class Variant1EvaluatorImplTest {
         evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness, 0.0001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.0001);
     }
 
     private static Stream<Arguments> setFitnessCloseMatchArgumentsProvider() {
@@ -95,7 +95,7 @@ public class Variant1EvaluatorImplTest {
         evaluator.setFitness(gene);
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness, 0.0001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.0001);
     }
 
     private static Stream<Arguments> setFitnessAnyMatchArgumentsProvider() {
