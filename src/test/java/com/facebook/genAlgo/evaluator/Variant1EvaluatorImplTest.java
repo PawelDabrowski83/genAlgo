@@ -58,9 +58,10 @@ public class Variant1EvaluatorImplTest {
 
         // when
         evaluator.setFitness(gene);
+        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness(), 0.0001);
+        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.0001);
     }
 
     private static Stream<Arguments> setFitnessCloseMatchArgumentsProvider() {
@@ -96,9 +97,10 @@ public class Variant1EvaluatorImplTest {
 
         // when
         evaluator.setFitness(gene);
+        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, gene.getFitness(), 0.0001);
+        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.0001);
     }
 
     private static Stream<Arguments> setFitnessAnyMatchArgumentsProvider() {
