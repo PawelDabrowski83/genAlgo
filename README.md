@@ -9,7 +9,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 3 on 04.01.2021 - refactor in Gene and Evaluator.</p>
+<p>We are working to develop functioning Stage 4 on 11.01.2021 - CrossoverService.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
