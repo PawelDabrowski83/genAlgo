@@ -1,11 +1,11 @@
 package com.facebook.genAlgo.evaluator;
 
 import com.facebook.genAlgo.gene.Gene;
+import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.ArgumentCaptor;
 
 import java.util.stream.Stream;
 
@@ -19,24 +19,23 @@ variant 2: (65535 - delta) / 65535
 public class Variant2EvaluatorImplTest {
 
     Evaluator evaluator;
-    Gene gene = mock(Gene.class);
+    RandomProvider randomProvider = mock(RandomProvider.class);
+    Gene gene;
 
-    ArgumentCaptor<Float> floatArgumentCaptor = ArgumentCaptor.forClass(Float.class);
-
-    @DisplayName("Should setFitness calculate fitness for full match")
+    @DisplayName("Should setFitness sets gene.fitness with full match")
     @ParameterizedTest
     @MethodSource("setFitnessFullMatchArgumentsProvider")
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant2EvaluatorImpl(target);
-        when(gene.getValue()).thenReturn(evaluatedValue);
+        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        gene = new Gene(randomProvider);
 
         // when
         evaluator.setFitness(gene);
-        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessFullMatchArgumentsProvider() {
@@ -49,20 +48,20 @@ public class Variant2EvaluatorImplTest {
         );
     }
 
-    @DisplayName("Should setFitness calculate fitness for close match")
+    @DisplayName("Should setFitness sets gene.fitness with close match")
     @ParameterizedTest
     @MethodSource("setFitnessCloseMatchArgumentsProvider")
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant2EvaluatorImpl(target);
-        when(gene.getValue()).thenReturn(evaluatedValue);
+        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        gene = new Gene(randomProvider);
 
         // when
         evaluator.setFitness(gene);
-        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessCloseMatchArgumentsProvider() {
@@ -88,20 +87,20 @@ public class Variant2EvaluatorImplTest {
         );
     }
 
-    @DisplayName("Should setFitness calculate fitness for any match")
+    @DisplayName("Should setFitness sets gene.fitness with any match")
     @ParameterizedTest
     @MethodSource("setFitnessAnyMatchArgumentsProvider")
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new Variant2EvaluatorImpl(target);
-        when(gene.getValue()).thenReturn(evaluatedValue);
+        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        gene = new Gene(randomProvider);
 
         // when
         evaluator.setFitness(gene);
-        verify(gene).setFitness(floatArgumentCaptor.capture());
 
         // then
-        assertEquals(fitnessExpected, floatArgumentCaptor.getValue(), 0.00001);
+        assertEquals(fitnessExpected, gene.getFitness(), 0.00001);
     }
 
     private static Stream<Arguments> setFitnessAnyMatchArgumentsProvider() {
