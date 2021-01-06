@@ -37,6 +37,8 @@
 <p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
 <p>Gene class refactor, gene has field with single char insted of char array.</p>
 
+## Stage 4
+<p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
 
 ## Code Structure
 
@@ -73,6 +75,21 @@ Target char should be passed to Evaluator as argument in constructor
 > delta - Absolute value of difference between target and current char
 >
 > 65535 - value equal to Character.MAX_VALUE
+
+<p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
+to match with optimal solution during next generation.</p>
+
+> interface CrossoverService
+> void cross(Gene g1, Gene g2)
+
+<p>Multiple implementantations (strategies) describe how provided Gene objects should be changed:</p>
+
+| Strategy                          | gene 1                        | gene 2                        |
+| --------------------------------- | ----------------------------- | ----------------------------- |
+| MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
+| OddBitesCrossoverServiceImpl      | odd bits copied from g2       | odd bits copied from g1       |
+| EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
+| BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
 
 ![Code structure](images/genAlgo-stage3-update.png)
 
