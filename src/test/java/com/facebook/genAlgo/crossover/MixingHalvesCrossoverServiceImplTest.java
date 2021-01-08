@@ -1,6 +1,7 @@
 package com.facebook.genAlgo.crossover;
 
 import com.facebook.genAlgo.gene.Gene;
+import com.facebook.genAlgo.utils.RandomProvider;
 import com.sun.jdi.connect.Connector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,34 +12,43 @@ import org.mockito.Mock;
 
 import java.util.stream.Stream;
 
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 public class MixingHalvesCrossoverServiceImplTest {
 
     @Mock
+    RandomProvider randomProviderGene1, randomProviderGene2;
+
     Gene gene1, gene2;
 
     CrossoverService crossoverService;
 
     @ParameterizedTest
     @MethodSource("shouldMixingHalvesOfGeneProvider")
-    void shouldMixingHalvesOfGene(char gene1Val, char gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
-
+    void shouldMixingHalvesOfGene(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+        // given
         crossoverService = new MixingHalvesCrossoverImpl();
+        when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
+        when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
-        when(gene1.getValue()).thenReturn('a');
-        when(gene2.getValue()).thenReturn('b');
+        // when
+        gene1 = new Gene(randomProviderGene1);
+        gene2 = new Gene(randomProviderGene2);
 
         crossoverService.cross(gene1, gene2);
 
-        Assertions.assertEquals();
+        // then
+        Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
+        Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
 
     private Stream<Arguments> shouldMixingHalvesOfGeneProvider() {
         return Stream.of(
-                Arguments.of('ᆙ', '$', (char) 4388, (char) 153),
-                Arguments.of('!', 'ᎈ', (char) 136, (char) 4897),
-                Arguments.of('F', '\uFFFF', (char) 255, (char) 65350)
+                Arguments.of(4505, 36, (char) 4388, (char) 153),
+                Arguments.of(33, 5000, (char) 136, (char) 4897),
+                Arguments.of(70, 65535, (char) 255, (char) 65350)
         );
     }
 }
