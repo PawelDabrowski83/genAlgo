@@ -22,7 +22,7 @@ public class BitPairCrossoverServiceImplTest {
     @MethodSource("bitPairCrossoverProvider")
     void shouldProvideBitPairCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        CrossoverService crossoverService = new OddBitesCrossoverImpl();
+        CrossoverService crossoverService = new BitPairCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
