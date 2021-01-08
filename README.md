@@ -42,17 +42,18 @@
 
 ## Code Structure
 
-> class Gene
-> 
-> private final RandomProvider
->
-> private char value
-> 
-> private float fitness
->
-> private void generateValue()
+```
+class Gene
+ 
+private final RandomProvider
+private char value
+private float fitness
 
-Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value.
+private void generateValue() 
+// getters and setters for value and fitness
+```
+
+Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
 > interface Evaluator
 >
