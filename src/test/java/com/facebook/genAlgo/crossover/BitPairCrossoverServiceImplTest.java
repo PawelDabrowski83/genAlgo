@@ -19,7 +19,7 @@ public class BitPairCrossoverServiceImplTest {
     RandomProvider randomProviderGene1, randomProviderGene2;
 
     @ParameterizedTest
-    @MethodSource("shouldProvideBitPairProvider")
+    @MethodSource("bitPairCrossoverProvider")
     void shouldProvideBitPairCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
         CrossoverService crossoverService = new OddBitesCrossoverImpl();
@@ -29,14 +29,14 @@ public class BitPairCrossoverServiceImplTest {
         // when
         Gene gene1 = new Gene(randomProviderGene1);
         Gene gene2 = new Gene(randomProviderGene2);
-
         crossoverService.cross(gene1, gene2);
+
         // then
         Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
 
-    private Stream<Arguments> shouldProvideBitPairProvider() {
+    private Stream<Arguments> bitPairCrossoverProvider() {
         return Stream.of(
                 Arguments.of(33, 5000, (char) 169, (char) 4864),
                 Arguments.of(70, 65535, (char) 52430, (char) 13175)
