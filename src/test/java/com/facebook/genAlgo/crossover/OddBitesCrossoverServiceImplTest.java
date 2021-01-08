@@ -1,0 +1,53 @@
+package com.facebook.genAlgo.crossover;
+
+import com.facebook.genAlgo.gene.Gene;
+import com.facebook.genAlgo.utils.RandomProvider;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mock;
+
+import java.util.stream.Stream;
+
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.when;
+
+public class OddBitesCrossoverServiceImplTest {
+
+    @Mock
+    RandomProvider randomProviderGene1, randomProviderGene2;
+
+    Gene gene1, gene2;
+
+    CrossoverService crossoverService;
+
+    @ParameterizedTest
+    @MethodSource("shouldMixOddBitesProvider")
+    void shouldMixOddBites(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+        // given
+        crossoverService = new OddBitesCrossoverImpl();
+        when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
+        when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
+
+        // when
+        gene1 = new Gene(randomProviderGene1);
+        gene2 = new Gene(randomProviderGene2);
+
+        crossoverService.cross(gene1, gene2);
+        // then
+        Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
+        Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
+
+    }
+
+    private Stream<Arguments> shouldMixOddBitesProvider() {
+        return Stream.of(
+                Arguments.of(
+                        Arguments.of(4505, 36, (char) 4401, (char) 140),
+                        Arguments.of(33, 5000, (char) 649, (char) 4384 ),
+                        Arguments.of(70, 65535, (char) 43758, (char) 21847)
+                )
+        );
+    }
+}
