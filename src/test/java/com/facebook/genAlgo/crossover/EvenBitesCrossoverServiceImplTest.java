@@ -19,10 +19,10 @@ public class EvenBitesCrossoverServiceImplTest {
     RandomProvider randomProviderGene1, randomProviderGene2;
 
     @ParameterizedTest
-    @MethodSource("shouldMixEvenBitesProvider")
-    void shouldMixOddBites(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+    @MethodSource("evenBitesCrossoverProvider")
+    void shouldProvideEvenBitesCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        CrossoverService crossoverService = new OddBitesCrossoverImpl();
+        CrossoverService crossoverService = new EvenBitesCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
@@ -36,7 +36,7 @@ public class EvenBitesCrossoverServiceImplTest {
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
 
-    private Stream<Arguments> shouldMixEvenBitesProvider() {
+    private Stream<Arguments> evenBitesCrossoverProvider() {
         return Stream.of(
                 Arguments.of(4505, 36, (char) 140, (char) 4401),
                 Arguments.of(33, 5000, (char) 4384, (char) 649),
