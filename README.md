@@ -80,9 +80,10 @@ Target char should be passed to Evaluator as argument in constructor
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
 
-> interface CrossoverService
-> 
-> void cross(Gene g1, Gene g2)
+```
+interface CrossoverService
+    void cross(Gene g1, Gene g2)
+```
 
 ![Crossover class diagram](images/CrossoverService-s4.png)
 
