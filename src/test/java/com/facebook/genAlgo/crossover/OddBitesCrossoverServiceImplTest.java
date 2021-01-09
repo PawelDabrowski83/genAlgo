@@ -15,20 +15,20 @@ import static org.mockito.Mockito.when;
 
 public class OddBitesCrossoverServiceImplTest {
 
-    @Mock
-    RandomProvider randomProviderGene1, randomProviderGene2;
+
+    RandomProvider randomProvider;
 
     @ParameterizedTest
-    @MethodSource("evenBitesCrossoverProvider")
-    void shouldProvideEvenBitesCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+    @MethodSource("oddBitesCrossoverProvider")
+    void shouldProvideOddBitesCrossover(int gene1Val, int gene2Val, char gene1ValueExpected, char gene2ValueExpected) {
         // given
         CrossoverService oddBitesService = new OddBitesCrossoverServiceImpl();
-        when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
-        when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
+        Gene gene1 = new Gene(randomProvider);
+        Gene gene2 = new Gene(randomProvider);
+        gene1.setValue(gene1Val);
+        gene2.setValue(gene2Val);
 
         // when
-        Gene gene1 = new Gene(randomProviderGene1);
-        Gene gene2 = new Gene(randomProviderGene2);
         oddBitesService.cross(gene1, gene2);
 
         // then
@@ -37,7 +37,7 @@ public class OddBitesCrossoverServiceImplTest {
     }
 
 
-    private Stream<Arguments> evenBitesCrossoverProvider() {
+    private Stream<Arguments> oddBitesCrossoverProvider() {
         return Stream.of(
                 Arguments.of(
                         Arguments.of(4505, 36, (char) 4401, (char) 140),
