@@ -33,7 +33,7 @@ public class BitPairCrossoverServiceImplTest {
     }
 
 
-    private Stream<Arguments> bitPairCrossoverProvider() {
+    private static Stream<Arguments> bitPairCrossoverProvider() {
         return Stream.of(
                 Arguments.of((char) 33, (char) 5000, (char) 169, (char) 4864),
                 Arguments.of((char) 70, (char) 65535, (char) 52430, (char) 13175)

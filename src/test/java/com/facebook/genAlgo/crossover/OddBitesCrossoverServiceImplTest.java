@@ -32,7 +32,7 @@ public class OddBitesCrossoverServiceImplTest {
     }
 
 
-    private Stream<Arguments> oddBitesCrossoverProvider() {
+    private static Stream<Arguments> oddBitesCrossoverProvider() {
         return Stream.of(
                 Arguments.of(
                         Arguments.of((char) 4505, (char) 36, (char) 4401, (char) 140),

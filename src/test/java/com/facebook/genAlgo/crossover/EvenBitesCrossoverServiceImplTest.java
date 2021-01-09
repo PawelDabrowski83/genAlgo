@@ -33,7 +33,7 @@ public class EvenBitesCrossoverServiceImplTest {
     }
 
 
-    private Stream<Arguments> evenBitesCrossoverProvider() {
+    private static Stream<Arguments> evenBitesCrossoverProvider() {
         return Stream.of(
                 Arguments.of((char) 4505, (char) 36, (char) 140, (char) 4401),
                 Arguments.of((char) 33, (char) 5000, (char) 4384, (char) 649),
