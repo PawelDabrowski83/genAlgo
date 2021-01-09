@@ -22,19 +22,20 @@ public class EvenBitesCrossoverServiceImplTest {
     @MethodSource("evenBitesCrossoverProvider")
     void shouldProvideEvenBitesCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        CrossoverService crossoverService = new EvenBitesCrossoverServiceImpl();
+        CrossoverService evenBitesService = new EvenBitesCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
         // when
         Gene gene1 = new Gene(randomProviderGene1);
         Gene gene2 = new Gene(randomProviderGene2);
+        evenBitesService.cross(gene1, gene2);
 
-        crossoverService.cross(gene1, gene2);
         // then
         Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
+
 
     private Stream<Arguments> evenBitesCrossoverProvider() {
         return Stream.of(
