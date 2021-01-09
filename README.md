@@ -83,7 +83,7 @@ to match with optimal solution during next generation.</p>
 > interface CrossoverService
 > void cross(Gene g1, Gene g2)
 
-<p>Multiple implementantations (strategies) describe how provided Gene objects should be changed:</p>
+<p>Multiple implementations (strategies) describe how provided Gene objects should be changed:</p>
 
 | Strategy                          | gene 1                        | gene 2                        |
 | --------------------------------- | ----------------------------- | ----------------------------- |
