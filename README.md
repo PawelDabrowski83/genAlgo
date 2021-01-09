@@ -94,6 +94,5 @@ to match with optimal solution during next generation.</p>
 | EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
 
-![Code structure](images/genAlgo-stage3-update.png)
 
 
