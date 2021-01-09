@@ -39,6 +39,7 @@
 
 ## Stage 4
 <p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
+<p>Another Gene docs refactor.</p>
 
 ## Code Structure
 
