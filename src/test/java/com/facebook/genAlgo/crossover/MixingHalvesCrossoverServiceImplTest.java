@@ -21,21 +21,17 @@ public class MixingHalvesCrossoverServiceImplTest {
     @Mock
     RandomProvider randomProviderGene1, randomProviderGene2;
 
-    Gene gene1, gene2;
-
-    CrossoverService crossoverService;
-
     @ParameterizedTest
-    @MethodSource("shouldMixingHalvesOfGeneProvider")
-    void shouldMixingHalvesOfGene(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+    @MethodSource("mixingHalvesCrossoverProvider")
+    void shouldProvideMixingHalvesCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        crossoverService = new MixingHalvesCrossoverImpl();
+        CrossoverService crossoverService = new MixingHalvesCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
         // when
-        gene1 = new Gene(randomProviderGene1);
-        gene2 = new Gene(randomProviderGene2);
+        Gene gene1 = new Gene(randomProviderGene1);
+        Gene gene2 = new Gene(randomProviderGene2);
 
         crossoverService.cross(gene1, gene2);
 
@@ -44,7 +40,7 @@ public class MixingHalvesCrossoverServiceImplTest {
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
 
-    private Stream<Arguments> shouldMixingHalvesOfGeneProvider() {
+    private Stream<Arguments> mixingHalvesCrossoverProvider() {
         return Stream.of(
                 Arguments.of(4505, 36, (char) 4388, (char) 153),
                 Arguments.of(33, 5000, (char) 136, (char) 4897),
