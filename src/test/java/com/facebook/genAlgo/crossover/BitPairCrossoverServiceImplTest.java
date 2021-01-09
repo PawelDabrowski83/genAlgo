@@ -22,19 +22,20 @@ public class BitPairCrossoverServiceImplTest {
     @MethodSource("bitPairCrossoverProvider")
     void shouldProvideBitPairCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        CrossoverService crossoverService = new BitPairCrossoverServiceImpl();
+        CrossoverService bitPairService = new BitPairCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
         // when
         Gene gene1 = new Gene(randomProviderGene1);
         Gene gene2 = new Gene(randomProviderGene2);
-        crossoverService.cross(gene1, gene2);
+        bitPairService.cross(gene1, gene2);
 
         // then
         Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
     }
+
 
     private Stream<Arguments> bitPairCrossoverProvider() {
         return Stream.of(
