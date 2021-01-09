@@ -18,30 +18,26 @@ public class OddBitesCrossoverServiceImplTest {
     @Mock
     RandomProvider randomProviderGene1, randomProviderGene2;
 
-    Gene gene1, gene2;
-
-    CrossoverService crossoverService;
-
     @ParameterizedTest
-    @MethodSource("shouldMixOddBitesProvider")
-    void shouldMixOddBites(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
+    @MethodSource("evenBitesCrossoverProvider")
+    void shouldProvideEvenBitesCrossover(int gene1Val, int gene2Val, char gene1ValueAfterCross, char gene2ValueAfterCross) {
         // given
-        crossoverService = new OddBitesCrossoverImpl();
+        CrossoverService oddBitesService = new OddBitesCrossoverServiceImpl();
         when(randomProviderGene1.getRandom(anyInt())).thenReturn(gene1Val);
         when(randomProviderGene2.getRandom(anyInt())).thenReturn(gene2Val);
 
         // when
-        gene1 = new Gene(randomProviderGene1);
-        gene2 = new Gene(randomProviderGene2);
+        Gene gene1 = new Gene(randomProviderGene1);
+        Gene gene2 = new Gene(randomProviderGene2);
+        oddBitesService.cross(gene1, gene2);
 
-        crossoverService.cross(gene1, gene2);
         // then
         Assertions.assertEquals(gene1.getValue(), gene1ValueAfterCross);
         Assertions.assertEquals(gene2.getValue(), gene2ValueAfterCross);
-
     }
 
-    private Stream<Arguments> shouldMixOddBitesProvider() {
+
+    private Stream<Arguments> evenBitesCrossoverProvider() {
         return Stream.of(
                 Arguments.of(
                         Arguments.of(4505, 36, (char) 4401, (char) 140),
