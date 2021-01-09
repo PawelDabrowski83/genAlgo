@@ -88,8 +88,8 @@ to match with optimal solution during next generation.</p>
 | Strategy                          | gene 1                        | gene 2                        |
 | --------------------------------- | ----------------------------- | ----------------------------- |
 | MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
-| OddBitesCrossoverServiceImpl      | odd bits copied from g2       | odd bits copied from g1       |
-| EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
+| OddBitsCrossoverServiceImpl       | odd bits copied from g2       | odd bits copied from g1       |
+| EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
 
 ![Code structure](images/genAlgo-stage3-update.png)
