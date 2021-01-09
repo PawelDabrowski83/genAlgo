@@ -15,7 +15,7 @@ public class MixingHalvesCrossoverServiceImplTest {
 
     @ParameterizedTest
     @MethodSource("mixingHalvesCrossoverProvider")
-    void shouldProvideMixingHalvesCrossover(int gene1Val, int gene2Val, char gene1ValueExpected, char gene2ValueExpected) {
+    void shouldProvideMixingHalvesCrossover(char gene1Val, char gene2Val, char gene1ValueExpected, char gene2ValueExpected) {
         // given
         RandomProvider randomProvider = new RandomProviderImpl();
         CrossoverService mixingHalvesService = new MixingHalvesCrossoverServiceImpl();
@@ -35,9 +35,9 @@ public class MixingHalvesCrossoverServiceImplTest {
 
     private Stream<Arguments> mixingHalvesCrossoverProvider() {
         return Stream.of(
-                Arguments.of(4505, 36, (char) 4388, (char) 153),
-                Arguments.of(33, 5000, (char) 136, (char) 4897),
-                Arguments.of(70, 65535, (char) 255, (char) 65350)
+                Arguments.of((char) 4505, (char) 36, (char) 4388, (char) 153),
+                Arguments.of((char) 33, (char) 5000, (char) 136, (char) 4897),
+                Arguments.of((char) 70, (char) 65535, (char) 255, (char) 65350)
         );
     }
 }

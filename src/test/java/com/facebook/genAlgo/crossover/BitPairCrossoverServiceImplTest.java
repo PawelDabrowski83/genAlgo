@@ -15,7 +15,7 @@ public class BitPairCrossoverServiceImplTest {
 
     @ParameterizedTest
     @MethodSource("bitPairCrossoverProvider")
-    void shouldProvideBitPairCrossover(int gene1Val, int gene2Val, char gene1ValueExpected, char gene2ValueExpected) {
+    void shouldProvideBitPairCrossover(char gene1Val, char gene2Val, char gene1ValueExpected, char gene2ValueExpected) {
         // given
         RandomProvider randomProvider = new RandomProviderImpl();
         CrossoverService bitPairService = new BitPairCrossoverServiceImpl();
@@ -35,8 +35,8 @@ public class BitPairCrossoverServiceImplTest {
 
     private Stream<Arguments> bitPairCrossoverProvider() {
         return Stream.of(
-                Arguments.of(33, 5000, (char) 169, (char) 4864),
-                Arguments.of(70, 65535, (char) 52430, (char) 13175)
+                Arguments.of((char) 33, (char) 5000, (char) 169, (char) 4864),
+                Arguments.of((char) 70, (char) 65535, (char) 52430, (char) 13175)
         );
     }
 }
