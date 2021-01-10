@@ -32,7 +32,7 @@ public class BitwiseUtils {
 
     public int getByte(int number, int index) {
         checkIndexNotNegative(index);
-        return 0;
+        return number >> index * 8 & BIT_MASK;
     }
 
     public int setByte(int number, int index, int value) {
