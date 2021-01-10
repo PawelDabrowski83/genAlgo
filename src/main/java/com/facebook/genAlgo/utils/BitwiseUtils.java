@@ -31,4 +31,8 @@ public class BitwiseUtils {
         }
         return number;
     }
+
+    public int getByte(int number, int index) {
+        return 0;
+    }
 }

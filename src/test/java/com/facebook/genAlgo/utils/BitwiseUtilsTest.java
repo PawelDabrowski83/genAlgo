@@ -94,4 +94,32 @@ public class BitwiseUtilsTest {
                 Arguments.of(new IllegalArgumentException(), 0b1111, 10, Integer.MAX_VALUE)
         );
     }
+
+    @DisplayName("Should getByte() work properly")
+    @ParameterizedTest
+    @MethodSource("getByteArgumentsProvider")
+    void getByte(int expected, int givenNumber, int byteIndex) {
+        assertEquals(expected, bitwiseUtils.getByte(givenNumber, byteIndex));
+    }
+
+    private static Stream<Arguments> getByteArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(0b1001_1111, 0b1001_1111, 0),
+                Arguments.of(0, 0b1001_1111, 1),
+                Arguments.of(0b0011_1001, 0b1001_1111_0011_1001, 0),
+                Arguments.of(0b1001_1111, 0b1001_1111_0011_1001, 1),
+                Arguments.of(0, Integer.MIN_VALUE, 0),
+                Arguments.of(0, Integer.MIN_VALUE, 1),
+                Arguments.of(0, Integer.MIN_VALUE, 2),
+                Arguments.of(0b1000_0000, Integer.MIN_VALUE, 3),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 0),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 1),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 2),
+                Arguments.of(0b0111_1111, Integer.MAX_VALUE, 3),
+                Arguments.of(0, 0, 0),
+                Arguments.of(0, 0, 1),
+                Arguments.of(0, 0, 2),
+                Arguments.of(0, 0, 3)
+        );
+    }
 }
