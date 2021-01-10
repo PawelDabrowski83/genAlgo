@@ -33,10 +33,16 @@ public class BitwiseUtils {
     }
 
     public int getByte(int number, int index) {
+        if (index < 0) {
+            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
+        }
         return 0;
     }
 
     public int setByte(int number, int index, int value) {
+        if (index < 0) {
+            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
+        }
         return number;
     }
 }
