@@ -171,4 +171,25 @@ public class BitwiseUtilsTest {
                 Arguments.of(0b1111_1111, Integer.MAX_VALUE, 4)
         );
     }
+
+    @DisplayName("Should setByte() throw IllegalArgumentException given wrong arguments")
+    @ParameterizedTest
+    @MethodSource("setByteThrowsExceptionArgumentsProvider")
+    void setByteThrowsException(Exception expected, int givenNumber, int byteIndex, int byteValue) {
+        assertThrows(expected.getClass(), () -> bitwiseUtils.setByte(givenNumber, byteIndex, byteValue));
+    }
+
+    private static Stream<Arguments> setByteThrowsExceptionArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(new IllegalArgumentException(), 0, -1, 0),
+                Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE, 0),
+                Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE, Integer.MAX_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, -1, 0),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, Integer.MIN_VALUE, 0),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, -1, 0),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, 0),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE)
+        );
+    }
 }
