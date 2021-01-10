@@ -30,6 +30,8 @@ public class BitwiseUtilsTest {
                 Arguments.of(0, 0b1010_0001, 6),
                 Arguments.of(1, 0b1010_0001, 7),
                 Arguments.of(0, 0b1010_0001, 8),
+                Arguments.of(1, 0b1010_0001, 32),
+                Arguments.of(0, 0b1010_0001, 33),
                 Arguments.of(0, 0, 10),
                 Arguments.of(0, Integer.MAX_VALUE, 31),
                 Arguments.of(1, Integer.MIN_VALUE, 31)
