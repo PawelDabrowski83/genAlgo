@@ -5,6 +5,7 @@ public class BitwiseUtils {
     public static final int BIT_MASK = 0b1111_1111_1111_1111_1111_1111_1111_1111;
     public static final String INDEX_BELOW_ZERO_EXCEPTION = "Index cannot be below zero.";
     public static final String INCORRECT_BIT_VALUE_EXCEPTION = "Bit value can be only 0 or 1.";
+    public static final String INCORRECT_BYTE_VALUE_EXCEPTION = "Byte value should not exceed 8 bits.";
 
     public int getBit(int number, int index) {
         checkIndexNotNegative(index);
@@ -35,6 +36,9 @@ public class BitwiseUtils {
 
     public int setByte(int number, int index, int value) {
         checkIndexNotNegative(index);
+        if (value > 0b1111_1111) {
+            throw new IllegalArgumentException(INCORRECT_BYTE_VALUE_EXCEPTION);
+        }
         return number;
     }
 
