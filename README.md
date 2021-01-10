@@ -93,7 +93,7 @@ to match with optimal solution during next generation.</p>
 | MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
 | OddBitesCrossoverServiceImpl      | odd bits copied from g2       | odd bits copied from g1       |
 | EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
-| BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
+| BitPairCrossoverServiceImpl       | even bit pairs copied from g2  | even bit pairs copied from g1  |
 
 
 
