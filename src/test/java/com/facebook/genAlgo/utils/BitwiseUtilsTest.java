@@ -1,9 +1,37 @@
 package com.facebook.genAlgo.utils;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BitwiseUtilsTest {
 
     BitwiseUtils bitwiseUtils = new BitwiseUtils();
 
+    @DisplayName("Should getBit() return proper bits")
+    @ParameterizedTest
+    @MethodSource("getBitArgumentsProvider")
+    void getBits(int expected, int given, int bitIndex) {
+        assertEquals(expected, bitwiseUtils.getBit(given, bitIndex));
+    }
+
+    private static Stream<Arguments> getBitArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(1, 0b1010_0001, 0),
+                Arguments.of(0, 0b1010_0001, 1),
+                Arguments.of(0, 0b1010_0001, 3),
+                Arguments.of(1, 0b1010_0001, 5),
+                Arguments.of(0, 0b1010_0001, 6),
+                Arguments.of(1, 0b1010_0001, 7),
+                Arguments.of(0, 0b1010_0001, 8),
+                Arguments.of(0, 0, 10),
+                Arguments.of(0, Integer.MAX_VALUE, 31),
+                Arguments.of(1, Integer.MIN_VALUE, 31)
+        );
+    }
 }
