@@ -2,7 +2,8 @@ package com.facebook.genAlgo.utils;
 
 public class BitwiseUtils {
 
-    public static final int BIT_MASK = 0b1111_1111_1111_1111_1111_1111_1111_1111;
+    public static final int FULL_BIT_MASK = 0b1111_1111_1111_1111_1111_1111_1111_1111;
+    public static final int BIT_MASK = 0b1111_1111;
     public static final String INDEX_BELOW_ZERO_EXCEPTION = "Index cannot be below zero.";
     public static final String INCORRECT_BIT_VALUE_EXCEPTION = "Bit value can be only 0 or 1.";
     public static final String INCORRECT_BYTE_VALUE_EXCEPTION = "Byte value should not exceed 8 bits.";
@@ -22,7 +23,7 @@ public class BitwiseUtils {
             if (currentBitValue == 0) {
                 number = number | (1 << index);
             } else {
-                int clearMask = BIT_MASK ^ (1 << index);
+                int clearMask = FULL_BIT_MASK ^ (1 << index);
                 number = number & clearMask;
             }
         }
