@@ -58,8 +58,8 @@ public class BitwiseUtilsTest {
     @MethodSource("setBitArgumentsProvider")
     void setBit(int expected, int givenNumber, int bitIndex) {
         // when
-        bitwiseUtils.setBit(givenNumber, bitIndex, expected);
-        int actual = bitwiseUtils.getBit(givenNumber, bitIndex);
+        int modifiedNumber = bitwiseUtils.setBit(givenNumber, bitIndex, expected);
+        int actual = bitwiseUtils.getBit(modifiedNumber, bitIndex);
 
         // then
         assertEquals(expected, actual);
@@ -68,7 +68,7 @@ public class BitwiseUtilsTest {
     private static Stream<Arguments> setBitArgumentsProvider() {
         return Stream.of(
                 Arguments.of(1, 0b1100_0011, 0),
-                Arguments.of(1, 0b1100_0011, 1),
+                Arguments.of(0, 0b1100_0011, 1),
                 Arguments.of(1, 0b1100_0011, 2),
                 Arguments.of(1, 0b1100_0011, 3),
                 Arguments.of(1, 0b1100_0011, 6),

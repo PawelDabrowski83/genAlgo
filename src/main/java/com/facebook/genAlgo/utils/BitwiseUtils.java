@@ -16,6 +16,9 @@ public class BitwiseUtils {
         if (value != 0 && value != 1) {
             throw new IllegalArgumentException("Bit value can be only 0 or 1.");
         }
+        if (getBit(number, index) != value) {
+
+        }
         return number;
     }
 }
