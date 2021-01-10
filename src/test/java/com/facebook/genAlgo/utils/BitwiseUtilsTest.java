@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BitwiseUtilsTest {
 
@@ -32,6 +33,21 @@ public class BitwiseUtilsTest {
                 Arguments.of(0, 0, 10),
                 Arguments.of(0, Integer.MAX_VALUE, 31),
                 Arguments.of(1, Integer.MIN_VALUE, 31)
+        );
+    }
+
+    @DisplayName("Should getBit() throw IllegalArgumentException when given is out of range")
+    @ParameterizedTest
+    @MethodSource("getBitThrowsExceptionArgumentsProvider")
+    void getBitsThrowsException(Exception expected, int given, int bitIndex) {
+        assertThrows(expected.getClass(), () -> bitwiseUtils.getBit(given, bitIndex));
+    }
+
+    private static Stream<Arguments> getBitThrowsExceptionArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(new IllegalArgumentException(), 0, -1),
+                Arguments.of(new IllegalArgumentException(), 0, -100),
+                Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE)
         );
     }
 }
