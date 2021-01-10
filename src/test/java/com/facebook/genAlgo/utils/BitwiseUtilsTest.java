@@ -184,12 +184,15 @@ public class BitwiseUtilsTest {
                 Arguments.of(new IllegalArgumentException(), 0, -1, 0),
                 Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE, 0),
                 Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE, Integer.MAX_VALUE),
+                Arguments.of(new IllegalArgumentException(), 0, 2, Integer.MAX_VALUE),
                 Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, -1, 0),
                 Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, Integer.MIN_VALUE, 0),
                 Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, 2, Integer.MAX_VALUE),
                 Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, -1, 0),
                 Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, 0),
-                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE)
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, 2, Integer.MAX_VALUE)
         );
     }
 }
