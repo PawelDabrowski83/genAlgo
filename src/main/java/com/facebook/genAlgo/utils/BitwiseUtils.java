@@ -7,16 +7,12 @@ public class BitwiseUtils {
     public static final String INCORRECT_BIT_VALUE_EXCEPTION = "Bit value can be only 0 or 1.";
 
     public int getBit(int number, int index) {
-        if (index < 0) {
-            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
-        }
+        checkIndexNotNegative(index);
         return (number >> index) & 1;
     }
 
     public int setBit(int number, int index, int value) {
-        if (index < 0) {
-            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
-        }
+        checkIndexNotNegative(index);
         if (value != 0 && value != 1) {
             throw new IllegalArgumentException(INCORRECT_BIT_VALUE_EXCEPTION);
         }
@@ -33,16 +29,18 @@ public class BitwiseUtils {
     }
 
     public int getByte(int number, int index) {
-        if (index < 0) {
-            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
-        }
+        checkIndexNotNegative(index);
         return 0;
     }
 
     public int setByte(int number, int index, int value) {
+        checkIndexNotNegative(index);
+        return number;
+    }
+
+    private void checkIndexNotNegative(int index) {
         if (index < 0) {
             throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
         }
-        return number;
     }
 }
