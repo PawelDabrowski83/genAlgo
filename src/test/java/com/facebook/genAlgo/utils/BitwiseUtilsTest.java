@@ -122,4 +122,22 @@ public class BitwiseUtilsTest {
                 Arguments.of(0, 0, 3)
         );
     }
+
+    @DisplayName("Should getByte throw IllegalArgumentException given invalid arguments")
+    @ParameterizedTest
+    @MethodSource("getByteThrowsExceptionArgumentsProvider")
+    void getByteThrowsException(Exception expected, int givenNumber, int byteIndex) {
+        assertThrows(expected.getClass(), () -> bitwiseUtils.getByte(givenNumber, byteIndex));
+    }
+
+    private static Stream<Arguments> getByteThrowsExceptionArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(new IllegalArgumentException(), 0, -1),
+                Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, -1),
+                Arguments.of(new IllegalArgumentException(), Integer.MIN_VALUE, Integer.MIN_VALUE),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, -1),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE)
+        );
+    }
 }
