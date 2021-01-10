@@ -10,6 +10,11 @@ public class BitwiseUtils {
     }
 
     public void setBit(int number, int index, int value) {
-
+        if (index < 0) {
+            throw new IllegalArgumentException("Index cannot be below zero.");
+        }
+        if (value != 0 && value != 1) {
+            throw new IllegalArgumentException("Bit value can be only 0 or 1.");
+        }
     }
 }
