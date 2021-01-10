@@ -39,6 +39,7 @@
 
 ## Stage 4
 <p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
+<p>Another Gene docs refactor.</p>
 
 ## Code Structure
 
@@ -52,6 +53,8 @@ private float fitness
 private void generateValue() 
 // getters and setters for value and fitness
 ```
+
+![Gene class](images/Gene-s4.png)
 
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
@@ -92,6 +95,5 @@ to match with optimal solution during next generation.</p>
 | EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
 
-![Code structure](images/genAlgo-stage3-update.png)
 
 
