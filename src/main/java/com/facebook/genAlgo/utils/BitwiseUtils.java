@@ -40,6 +40,14 @@ public class BitwiseUtils {
         if (value > 0b1111_1111) {
             throw new IllegalArgumentException(INCORRECT_BYTE_VALUE_EXCEPTION);
         }
+        int currentByte = getByte(number, index);
+        if (currentByte != value) {
+            if (currentByte != 0) {
+                int clearMask = FULL_BIT_MASK ^ (BIT_MASK << index * 8);
+                number = number & clearMask;
+            }
+            number = number | (value << index * 8);
+        }
         return number;
     }
 
