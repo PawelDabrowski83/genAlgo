@@ -21,6 +21,10 @@ public class Gene {
         return value;
     }
 
+    public void setValue(char value) {
+
+    }
+
     public float getFitness() {
         return fitness;
     }
