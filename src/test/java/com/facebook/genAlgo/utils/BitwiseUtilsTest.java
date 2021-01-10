@@ -52,4 +52,29 @@ public class BitwiseUtilsTest {
                 Arguments.of(new IllegalArgumentException(), 0, Integer.MIN_VALUE)
         );
     }
+
+    @DisplayName("Should setBit() work properly")
+    @ParameterizedTest
+    @MethodSource("setBitArgumentsProvider")
+    void setBit(int expected, int givenNumber, int bitIndex) {
+        // when
+        bitwiseUtils.setBit(givenNumber, bitIndex, expected);
+        int actual = bitwiseUtils.getBit(givenNumber, bitIndex);
+
+        // then
+        assertEquals(expected, actual);
+    }
+
+    private static Stream<Arguments> setBitArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(1, 0b1100_0011, 0),
+                Arguments.of(1, 0b1100_0011, 1),
+                Arguments.of(1, 0b1100_0011, 2),
+                Arguments.of(1, 0b1100_0011, 3),
+                Arguments.of(1, 0b1100_0011, 6),
+                Arguments.of(1, 0b1100_0011, 33),
+                Arguments.of(0, Integer.MIN_VALUE, 31),
+                Arguments.of(1, Integer.MAX_VALUE, 31)
+        );
+    }
 }

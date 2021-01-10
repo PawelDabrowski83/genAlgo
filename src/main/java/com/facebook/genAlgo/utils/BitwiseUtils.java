@@ -8,4 +8,8 @@ public class BitwiseUtils {
         }
         return (number >> index) & 1;
     }
+
+    public void setBit(int number, int index, int value) {
+
+    }
 }
