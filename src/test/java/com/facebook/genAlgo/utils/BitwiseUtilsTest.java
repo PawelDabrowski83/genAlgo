@@ -140,4 +140,35 @@ public class BitwiseUtilsTest {
                 Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE)
         );
     }
+
+    @DisplayName("Should setByte() work properly")
+    @ParameterizedTest
+    @MethodSource("setByteArgumentsProvider")
+    void setByte(int expected, int givenNumber, int byteIndex) {
+        // when
+        int modifiedNumber = bitwiseUtils.setByte(givenNumber, byteIndex, expected);
+        int actual = bitwiseUtils.getByte(modifiedNumber, byteIndex);
+
+        // then
+        assertEquals(expected, actual);
+    }
+
+    private static Stream<Arguments> setByteArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(0b1111_1111, 0, 0),
+                Arguments.of(0b0101_1100, 0, 0),
+                Arguments.of(0b1111_1111, 0, 1),
+                Arguments.of(0b0101_1100, 0, 1),
+                Arguments.of(0, Integer.MAX_VALUE, 0),
+                Arguments.of(0, Integer.MAX_VALUE, 1),
+                Arguments.of(0, Integer.MAX_VALUE, 2),
+                Arguments.of(0, Integer.MAX_VALUE, 3),
+                Arguments.of(0, Integer.MAX_VALUE, 4),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 0),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 1),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 2),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 3),
+                Arguments.of(0b1111_1111, Integer.MAX_VALUE, 4)
+        );
+    }
 }
