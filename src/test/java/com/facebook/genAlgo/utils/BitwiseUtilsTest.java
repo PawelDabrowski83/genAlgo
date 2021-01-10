@@ -77,4 +77,21 @@ public class BitwiseUtilsTest {
                 Arguments.of(1, Integer.MAX_VALUE, 31)
         );
     }
+
+    @DisplayName("Should setBit() throw IllegalArgumentException if arguments are invalid")
+    @ParameterizedTest
+    @MethodSource("setBitThrowsExceptionArgumentsProvider")
+    void setBitThrowsException(Exception expected, int givenNumber, int bitIndex, int bitValue) {
+        assertThrows(expected.getClass(), () -> bitwiseUtils.setBit(givenNumber, bitIndex, bitValue));
+    }
+
+    private static Stream<Arguments> setBitThrowsExceptionArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, -1, 1),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, Integer.MIN_VALUE, 1),
+                Arguments.of(new IllegalArgumentException(), Integer.MAX_VALUE, 0, 2),
+                Arguments.of(new IllegalArgumentException(), 0, 10, Integer.MIN_VALUE),
+                Arguments.of(new IllegalArgumentException(), 0b1111, 10, Integer.MAX_VALUE)
+        );
+    }
 }
