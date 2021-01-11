@@ -41,6 +41,9 @@
 <p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
 <p>Another Gene docs refactor.</p>
 
+## Stage 5
+<p>Creation of MutatorService to proivde mutation of gene values after cross recombination. </p<
+    
 ## Code Structure
 
 ```
