@@ -24,9 +24,12 @@ public class BitPairCrossoverServiceImpl implements CrossoverService {
         int geneTargetValue = geneTarget.getValue();
         int geneSourceValue = geneSource.getValue();
 
-        for (int i = 0; i < 32; i+= 2) {
+        for (int i = 0; i < 32; i+= 4) {
             int sourceBit = bitwiseUtils.getBit(geneSourceValue, i);
             geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i, sourceBit);
+
+            sourceBit = bitwiseUtils.getBit(geneSourceValue, i + 1);
+            geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i + 1, sourceBit);
         }
         return (char) geneTargetValue;
     }
