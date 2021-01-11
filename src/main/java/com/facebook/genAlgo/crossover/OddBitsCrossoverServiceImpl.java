@@ -3,11 +3,13 @@ package com.facebook.genAlgo.crossover;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.BitwiseUtils;
 
-public class MixingHalvesCrossoverServiceImpl implements CrossoverService{
+import static com.facebook.genAlgo.crossover.CrossoverConfig.GENE_VALUES_BIT_LIMIT;
+
+public class OddBitsCrossoverServiceImpl implements CrossoverService {
 
     private final BitwiseUtils bitwiseUtils;
 
-    public MixingHalvesCrossoverServiceImpl() {
+    public OddBitsCrossoverServiceImpl() {
         this.bitwiseUtils = new BitwiseUtils();
     }
 
@@ -22,8 +24,12 @@ public class MixingHalvesCrossoverServiceImpl implements CrossoverService{
 
     private char calculateValue(Gene geneTarget, Gene geneSource) {
         int geneTargetValue = geneTarget.getValue();
-        int secondHalfGene1 = bitwiseUtils.getByte(geneSource.getValue(), 1);
-        geneTargetValue = bitwiseUtils.setByte(geneTargetValue, 1, secondHalfGene1);
+        int geneSourceValue = geneSource.getValue();
+
+        for (int i = 1; i < GENE_VALUES_BIT_LIMIT; i+= 2) {
+            int sourceBit = bitwiseUtils.getBit(geneSourceValue, i);
+            geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i, sourceBit);
+        }
         return (char) geneTargetValue;
     }
 }

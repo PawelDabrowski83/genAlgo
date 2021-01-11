@@ -35,9 +35,9 @@ public class MixingHalvesCrossoverServiceImplTest {
 
     private static Stream<Arguments> mixingHalvesCrossoverProvider() {
         return Stream.of(
-                Arguments.of((char) 4505, (char) 36, (char) 4388, (char) 153),
-                Arguments.of((char) 33, (char) 5000, (char) 136, (char) 4897),
-                Arguments.of((char) 70, (char) 65535, (char) 255, (char) 65350)
+                Arguments.of((char) 4505, (char) 36, (char) 153, (char) 4388),
+                Arguments.of((char) 33, (char) 5000, (char) 4897, (char) 136),
+                Arguments.of((char) 70, (char) 65535, (char) 65350, (char) 255)
         );
     }
 }
