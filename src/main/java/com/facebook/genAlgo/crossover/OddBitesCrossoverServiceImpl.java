@@ -3,6 +3,8 @@ package com.facebook.genAlgo.crossover;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.BitwiseUtils;
 
+import static com.facebook.genAlgo.crossover.CrossoverConfig.GENE_VALUES_BIT_LIMIT;
+
 public class OddBitesCrossoverServiceImpl implements CrossoverService {
 
     private final BitwiseUtils bitwiseUtils;
@@ -24,7 +26,7 @@ public class OddBitesCrossoverServiceImpl implements CrossoverService {
         int geneTargetValue = geneTarget.getValue();
         int geneSourceValue = geneSource.getValue();
 
-        for (int i = 1; i < 32; i+= 2) {
+        for (int i = 1; i < GENE_VALUES_BIT_LIMIT; i+= 2) {
             int sourceBit = bitwiseUtils.getBit(geneSourceValue, i);
             geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i, sourceBit);
         }
