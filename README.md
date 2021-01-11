@@ -97,7 +97,7 @@ interface CrossoverService
 | MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
 | OddBitsCrossoverServiceImpl       | odd bits copied from g2       | odd bits copied from g1       |
 | EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
-| BitPairCrossoverServiceImpl       | odd bit pairs copied from g2  | odd bit pairs copied from g1  |
+| BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
 
 
