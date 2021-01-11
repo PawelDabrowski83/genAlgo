@@ -9,7 +9,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 3 on 04.01.2021 - refactor in Gene and Evaluator.</p>
+<p>We are working to develop functioning Stage 4 on 11.01.2021 - CrossoverService.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
@@ -37,24 +37,34 @@
 <p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
 <p>Gene class refactor, gene has field with single char insted of char array.</p>
 
+## Stage 4
+<p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
+<p>Another Gene docs refactor.</p>
 
 ## Code Structure
 
-> class Gene
-> 
-> private final RandomProvider
->
-> private char value
->
-> private void generateValue()
+```
+class Gene
+ 
+private final RandomProvider
+private char value
+private float fitness
 
-Gene has field char value, generateValue() method use RandomProvider interface to randomly generate char value.
+private void generateValue() 
+// getters and setters for value and fitness
+```
+
+![Gene class](images/Gene-s4.png)
+
+Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
 > interface Evaluator
 >
+> calculateFitness(Gene)
+>
 > setFitness(Gene)
 
-Evaluator has method setFitness() to calculate fitness of gene
+Evaluator has two method calcuateFitness(Gene) to calculate fitness of gene and setFitness(Gene) to assign calculated value of fitness to gene field fitness.
 Evaluator count fitness only by comparing two char. One current value in gene with target char
 Target char should be passed to Evaluator as argument in constructor
 
@@ -70,6 +80,24 @@ Target char should be passed to Evaluator as argument in constructor
 >
 > 65535 - value equal to Character.MAX_VALUE
 
-![Code structure](images/genAlgo-stage3.png)
+<p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
+to match with optimal solution during next generation.</p>
+
+```
+interface CrossoverService
+    void cross(Gene g1, Gene g2)
+```
+
+![Crossover class diagram](images/CrossoverService-s4.png)
+
+<p>Multiple implementations (strategies) describe how provided Gene objects should be changed:</p>
+
+| Strategy                          | gene 1                        | gene 2                        |
+| --------------------------------- | ----------------------------- | ----------------------------- |
+| MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
+| OddBitsCrossoverServiceImpl       | odd bits copied from g2       | odd bits copied from g1       |
+| EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
+| BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
+
 
 

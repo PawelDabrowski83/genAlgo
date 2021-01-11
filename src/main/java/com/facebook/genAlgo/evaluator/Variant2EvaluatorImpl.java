@@ -11,8 +11,9 @@ public class Variant2EvaluatorImpl implements Evaluator {
     }
 
     @Override
-    public float setFitness(Gene gene) {
-        float delta = Math.abs(gene.getValues()[0] - target);
-        return(float) ((65535- delta) / 65535);
+    public void setFitness(Gene gene) {
+        float delta = Math.abs(gene.getValue() - target);
+        float fitness = (float) ((65535- delta) / 65535);
+        gene.setFitness(fitness);
     }
 }
