@@ -24,7 +24,7 @@ public class OddBitesCrossoverServiceImpl implements CrossoverService {
         int geneTargetValue = geneTarget.getValue();
         int geneSourceValue = geneSource.getValue();
 
-        for (int i = 0; i < 32; i+= 2) {
+        for (int i = 1; i < 32; i+= 2) {
             int sourceBit = bitwiseUtils.getBit(geneSourceValue, i);
             geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i, sourceBit);
         }
