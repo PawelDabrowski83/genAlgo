@@ -13,16 +13,17 @@ public class MixingHalvesCrossoverServiceImpl implements CrossoverService{
 
     @Override
     public void cross(Gene gene1, Gene gene2) {
-        int targetGene1 = gene1.getValue();
-        int targetGene2 = gene2.getValue();
+        char gene1Value = calculateValue(gene1, gene2);
+        char gene2Value = calculateValue(gene2, gene1);
 
-        int secondHalfGene1 = bitwiseUtils.getByte(targetGene2, 1);
-        int secondHalfGene2 = bitwiseUtils.getByte(targetGene1, 1);
+        gene1.setValue(gene1Value);
+        gene2.setValue(gene2Value);
+    }
 
-        targetGene1 = bitwiseUtils.setByte(targetGene1, 1, secondHalfGene1);
-        targetGene2 = bitwiseUtils.setByte(targetGene2, 1, secondHalfGene2);
-
-        gene1.setValue((char) targetGene1);
-        gene2.setValue((char) targetGene2);
+    private char calculateValue(Gene geneTarget, Gene geneSource) {
+        int geneTargetValue = geneTarget.getValue();
+        int secondHalfGene1 = bitwiseUtils.getByte(geneSource.getValue(), 1);
+        geneTargetValue = bitwiseUtils.setByte(geneTargetValue, 1, secondHalfGene1);
+        return (char) geneTargetValue;
     }
 }
