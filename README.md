@@ -83,17 +83,21 @@ Target char should be passed to Evaluator as argument in constructor
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
 
-> interface CrossoverService
-> void cross(Gene g1, Gene g2)
+```
+interface CrossoverService
+    void cross(Gene g1, Gene g2)
+```
 
-<p>Multiple implementantations (strategies) describe how provided Gene objects should be changed:</p>
+![Crossover class diagram](images/CrossoverService-s4.png)
+
+<p>Multiple implementations (strategies) describe how provided Gene objects should be changed:</p>
 
 | Strategy                          | gene 1                        | gene 2                        |
 | --------------------------------- | ----------------------------- | ----------------------------- |
 | MixingHalvesCrossoverServiceImpl  | 2nd byte copied from g2       | 2nd byte copied from g1       |
-| OddBitesCrossoverServiceImpl      | odd bits copied from g2       | odd bits copied from g1       |
-| EvenBitesCrossoverServiceImpl     | even bits copied from g2      | even bits copied from g1      |
-| BitPairCrossoverServiceImpl       | even bit pairs copied from g2  | even bit pairs copied from g1  |
+| OddBitsCrossoverServiceImpl       | odd bits copied from g2       | odd bits copied from g1       |
+| EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
+| BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
 
 

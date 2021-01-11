@@ -22,7 +22,7 @@ public class Gene {
     }
 
     public void setValue(char value) {
-
+        this.value = value;
     }
 
     public float getFitness() {
