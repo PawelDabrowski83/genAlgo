@@ -14,11 +14,15 @@ public class Gene {
     }
 
     private void generateValue() {
-        value = (char) randomProvider.getRandom(1000);
+        value = (char) randomProvider.getRandom(Character.MAX_VALUE + 1);
     }
 
     public char getValue() {
         return value;
+    }
+
+    public void setValue(char value) {
+        this.value = value;
     }
 
     public float getFitness() {
