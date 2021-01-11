@@ -116,6 +116,5 @@ interface MutatorService
 | Strategy         | Description                                                                                                        |
 | -----------------| -------------------------------------------------------------------------------------------------------------------|
 | SingleMutator    | take one bit from random position (0 - 15) and then assign new random value for this bit (0 or 1)                  |
-| MultipleMutator  | first take random number taht represents number of bits to mutate (0 - 15), then in a loop take one bit from random|
-|                  | position (0 - 15) and assign new random number to it (0 or 1). We allow that the same bit can change manny times.  |
+| MultipleMutator  | first take random number taht represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign new random number to it (0 or 1). We allow that the same bit can change manny times.  |
     
