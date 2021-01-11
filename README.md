@@ -104,7 +104,7 @@ interface CrossoverService
 
 <p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits chenging its value in order to
     faster find target. </p>
-<p>Classes that implement MutatorService have additional mutationChance field that is set in constructor (takes random value from 0 - 100) and represents probability of mutation in percent.</p>
+<p>Classes that implement MutatorService have additional mutationChance field that is set in setter (takes random value from 0 - 100) and represents probability of mutation in percent. Set in seter becouse in each generation of Gene mutationChance can be different</p>
     
 ```
 interface MutatorService    
