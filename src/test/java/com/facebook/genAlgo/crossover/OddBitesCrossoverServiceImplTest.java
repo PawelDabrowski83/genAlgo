@@ -34,11 +34,9 @@ public class OddBitesCrossoverServiceImplTest {
 
     private static Stream<Arguments> oddBitesCrossoverProvider() {
         return Stream.of(
-                Arguments.of(
-                        Arguments.of((char) 4505, (char) 36, (char) 4401, (char) 140),
-                        Arguments.of((char) 33, (char) 5000, (char) 649, (char) 4384 ),
-                        Arguments.of((char) 70, (char) 65535, (char) 43758, (char) 21847)
-                )
+                Arguments.of((char) 4505, (char) 36, (char) 4401, (char) 140),
+                Arguments.of((char) 33, (char) 5000, (char) 649, (char) 4384 ),
+                Arguments.of((char) 70, (char) 65535, (char) 43758, (char) 21847)
         );
     }
 }
