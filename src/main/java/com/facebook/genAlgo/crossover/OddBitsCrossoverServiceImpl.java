@@ -5,12 +5,12 @@ import com.facebook.genAlgo.utils.BitwiseUtils;
 
 import static com.facebook.genAlgo.crossover.CrossoverConfig.GENE_VALUES_BIT_LIMIT;
 
-public class EvenBitesCrossoverServiceImpl implements CrossoverService {
+public class OddBitsCrossoverServiceImpl implements CrossoverService {
 
     private final BitwiseUtils bitwiseUtils;
 
-    public EvenBitesCrossoverServiceImpl() {
-        bitwiseUtils = new BitwiseUtils();
+    public OddBitsCrossoverServiceImpl() {
+        this.bitwiseUtils = new BitwiseUtils();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class EvenBitesCrossoverServiceImpl implements CrossoverService {
         int geneTargetValue = geneTarget.getValue();
         int geneSourceValue = geneSource.getValue();
 
-        for (int i = 0; i < GENE_VALUES_BIT_LIMIT; i+= 2) {
+        for (int i = 1; i < GENE_VALUES_BIT_LIMIT; i+= 2) {
             int sourceBit = bitwiseUtils.getBit(geneSourceValue, i);
             geneTargetValue = bitwiseUtils.setBit(geneTargetValue, i, sourceBit);
         }
