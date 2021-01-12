@@ -118,5 +118,5 @@ interface MutatorService
 | SingleMutator    | take one bit from random position (0 - 15) and then assign new random value for this bit (0 or 1)                  |
 | MultipleMutator  | first take random number taht represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign new random number to it (0 or 1). We allow that the same bit can change manny times.  |
 
-![Mutator class diagram](images/CgenAlgo-stage5.png)
+![Mutator class diagram](images/genAlgo-stage5.png)
     
