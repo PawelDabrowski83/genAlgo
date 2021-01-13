@@ -13,7 +13,7 @@ public class BitwiseUtils {
         return (number >> index) & 1;
     }
 
-    public int setBit(int number, int index, int value) {
+    public int setBit(int number, int index, int value) throws IllegalArgumentException {
         checkIndexNotNegative(index);
         if (value != 0 && value != 1) {
             throw new IllegalArgumentException(INCORRECT_BIT_VALUE_EXCEPTION);
