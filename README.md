@@ -41,6 +41,9 @@
 <p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
 <p>Another Gene docs refactor.</p>
 
+## Stage 5
+<p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
+    
 ## Code Structure
 
 ```
@@ -99,5 +102,21 @@ interface CrossoverService
 | EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
+<p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
+    faster find target. </p>
+<p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
+    
+```
+interface MutatorService    
+    void mutate(Gene gene)
+```
 
+<p>Two implementations (strategies) describe how provided gene object is mutated.</p>
 
+| Strategy         | Description                                                                                                        |
+| -----------------| -------------------------------------------------------------------------------------------------------------------|
+| SingleMutator    | take one bit from random position (0 - 15) and then assign opposite value for this bit (0 or 1)                  |
+| MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
+
+![Mutator class diagram](images/MutatorService-s5.png)
+    
