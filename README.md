@@ -102,9 +102,9 @@ interface CrossoverService
 | EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
-<p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits chenging its value in order to
+<p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
     faster find target. </p>
-<p>Classes that implement MutatorService have additional mutationChance field that is set in setter (takes random value from 0 - 100) and represents probability of mutation in percent. Set in seter becouse in each generation of Gene mutationChance can be different</p>
+<p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
     
 ```
 interface MutatorService    
@@ -115,8 +115,8 @@ interface MutatorService
 
 | Strategy         | Description                                                                                                        |
 | -----------------| -------------------------------------------------------------------------------------------------------------------|
-| SingleMutator    | take one bit from random position (0 - 15) and then assign new random value for this bit (0 or 1)                  |
-| MultipleMutator  | first take random number taht represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign new random number to it (0 or 1). We allow that the same bit can change manny times.  |
+| SingleMutator    | take one bit from random position (0 - 15) and then assign opposite value for this bit (0 or 1)                  |
+| MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change manny times.  |
 
 ![Mutator class diagram](images/genAlgo-s5.png)
     
