@@ -42,7 +42,7 @@
 <p>Another Gene docs refactor.</p>
 
 ## Stage 5
-<p>Creation of MutatorService to proivde mutation of gene values after cross recombination. </p<
+<p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
     
 ## Code Structure
 
