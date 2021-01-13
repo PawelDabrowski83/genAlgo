@@ -116,7 +116,7 @@ interface MutatorService
 | Strategy         | Description                                                                                                        |
 | -----------------| -------------------------------------------------------------------------------------------------------------------|
 | SingleMutator    | take one bit from random position (0 - 15) and then assign opposite value for this bit (0 or 1)                  |
-| MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change manny times.  |
+| MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
 
 ![Mutator class diagram](images/genAlgo-s5.png)
     
