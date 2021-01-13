@@ -35,7 +35,7 @@ public class BitwiseUtils {
         return number >> index * 8 & BIT_MASK;
     }
 
-    public int setByte(int number, int index, int value) {
+    public int setByte(int number, int index, int value) throws IllegalArgumentException {
         checkIndexNotNegative(index);
         if (value > 0b1111_1111) {
             throw new IllegalArgumentException(INCORRECT_BYTE_VALUE_EXCEPTION);
