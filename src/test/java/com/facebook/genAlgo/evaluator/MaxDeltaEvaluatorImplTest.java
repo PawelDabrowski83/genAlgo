@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 evaluation formula:
 variant 2: (65535 - delta) / 65535
  */
-public class Variant2EvaluatorImplTest {
+public class MaxDeltaEvaluatorImplTest {
 
     Evaluator evaluator;
     RandomProvider randomProvider = mock(RandomProvider.class);
@@ -27,7 +27,7 @@ public class Variant2EvaluatorImplTest {
     @MethodSource("setFitnessFullMatchArgumentsProvider")
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant2EvaluatorImpl(target);
+        evaluator = new MaxDeltaEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
@@ -53,7 +53,7 @@ public class Variant2EvaluatorImplTest {
     @MethodSource("setFitnessCloseMatchArgumentsProvider")
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant2EvaluatorImpl(target);
+        evaluator = new MaxDeltaEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
@@ -92,7 +92,7 @@ public class Variant2EvaluatorImplTest {
     @MethodSource("setFitnessAnyMatchArgumentsProvider")
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant2EvaluatorImpl(target);
+        evaluator = new MaxDeltaEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 

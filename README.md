@@ -45,7 +45,7 @@
 <p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
     
 ## Code Structure
-
+### Gene
 ```
 class Gene
  
@@ -61,6 +61,7 @@ private void generateValue()
 
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
+### Evaluator
 > interface Evaluator
 >
 > calculateFitness(Gene)
@@ -83,6 +84,7 @@ Target char should be passed to Evaluator as argument in constructor
 >
 > 65535 - value equal to Character.MAX_VALUE
 
+### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
 
@@ -105,7 +107,8 @@ interface CrossoverService
 <p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
     faster find target. </p>
 <p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
-    
+
+### Mutator
 ```
 interface MutatorService    
     void mutate(Gene gene)
