@@ -84,6 +84,8 @@ There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDelt
 >
 > 65535 - value equal to Character.MAX_VALUE
 
+![Evaluator class diagram](images/Evaluator-s5.png)
+
 ### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
