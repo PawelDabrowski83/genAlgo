@@ -12,7 +12,7 @@ public class RandomProviderImpl implements RandomProvider {
     }
 
     @Override
-    public float getFloat(float bound) {
+    public float getFloat() {
         return ThreadLocalRandom.current().nextFloat();
     }
 }
