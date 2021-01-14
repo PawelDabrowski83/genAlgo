@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 /*
 evaluation formula 1 / (1+log10(1+delta))
  */
-public class Variant1EvaluatorImplTest {
+public class LogarithmicEvaluatorImplTest {
 
     Evaluator evaluator;
     RandomProvider randomProvider = mock(RandomProvider.class);
@@ -26,7 +26,7 @@ public class Variant1EvaluatorImplTest {
     @MethodSource("setFitnessFullMatchArgumentsProvider")
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant1EvaluatorImpl(target);
+        evaluator = new LogarithmicEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
@@ -52,7 +52,7 @@ public class Variant1EvaluatorImplTest {
     @MethodSource("setFitnessCloseMatchArgumentsProvider")
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant1EvaluatorImpl(target);
+        evaluator = new LogarithmicEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
@@ -91,7 +91,7 @@ public class Variant1EvaluatorImplTest {
     @MethodSource("setFitnessAnyMatchArgumentsProvider")
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
-        evaluator = new Variant1EvaluatorImpl(target);
+        evaluator = new LogarithmicEvaluatorImpl(target);
         when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
