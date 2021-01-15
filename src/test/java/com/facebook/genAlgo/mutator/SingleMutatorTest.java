@@ -68,17 +68,50 @@ public class SingleMutatorTest {
 
     private static Stream<Arguments> mutateArgumentsProvider() {
         return Stream.of(
-                Arguments.of(Character.MIN_VALUE, (char) 1, 0, 1, 0.5),
-                Arguments.of((char) 0b1100_0111, (char) 0b1100_0101, 1, 0.25, 0.24),
-                Arguments.of((char) 0b1100_0111, (char) 0b1100_1111, 3, 0.25, 0.24),
-                Arguments.of((char) 0b1100_0111, (char) 0b1_1100_0111, 8, 0.25, 0.24),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0000, 0, 0.76, 0,75),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0101, 2, 0.76, 0,75),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0010_0001, 4, 0.76, 0,75),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1111_0011_0001, 9, 0.76, 0,75),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0010_1101_0011_0001, 12, 0.76, 0,75),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1011_1101_0011_0001, 15, 0.76, 0,75)
+                Arguments.of(Character.MIN_VALUE, (char) 1, 0, 1, 0.5f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0101, 1, 0.25f, 0.24f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_1111, 3, 0.25f, 0.24f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1_1100_0111, 8, 0.25f, 0.24f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0000, 0, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0101, 2, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0010_0001, 4, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1111_0011_0001, 9, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0010_1101_0011_0001, 12, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1011_1101_0011_0001, 15, 0.76f, 0.75f)
         );
     }
 
+    @DisplayName("Should mutate work properly when mutationChance is not reached")
+    @ParameterizedTest
+    @MethodSource("mutateNoChanceArgumentsProvider")
+    void mutateNoChance(char geneValue, char expectedGeneValue, int mutationStep, float mutationChance, float mutationScore) {
+        // given
+        Gene gene = new Gene(randomProvider);
+        gene.setValue(geneValue);
+        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+        when(randomProvider.getInt(anyInt())).thenReturn(mutationStep);
+        when(randomProvider.getFloat()).thenReturn(mutationScore);
+
+        // when
+        mutator.mutate(gene);
+        char actualGeneValue = gene.getValue();
+
+        // then
+        assertEquals(expectedGeneValue, actualGeneValue);
+    }
+
+    private static Stream<Arguments> mutateNoChanceArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(Character.MIN_VALUE, (char) 0, 0, 0.5f, 0.99f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 1, 0.25f, 0.26f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 3, 0.25f, 0.27f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 8, 0.25f, 0.28f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 0, 0.74f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 2, 0.72f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 4, 0.76f, 0.77f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 9, 0.76f, 0.78f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 12, 0.73f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 15, 0, 0.75f)
+        );
+    }
 }
