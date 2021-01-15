@@ -62,27 +62,29 @@ private void generateValue()
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
 ### Evaluator
-> interface Evaluator
->
-> calculateFitness(Gene)
->
-> setFitness(Gene)
+```
+interface Evaluator
+    void setFitness(Gene)
+```
 
-Evaluator has two method calcuateFitness(Gene) to calculate fitness of gene and setFitness(Gene) to assign calculated value of fitness to gene field fitness.
+Evaluator has method setFitness(Gene) to calculate and assign calculated value of fitness to gene field fitness.
 Evaluator count fitness only by comparing two char. One current value in gene with target char
-Target char should be passed to Evaluator as argument in constructor
+Target char should be passed to Evaluator as argument in constructor.
+There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDeltaEvaluatorImpl.
 
 > Formulas for setFitness() method:
 >
-> variant 1:  1 / (1+log<sub>10</sub>(1+delta))
+> LogarithmicEvaluatorImpl:  1 / (1+log<sub>10</sub>(1+delta))
 >
-> variant 2: (65535 - delta) / 65535
+> MaxDeltaEvaluatorImpl: (65535 - delta) / 65535
 >
 > where:
 >
 > delta - Absolute value of difference between target and current char
 >
 > 65535 - value equal to Character.MAX_VALUE
+
+![Evaluator class diagram](images/Evaluator-s5.png)
 
 ### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
