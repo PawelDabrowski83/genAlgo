@@ -27,7 +27,7 @@ public class LogarithmicEvaluatorImplTest {
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new LogarithmicEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when
@@ -53,7 +53,7 @@ public class LogarithmicEvaluatorImplTest {
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new LogarithmicEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when
@@ -92,7 +92,7 @@ public class LogarithmicEvaluatorImplTest {
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new LogarithmicEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when

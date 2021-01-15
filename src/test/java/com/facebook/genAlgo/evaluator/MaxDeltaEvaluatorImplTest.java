@@ -28,7 +28,7 @@ public class MaxDeltaEvaluatorImplTest {
     void setFitnessFullMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new MaxDeltaEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when
@@ -54,7 +54,7 @@ public class MaxDeltaEvaluatorImplTest {
     void setFitnessCloseMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new MaxDeltaEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when
@@ -93,7 +93,7 @@ public class MaxDeltaEvaluatorImplTest {
     void setFitnessAnyMatch(float fitnessExpected, char target, char evaluatedValue) {
         // given
         evaluator = new MaxDeltaEvaluatorImpl(target);
-        when(randomProvider.getRandom(anyInt())).thenReturn((int) evaluatedValue);
+        when(randomProvider.getInt(anyInt())).thenReturn((int) evaluatedValue);
         gene = new Gene(randomProvider);
 
         // when
