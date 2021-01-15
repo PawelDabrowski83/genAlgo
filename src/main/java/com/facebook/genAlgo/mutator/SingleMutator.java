@@ -13,6 +13,14 @@ public class SingleMutator implements MutatorService {
         this.mutationChance = mutationChance;
     }
 
+    public float getMutationChance() {
+        return mutationChance;
+    }
+
+    public void setMutationChance(float mutationChance) {
+        this.mutationChance = mutationChance;
+    }
+
     @Override
     public void mutate(Gene gene) {
 
