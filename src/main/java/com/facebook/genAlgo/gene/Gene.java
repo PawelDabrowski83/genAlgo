@@ -14,7 +14,7 @@ public class Gene {
     }
 
     private char generateValue() {
-        return (char) randomProvider.getRandom(Character.MAX_VALUE + 1);
+        return (char) randomProvider.getInt(Character.MAX_VALUE + 1);
     }
 
     public char getValue() {

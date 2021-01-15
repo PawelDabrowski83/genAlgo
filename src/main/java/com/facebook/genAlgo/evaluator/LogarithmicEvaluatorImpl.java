@@ -5,11 +5,11 @@ import com.facebook.genAlgo.gene.Gene;
 
 import static java.lang.Math.log10;
 
-public class Variant1EvaluatorImpl implements Evaluator {
+public class LogarithmicEvaluatorImpl implements Evaluator {
 
   private final char target;
 
-  public Variant1EvaluatorImpl(char target) {
+  public LogarithmicEvaluatorImpl(char target) {
     this.target = target;
   }
   @Override
