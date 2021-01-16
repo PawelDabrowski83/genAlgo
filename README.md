@@ -125,3 +125,12 @@ interface MutatorService
 
 ![Mutator class diagram](images/MutatorService-s5.png)
     
+### Utils
+#### RandomProvider
+
+```
+interface RandomProvider
+    int getInt(int bound)
+    float getFloat()
+```
+RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
