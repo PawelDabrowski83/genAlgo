@@ -134,3 +134,5 @@ interface RandomProvider
     float getFloat()
 ```
 RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
+
+![RandomProvider class](images/RandomProvider-s5.png)
