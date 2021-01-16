@@ -103,6 +103,9 @@ public class SingleMutatorTest {
     private static Stream<Arguments> mutateNoChanceArgumentsProvider() {
         return Stream.of(
                 Arguments.of(Character.MIN_VALUE, (char) 0, 0, 0.5f, 0.99f),
+                Arguments.of(Character.MIN_VALUE, (char) 0, 0, 0.5f, 0.5f),
+                Arguments.of(Character.MIN_VALUE, (char) 0, 0, 0, 0),
+                Arguments.of(Character.MIN_VALUE, (char) 0, 0, 0.99f, 0.99f),
                 Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 1, 0.25f, 0.26f),
                 Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 3, 0.25f, 0.27f),
                 Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 8, 0.25f, 0.28f),
