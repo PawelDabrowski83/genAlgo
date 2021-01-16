@@ -91,4 +91,49 @@ public class MultipleMutatorTest {
                 Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1011_1010_1100_1111, 10, 1, 0.76f, 0.75f)
         );
     }
+
+    @DisplayName("Should mutate work properly when mutationChance is not reached")
+    @ParameterizedTest
+    @MethodSource("mutateNoChanceArgumentsProvider")
+    void mutateNoChance(char geneValue, char expectedGeneValue, int mutationTimes, int mutationStep, float mutationChance, float mutationScore) {
+        // given
+        Gene gene = new Gene(randomProvider);
+        gene.setValue(geneValue);
+        MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
+        doAnswer(new Answer<Integer>() {
+            private int count = 0;
+            public Integer answer(InvocationOnMock invocation) {
+                count++;
+                if (count == 1) {
+                    return mutationTimes;
+                }
+                return mutationStep + count - 1;
+            }
+        }).when(randomProvider).getInt(anyInt());
+        when(randomProvider.getFloat()).thenReturn(mutationScore);
+
+        // when
+        mutator.mutate(gene);
+        char actualGeneValue = gene.getValue();
+
+        // then
+        assertEquals(expectedGeneValue, actualGeneValue);
+    }
+
+    private static Stream<Arguments> mutateNoChanceArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(Character.MIN_VALUE, (char) 0, 1, 0, 0.5f, 0.99f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 2, 1, 0.25f, 0.26f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 4, 3, 0.25f, 0.27f),
+                Arguments.of((char) 0b1100_0111, (char) 0b1100_0111, 1, 8, 0.25f, 0.28f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 8, 0, 0.74f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 1, 2, 0.72f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 0, 4, 0.76f, 0.77f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 4, 9, 0.76f, 0.78f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 1, 12, 0.73f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 9, 15, 0, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 0, 0, 0.74f, 0.73f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0011_0001, 2, 0, 0.73f, 0.73f)
+        );
+    }
 }
