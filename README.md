@@ -57,7 +57,7 @@ private void generateValue()
 // getters and setters for value and fitness
 ```
 
-![Gene class](images/Gene-s4.png)
+![Gene class](images/Gene-s5.png)
 
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
@@ -125,3 +125,14 @@ interface MutatorService
 
 ![Mutator class diagram](images/MutatorService-s5.png)
     
+### Utils
+#### RandomProvider
+
+```
+interface RandomProvider
+    int getInt(int bound)
+    float getFloat()
+```
+RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
+
+![RandomProvider class](images/RandomProvider-s5.png)
