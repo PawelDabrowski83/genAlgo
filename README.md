@@ -136,3 +136,12 @@ interface RandomProvider
 RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
 
 ![RandomProvider class](images/RandomProvider-s5.png)
+
+#### BitwiseUtils
+```
+class BitwiseUtils
+    int getBit(int number, int index)
+    int setBit(int number, int index, int value) throws IllegalArgumentException
+    int getByte(int number, int index)
+    int setByte(int number, int index, int value) throws IllegalArgumentException
+```
