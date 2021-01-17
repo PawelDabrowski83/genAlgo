@@ -3,6 +3,8 @@
 <p>Simple implementation of <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny" target="_blank">genetic algorithm</a>. Shared project to practice group collaboration.</p>
 <p>Authors: Paweł Dąbrowski, Janusz Brodacki, Kamil Surowiec.</p>
 
+![Class connection diagram](images/class-connection-diagram-s5.png)
+
 ## Goals:
 <ul><li>working in small group</li>
 <li>practicing git branching, issues and documentation</li>
