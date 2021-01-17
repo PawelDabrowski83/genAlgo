@@ -149,3 +149,5 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 `index` is a position of bit or byte (starting with 0 for least significant bit)<br/>
 `value` is target value of bit (0 or 1) or byte (0 to 255)<br/>
 `throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
+
+![BitwiseUtils class](images/BitwiseUtils-s5.png)
