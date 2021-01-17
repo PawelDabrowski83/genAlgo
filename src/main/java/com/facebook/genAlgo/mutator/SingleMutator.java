@@ -25,11 +25,18 @@ public class SingleMutator implements MutatorService {
 
     @Override
     public void mutate(Gene gene) {
-        int bitIndex = randomProvider.getInt(16);
-        int bit =  bitwiseUtils.getBit(gene.getValue(), bitIndex);
-        int oppositeBit = bit == 0 ? 1 : 0;
-        char geneValueAfterMutation = (char) bitwiseUtils.setBit(gene.getValue(), bitIndex, oppositeBit);
+        if (mutationOccurs()) {
+            int bitIndex = randomProvider.getInt(16);
+            int bit = bitwiseUtils.getBit(gene.getValue(), bitIndex);
+            int oppositeBit = bit == 0 ? 1 : 0;
+            char geneValueAfterMutation = (char) bitwiseUtils.setBit(gene.getValue(), bitIndex, oppositeBit);
 
-        gene.setValue(geneValueAfterMutation);
+            gene.setValue(geneValueAfterMutation);
+        }
+    }
+
+    private boolean mutationOccurs() {
+        float mutationScore = randomProvider.getFloat();
+        return mutationScore < mutationChance ? true : false;
     }
 }
