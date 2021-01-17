@@ -28,6 +28,7 @@ public class MultipleMutator implements MutatorService {
         if (mutationOccurs()) {
             int bitsToMutate = randomProvider.getInt(16);
             char geneValue = gene.getValue();
+
             for (int i = 0; i < bitsToMutate; i++) {
                 int bitIndex = randomProvider.getInt(16);
                 int bit = bitwiseUtils.getBit(geneValue, bitIndex);
