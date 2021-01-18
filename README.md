@@ -106,11 +106,11 @@ interface CrossoverService
 | EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
+### Mutator
 <p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
     faster find target. </p>
 <p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
 
-### Mutator
 ```
 interface MutatorService    
     void mutate(Gene gene)
