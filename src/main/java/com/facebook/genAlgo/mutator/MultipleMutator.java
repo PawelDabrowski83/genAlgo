@@ -41,6 +41,6 @@ public class MultipleMutator implements MutatorService {
 
     private boolean mutationOccurs() {
         float mutationScore = randomProvider.getFloat();
-        return mutationScore < mutationChance ? true : false;
+        return mutationScore < mutationChance;
     }
 }
