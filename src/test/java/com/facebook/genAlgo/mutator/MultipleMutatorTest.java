@@ -2,6 +2,7 @@ package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,6 +21,12 @@ public class MultipleMutatorTest {
 
     RandomProvider randomProvider = mock(RandomProvider.class);
     MutatorService mutatorService;
+    Gene gene;
+
+    @BeforeEach
+    public void init() {
+        gene = new Gene(randomProvider);
+    }
 
     @DisplayName("Should mutate change Gene.value when mutation is guaranteed.")
     @ParameterizedTest
@@ -27,7 +34,6 @@ public class MultipleMutatorTest {
     void mutateGuaranteed(int geneValue) {
         // given
         mutatorService = new MultipleMutator(randomProvider, 1);
-        Gene gene = new Gene(randomProvider);
         gene.setValue((char) geneValue);
         int initialGeneValue = gene.getValue();
         when(randomProvider.getInt(anyInt())).thenReturn(1);
@@ -54,7 +60,6 @@ public class MultipleMutatorTest {
     @MethodSource("mutateArgumentsProvider")
     void mutate(char geneValue, char expectedGeneValue, int mutationTimes, int mutationStep, float mutationChance, float mutationScore) {
         // given
-        Gene gene = new Gene(randomProvider);
         gene.setValue(geneValue);
         MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
         doAnswer(new Answer<Integer>() {
@@ -97,7 +102,6 @@ public class MultipleMutatorTest {
     @MethodSource("mutateNoChanceArgumentsProvider")
     void mutateNoChance(char geneValue, char expectedGeneValue, int mutationTimes, int mutationStep, float mutationChance, float mutationScore) {
         // given
-        Gene gene = new Gene(randomProvider);
         gene.setValue(geneValue);
         MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationTimes);
