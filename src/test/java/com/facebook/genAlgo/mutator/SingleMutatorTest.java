@@ -59,12 +59,12 @@ public class SingleMutatorTest {
     void mutate(char geneValue, char expectedGeneValue, int mutationStep, float mutationChance, float mutationScore) {
         // given
         gene.setValue(geneValue);
-        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+        mutatorService = new SingleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationStep);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
@@ -92,12 +92,12 @@ public class SingleMutatorTest {
     void mutateNoChance(char geneValue, char expectedGeneValue, int mutationStep, float mutationChance, float mutationScore) {
         // given
         gene.setValue(geneValue);
-        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+        mutatorService = new SingleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationStep);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
