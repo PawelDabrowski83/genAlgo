@@ -31,6 +31,7 @@ public class MultipleMutatorTest {
         Gene gene = new Gene(randomProvider);
         gene.setValue((char) geneValue);
         int initialGeneValue = gene.getValue();
+        when(randomProvider.getInt(anyInt())).thenReturn(1);
 
         // when
         mutatorService.mutate(gene);
@@ -64,7 +65,7 @@ public class MultipleMutatorTest {
                 if (count == 1) {
                     return mutationTimes;
                 }
-                return mutationStep + count - 1;
+                return mutationStep + count - 2;
             }
         }).when(randomProvider).getInt(anyInt());
         when(randomProvider.getFloat()).thenReturn(mutationScore);
@@ -86,9 +87,9 @@ public class MultipleMutatorTest {
                 Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_0010_1110, 5, 0, 0.76f, 0.75f),
                 Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1101_1100_1101, 6, 2, 0.76f, 0.75f),
                 Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1010_1100_0001, 7, 4, 0.76f, 0.75f),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1100_0001_0011_0001, 7, 9, 0.76f, 0.75f),
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1100_0011_0011_0001, 7, 9, 0.76f, 0.75f),
                 Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0010_1101_0011_0001, 1, 12, 0.76f, 0.75f),
-                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b1011_1010_1100_1111, 10, 1, 0.76f, 0.75f)
+                Arguments.of((char) 0b0011_1101_0011_0001, (char) 0b0011_1010_1100_1111, 10, 1, 0.76f, 0.75f)
         );
     }
 
