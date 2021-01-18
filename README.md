@@ -3,6 +3,8 @@
 <p>Simple implementation of <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny" target="_blank">genetic algorithm</a>. Shared project to practice group collaboration.</p>
 <p>Authors: Paweł Dąbrowski, Janusz Brodacki, Kamil Surowiec.</p>
 
+![Class connection diagram](images/class-connection-diagram2-s5.png)
+
 ## Goals:
 <ul><li>working in small group</li>
 <li>practicing git branching, issues and documentation</li>
@@ -136,3 +138,18 @@ interface RandomProvider
 RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
 
 ![RandomProvider class](images/RandomProvider-s5.png)
+
+#### BitwiseUtils
+```
+class BitwiseUtils
+    int getBit(int number, int index)
+    int setBit(int number, int index, int value) throws IllegalArgumentException
+    int getByte(int number, int index)
+    int setByte(int number, int index, int value) throws IllegalArgumentException
+```
+BitwiseUtils provides methods to read and write bits and bytes from given number.<br/>
+`index` is a position of bit or byte (starting with 0 for least significant bit)<br/>
+`value` is target value of bit (0 or 1) or byte (0 to 255)<br/>
+`throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
+
+![BitwiseUtils class](images/BitwiseUtils-s5.png)
