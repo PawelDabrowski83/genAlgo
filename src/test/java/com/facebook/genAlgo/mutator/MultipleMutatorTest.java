@@ -101,6 +101,7 @@ public class MultipleMutatorTest {
         Gene gene = new Gene(randomProvider);
         gene.setValue(geneValue);
         MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
+        when(randomProvider.getInt(anyInt())).thenReturn(mutationTimes);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
