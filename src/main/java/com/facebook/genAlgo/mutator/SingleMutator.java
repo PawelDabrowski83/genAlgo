@@ -1,8 +1,11 @@
 package com.facebook.genAlgo.mutator;
 
+import com.facebook.genAlgo.crossover.CrossoverConfig;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.BitwiseUtils;
 import com.facebook.genAlgo.utils.RandomProvider;
+
+import static com.facebook.genAlgo.crossover.CrossoverConfig.GENE_VALUES_BIT_LIMIT;
 
 public class SingleMutator implements MutatorService {
 
@@ -26,7 +29,7 @@ public class SingleMutator implements MutatorService {
     @Override
     public void mutate(Gene gene) {
         if (mutationOccurs()) {
-            int bitIndex = randomProvider.getInt(16);
+            int bitIndex = randomProvider.getInt(GENE_VALUES_BIT_LIMIT);
             int bit = bitwiseUtils.getBit(gene.getValue(), bitIndex);
             int oppositeBit = bit ^ 1;
             char geneValueAfterMutation = (char) bitwiseUtils.setBit(gene.getValue(), bitIndex, oppositeBit);
