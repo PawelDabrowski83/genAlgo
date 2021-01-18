@@ -28,7 +28,7 @@ public class SingleMutator implements MutatorService {
         if (mutationOccurs()) {
             int bitIndex = randomProvider.getInt(16);
             int bit = bitwiseUtils.getBit(gene.getValue(), bitIndex);
-            int oppositeBit = bit == 0 ? 1 : 0;
+            int oppositeBit = bit ^ 1;
             char geneValueAfterMutation = (char) bitwiseUtils.setBit(gene.getValue(), bitIndex, oppositeBit);
 
             gene.setValue(geneValueAfterMutation);
