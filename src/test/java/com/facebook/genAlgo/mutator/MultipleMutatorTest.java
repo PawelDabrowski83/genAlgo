@@ -61,7 +61,7 @@ public class MultipleMutatorTest {
     void mutate(char geneValue, char expectedGeneValue, int mutationTimes, int mutationStep, float mutationChance, float mutationScore) {
         // given
         gene.setValue(geneValue);
-        MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
+        mutatorService = new MultipleMutator(randomProvider, mutationChance);
         doAnswer(new Answer<Integer>() {
             private int count = 0;
             public Integer answer(InvocationOnMock invocation) {
@@ -75,7 +75,7 @@ public class MultipleMutatorTest {
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
@@ -103,12 +103,12 @@ public class MultipleMutatorTest {
     void mutateNoChance(char geneValue, char expectedGeneValue, int mutationTimes, int mutationStep, float mutationChance, float mutationScore) {
         // given
         gene.setValue(geneValue);
-        MutatorService mutator = new MultipleMutator(randomProvider, mutationChance);
+        mutatorService = new MultipleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationTimes);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
