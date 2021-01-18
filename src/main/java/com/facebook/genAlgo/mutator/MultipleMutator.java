@@ -32,7 +32,7 @@ public class MultipleMutator implements MutatorService {
             for (int i = 0; i < bitsToMutate; i++) {
                 int bitIndex = randomProvider.getInt(16);
                 int bit = bitwiseUtils.getBit(geneValue, bitIndex);
-                int oppositeBit = bit == 0 ? 1 : 0;
+                int oppositeBit = bit ^ 1;
                 geneValue = (char) bitwiseUtils.setBit(geneValue, bitIndex, oppositeBit);
             }
             gene.setValue(geneValue);
