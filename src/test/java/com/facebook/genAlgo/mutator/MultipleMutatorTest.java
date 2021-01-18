@@ -32,7 +32,6 @@ public class MultipleMutatorTest {
         gene.setValue((char) geneValue);
         int initialGeneValue = gene.getValue();
         when(randomProvider.getInt(anyInt())).thenReturn(1);
-        when(randomProvider.getInt(anyInt())).thenReturn(1);
 
         // when
         mutatorService.mutate(gene);
@@ -66,7 +65,7 @@ public class MultipleMutatorTest {
                 if (count == 1) {
                     return mutationTimes;
                 }
-                return mutationStep + count - 1;
+                return mutationStep + count - 2;
             }
         }).when(randomProvider).getInt(anyInt());
         when(randomProvider.getFloat()).thenReturn(mutationScore);
