@@ -3,6 +3,8 @@
 <p>Simple implementation of <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny" target="_blank">genetic algorithm</a>. Shared project to practice group collaboration.</p>
 <p>Authors: Paweł Dąbrowski, Janusz Brodacki, Kamil Surowiec.</p>
 
+![Class connection diagram](images/class-connection-diagram2-s5.png)
+
 ## Goals:
 <ul><li>working in small group</li>
 <li>practicing git branching, issues and documentation</li>
@@ -57,32 +59,34 @@ private void generateValue()
 // getters and setters for value and fitness
 ```
 
-![Gene class](images/Gene-s4.png)
+![Gene class](images/Gene-s5.png)
 
 Gene has two fields char value and float fitness, generateValue() method use RandomProvider interface to randomly generate char value. It has also getters and setters for its fields: value and fitness.
 
 ### Evaluator
-> interface Evaluator
->
-> calculateFitness(Gene)
->
-> setFitness(Gene)
+```
+interface Evaluator
+    void setFitness(Gene)
+```
 
-Evaluator has two method calcuateFitness(Gene) to calculate fitness of gene and setFitness(Gene) to assign calculated value of fitness to gene field fitness.
+Evaluator has method setFitness(Gene) to calculate and assign calculated value of fitness to gene field fitness.
 Evaluator count fitness only by comparing two char. One current value in gene with target char
-Target char should be passed to Evaluator as argument in constructor
+Target char should be passed to Evaluator as argument in constructor.
+There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDeltaEvaluatorImpl.
 
 > Formulas for setFitness() method:
 >
-> variant 1:  1 / (1+log<sub>10</sub>(1+delta))
+> LogarithmicEvaluatorImpl:  1 / (1+log<sub>10</sub>(1+delta))
 >
-> variant 2: (65535 - delta) / 65535
+> MaxDeltaEvaluatorImpl: (65535 - delta) / 65535
 >
 > where:
 >
 > delta - Absolute value of difference between target and current char
 >
 > 65535 - value equal to Character.MAX_VALUE
+
+![Evaluator class diagram](images/Evaluator-s5.png)
 
 ### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
@@ -104,11 +108,11 @@ interface CrossoverService
 | EvenBitsCrossoverServiceImpl      | even bits copied from g2      | even bits copied from g1      |
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
+### Mutator
 <p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
     faster find target. </p>
 <p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
 
-### Mutator
 ```
 interface MutatorService    
     void mutate(Gene gene)
@@ -123,3 +127,29 @@ interface MutatorService
 
 ![Mutator class diagram](images/MutatorService-s5.png)
     
+### Utils
+#### RandomProvider
+
+```
+interface RandomProvider
+    int getInt(int bound)
+    float getFloat()
+```
+RandomProvider is a helper class for mocking, to enable tests for classes taking random input.
+
+![RandomProvider class](images/RandomProvider-s5.png)
+
+#### BitwiseUtils
+```
+class BitwiseUtils
+    int getBit(int number, int index)
+    int setBit(int number, int index, int value) throws IllegalArgumentException
+    int getByte(int number, int index)
+    int setByte(int number, int index, int value) throws IllegalArgumentException
+```
+BitwiseUtils provides methods to read and write bits and bytes from given number.<br/>
+`index` is a position of bit or byte (starting with 0 for least significant bit)<br/>
+`value` is target value of bit (0 or 1) or byte (0 to 255)<br/>
+`throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
+
+![BitwiseUtils class](images/BitwiseUtils-s5.png)
