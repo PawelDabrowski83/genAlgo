@@ -11,7 +11,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 5 on 19.01.2021 - Mutator.</p>
+<p>We are working to develop functioning Stage 6 on 26.01.2021 - GenePool.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
