@@ -109,9 +109,9 @@ interface CrossoverService
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
 ### Mutator
-<p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
-    faster find target. </p>
-<p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
+<p>MutatorService an interface with single method mutate, responsible for mutating gene values. Based on given strategies selected bits changing its value in order to faster find target. </p>
+<p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different. </p>
+<p>MutatorServiceImpl use RandomProvider and BItwiseUtils to mutate gene in a proper way.</p>
 
 ```
 interface MutatorService    
