@@ -19,7 +19,7 @@ public class GeneTest {
     @ValueSource(ints = {0, 1, 13, 98, 278, Character.MAX_VALUE})
     public void testGeneValue(int valueExpected) {
         // given
-        when(randomProviderMock.getRandom(anyInt())).thenReturn(valueExpected);
+        when(randomProviderMock.getInt(anyInt())).thenReturn(valueExpected);
 
         // when
         Gene actual = new Gene(randomProviderMock);

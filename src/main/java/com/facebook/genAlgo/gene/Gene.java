@@ -10,11 +10,11 @@ public class Gene {
 
     public Gene(RandomProvider randomProvider) {
         this.randomProvider = randomProvider;
-        generateValue();
+        this.value = generateValue();
     }
 
-    private void generateValue() {
-        value = (char) randomProvider.getRandom(Character.MAX_VALUE + 1);
+    private char generateValue() {
+        return (char) randomProvider.getInt(Character.MAX_VALUE + 1);
     }
 
     public char getValue() {
