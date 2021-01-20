@@ -46,6 +46,9 @@
 ## Stage 5
 <p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
     
+## Stage 6
+<p>Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).</p>
+
 ## Code Structure
 ### Gene
 ```
