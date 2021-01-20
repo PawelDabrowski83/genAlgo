@@ -133,11 +133,13 @@ interface MutatorService
 ### GenePool
 ```
 class GenePool
-    void generateGenes()
+    List<Gene> generateGenes()
     void makeMutation()
     void evaluateFitness()
 ```
-
+<p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
+<p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
+<p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
     
 ### Utils
 #### RandomProvider
