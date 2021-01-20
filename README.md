@@ -129,6 +129,15 @@ interface MutatorService
 | MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
 
 ![Mutator class diagram](images/MutatorService-s5.png)
+
+### GenePool
+```
+class GenePool
+    void generateGenes()
+    void makeMutation()
+    void evaluateFitness()
+```
+
     
 ### Utils
 #### RandomProvider
