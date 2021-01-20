@@ -148,6 +148,12 @@ class GenePool
 <p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
 <p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
 <p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
+<p>Method performEvolution() should move all genes in GenePool step forward into next generation. In future, it will coordinate all other methods. </p>
+For now it is responsible for:<br/>
+
+* incrementing generation count
+* checking mutation by evoking makeMutation()
+* updating genes by evoking evaluateFitness()
 
 ![GenePool class diagram](images/GenePool-s6.png)    
 
