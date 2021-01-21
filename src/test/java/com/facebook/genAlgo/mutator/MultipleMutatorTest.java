@@ -2,6 +2,7 @@ package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
+import com.facebook.genAlgo.utils.RandomProviderImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 public class MultipleMutatorTest {
 
-    RandomProvider randomProvider = mock(RandomProvider.class);
+    RandomProvider randomProvider = mock(RandomProviderImpl.class);
     MutatorService mutatorService;
     Gene gene;
 
