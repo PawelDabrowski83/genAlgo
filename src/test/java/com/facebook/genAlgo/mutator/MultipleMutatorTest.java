@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -31,7 +32,9 @@ public class MultipleMutatorTest {
 
     @DisplayName("Should mutate change Gene.value when mutation is guaranteed.")
     @ParameterizedTest
-    @MethodSource("mutateGuaranteedArgumentsProvider")
+    @ValueSource(ints = {
+        Character.MIN_VALUE, Character.MAX_VALUE, 0b1101_0010, 11, 100, 121, 1001, 10000, 56789, Character.MAX_VALUE - 1
+    })
     void mutateGuaranteed(int geneValue) {
         // given
         mutatorService = new MultipleMutator(randomProvider, 1);
@@ -45,15 +48,6 @@ public class MultipleMutatorTest {
 
         // then
         assertNotEquals(initialGeneValue, actualGeneValue);
-    }
-
-    private static Stream<Arguments> mutateGuaranteedArgumentsProvider() {
-        return Stream.of(
-                Arguments.of(0),
-                Arguments.of(100),
-                Arguments.of(10000),
-                Arguments.of(Character.MAX_VALUE)
-        );
     }
 
     @DisplayName("Should mutate work properly when change occurs")
