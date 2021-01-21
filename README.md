@@ -46,6 +46,9 @@
 ## Stage 5
 <p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
     
+## Stage 6
+<p>Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).</p>
+
 ## Code Structure
 ### Gene
 ```
@@ -126,7 +129,34 @@ interface MutatorService
 | MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
 
 ![Mutator class diagram](images/MutatorService-s5.png)
+
+### GenePool
+```
+class GenePool
+    private final RandomProvider randomProvider
+    private final MutatorService mutator
+    private final Evaluator evaluator
+    private final List<Gene> poolOfGenes
+    private int generation
     
+    // getters and setters
+    List<Gene> initializeGenes()
+    void makeMutation()
+    void evaluateFitness()
+    void performEvolution()
+```
+<p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
+<p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
+<p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
+<p>Method performEvolution() should move all genes in GenePool step forward into next generation. In future, it will coordinate all other methods. </p>
+For now it is responsible for:<br/>
+
+* incrementing generation count
+* checking mutation by evoking makeMutation()
+* updating genes by evoking evaluateFitness()
+
+![GenePool class diagram](images/GenePool-s6.png)    
+
 ### Utils
 #### RandomProvider
 
