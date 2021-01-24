@@ -10,8 +10,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class GenePoolTest {
 
@@ -45,13 +47,28 @@ class GenePoolTest {
     public void shouldPerformMutation() {
         // given
         GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 5);
-        genePool.setPoolOfGenes(testGenePool);
+        List<Gene> poolOfGenes = genePool.getPoolOfGenes();
+        List<Character> initialGeneValue = poolOfGenes.stream()
+                .map(gene -> gene.getValue())
+                .collect(Collectors.toList());
+
+        when(randomProvider.getFloat()).thenReturn(1F);
 
         // when
         genePool.makeMutation();
-        List<Gene> poolOfGenes = genePool.getPoolOfGenes();
+        List<Gene> poolOfGenesMutated = genePool.getPoolOfGenes();
+        List<Character> mutatedGeneValue = poolOfGenesMutated.stream()
+                .map(gene -> gene.getValue())
+                .collect(Collectors.toList());
 
         // then
-        assertNotEquals(poolOfGenes, testGenePool);
+        assertFalse(mutatedGeneValue.contains(initialGeneValue));
+    }
+
+    public void shouldPerformEvaluation() {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 5);
+
+        // when
     }
 }
