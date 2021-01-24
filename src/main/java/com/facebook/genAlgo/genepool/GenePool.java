@@ -16,14 +16,14 @@ public class GenePool {
     private List<Gene> poolOfGenes;
     private int generation;
 
-    public GenePool(RandomProvider randomProvider, MutatorService mutatorService, Evaluator evaluator, int generation) {
+    public GenePool(RandomProvider randomProvider, MutatorService mutatorService, Evaluator evaluator, int size) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
-        this.generation = generation;
+        initializeGenes(size);
     }
 
-    public List<Gene> initializeGenes(int size) {
+    private List<Gene> initializeGenes(int size) {
         return null;
     }
 
@@ -34,5 +34,21 @@ public class GenePool {
     }
 
     public void performEvaluation() {
+    }
+
+    public List<Gene> getPoolOfGenes() {
+        return poolOfGenes;
+    }
+
+    public void setPoolOfGenes(List<Gene> poolOfGenes) {
+        this.poolOfGenes = poolOfGenes;
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 }
