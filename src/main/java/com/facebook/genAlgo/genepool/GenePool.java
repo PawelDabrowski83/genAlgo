@@ -33,7 +33,7 @@ public class GenePool {
     public void evaluateFitness() {
     }
 
-    public void performEvaluation() {
+    public void performEvolution() {
     }
 
     public List<Gene> getPoolOfGenes() {
