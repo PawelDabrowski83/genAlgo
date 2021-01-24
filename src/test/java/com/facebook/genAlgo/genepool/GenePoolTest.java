@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.when;
 
 class GenePoolTest {
@@ -65,10 +66,16 @@ class GenePoolTest {
         assertFalse(mutatedGeneValue.contains(initialGeneValue));
     }
 
+    @Test
     public void shouldPerformEvaluation() {
         // given
         GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 5);
 
         // when
+        genePool.evaluateFitness();
+
+        // then
+        Assertions.assertTrue(genePool.getPoolOfGenes().stream()
+                .allMatch(gene -> gene.getFitness() != 0.0f));
     }
 }
