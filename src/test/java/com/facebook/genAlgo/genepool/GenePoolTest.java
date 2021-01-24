@@ -7,6 +7,7 @@ import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,9 @@ import static org.mockito.Mockito.when;
 
 class GenePoolTest {
 
+    @Mock
     RandomProvider randomProvider;
+
     MutatorService mutatorService;
     Evaluator evaluator;
 
