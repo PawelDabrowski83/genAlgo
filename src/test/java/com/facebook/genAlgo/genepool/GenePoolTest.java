@@ -8,12 +8,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Matchers.isNotNull;
 import static org.mockito.Mockito.when;
 
 class GenePoolTest {
@@ -22,18 +20,9 @@ class GenePoolTest {
     MutatorService mutatorService;
     Evaluator evaluator;
 
-    Gene gene1 = new Gene(randomProvider);
-
-    List<Gene> testGenePool = Arrays.asList(new Gene(randomProvider),
-            new Gene(randomProvider),
-            new Gene(randomProvider),
-            new Gene(randomProvider),
-            new Gene(randomProvider));
-
-
     @Test
     @ValueSource(ints = {2, 10, 40, 55, 287})
-    public void shouldInitializedGenes(int sizeExpected) {
+    public void shouldInitializeGenes(int sizeExpected) {
         // given
         GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
 
