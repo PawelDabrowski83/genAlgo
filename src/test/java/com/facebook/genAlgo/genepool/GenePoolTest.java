@@ -13,14 +13,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.*;
 
 class GenePoolTest {
 
     @Mock
     RandomProvider randomProvider;
 
+    @Mock
     MutatorService mutatorService;
+
+    @Mock
     Evaluator evaluator;
 
     @Test
@@ -37,37 +41,29 @@ class GenePoolTest {
     }
 
     @Test
-    public void shouldPerformMutation() {
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformMutation(int sizeExpected) {
         // given
-        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 5);
-        List<Gene> poolOfGenes = genePool.getPoolOfGenes();
-        List<Character> initialGeneValue = poolOfGenes.stream()
-                .map(gene -> gene.getValue())
-                .collect(Collectors.toList());
-
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
         when(randomProvider.getFloat()).thenReturn(1F);
 
         // when
         genePool.makeMutation();
-        List<Gene> poolOfGenesMutated = genePool.getPoolOfGenes();
-        List<Character> mutatedGeneValue = poolOfGenesMutated.stream()
-                .map(gene -> gene.getValue())
-                .collect(Collectors.toList());
 
         // then
-        assertFalse(mutatedGeneValue.contains(initialGeneValue));
+        verify(mutatorService, times(sizeExpected)).mutate(anyObject());
     }
 
     @Test
-    public void shouldPerformEvaluation() {
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformEvaluation(int sizeExpected) {
         // given
-        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 5);
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
 
         // when
         genePool.evaluateFitness();
 
         // then
-        Assertions.assertTrue(genePool.getPoolOfGenes().stream()
-                .allMatch(gene -> gene.getFitness() != 0.0f));
+        verify(evaluator, times(sizeExpected)).setFitness(anyObject());
     }
 }
