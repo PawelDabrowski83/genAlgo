@@ -45,7 +45,6 @@ class GenePoolTest {
     public void shouldPerformMutation(int sizeExpected) {
         // given
         GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
-        when(randomProvider.getFloat()).thenReturn(1F);
 
         // when
         genePool.makeMutation();
@@ -65,5 +64,20 @@ class GenePoolTest {
 
         // then
         verify(evaluator, times(sizeExpected)).setFitness(anyObject());
+    }
+
+    @Test
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformEvolution(int sizeExpected) {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
+
+        // when
+        genePool.performEvolution();
+
+        // then
+        verify(mutatorService, times(sizeExpected)).mutate(anyObject());
+        verify(evaluator, times(sizeExpected)).setFitness(anyObject());
+        assertEquals(2, genePool.getGeneration());
     }
 }
