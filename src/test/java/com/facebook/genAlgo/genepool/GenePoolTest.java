@@ -5,7 +5,9 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 
@@ -26,7 +28,8 @@ class GenePoolTest {
     @Mock
     Evaluator evaluator;
 
-    @Test
+    @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
+    @ParameterizedTest
     @ValueSource(ints = {2, 10, 40, 55, 287})
     public void shouldInitializeGenes(int sizeExpected) {
         // given
@@ -39,7 +42,8 @@ class GenePoolTest {
         Assertions.assertEquals(sizeExpected, poolOfGenes.size());
     }
 
-    @Test
+    @DisplayName("Should perform mutation of each gene when makeMutation() is called")
+    @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformMutation(int sizeExpected) {
         // given
@@ -52,7 +56,8 @@ class GenePoolTest {
         verify(mutatorService, times(sizeExpected)).mutate(anyObject());
     }
 
-    @Test
+    @DisplayName("Should perform evaluation of each gene when evaluateFitness() is called")
+    @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformEvaluation(int sizeExpected) {
         // given
@@ -65,18 +70,18 @@ class GenePoolTest {
         verify(evaluator, times(sizeExpected)).setFitness(anyObject());
     }
 
-    @Test
+    @DisplayName("Should increase generation counter when performEvolution() is called")
+    @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldPerformEvolution(int sizeExpected) {
+    public void shouldIncreaseGenerationWhenPerformEvolution(int generation) {
         // given
-        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 10);
+        genePool.setGeneration(generation);
 
         // when
         genePool.performEvolution();
 
         // then
-        verify(mutatorService, times(sizeExpected)).mutate(anyObject());
-        verify(evaluator, times(sizeExpected)).setFitness(anyObject());
-        assertEquals(2, genePool.getGeneration());
+        assertEquals(++generation, genePool.getGeneration());
     }
 }
