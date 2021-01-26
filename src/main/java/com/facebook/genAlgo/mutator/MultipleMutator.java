@@ -28,7 +28,7 @@ public class MultipleMutator implements MutatorService {
     @Override
     public void mutate(Gene gene) {
         if (mutationOccurs()) {
-            int bitsToMutate = randomProvider.getInt(GENE_VALUES_BIT_LIMIT);
+            int bitsToMutate = randomProvider.getIntFromRange(1, GENE_VALUES_BIT_LIMIT);
             char geneValue = gene.getValue();
 
             for (int i = 0; i < bitsToMutate; i++) {
