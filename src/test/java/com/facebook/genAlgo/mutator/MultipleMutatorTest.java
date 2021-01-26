@@ -39,6 +39,7 @@ public class MultipleMutatorTest {
         // given
         mutatorService = new MultipleMutator(randomProvider, 1);
         gene.setValue((char) initialGeneValue);
+        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenCallRealMethod();
 
         // when
         mutatorService.mutate(gene);
