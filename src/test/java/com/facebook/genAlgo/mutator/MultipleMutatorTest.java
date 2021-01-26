@@ -61,8 +61,8 @@ public class MultipleMutatorTest {
 //                count++;
                 return mutationStep + count++;
             }
-        }).when(randomProvider).getIntFromRange(anyInt(), anyInt());
-        when(randomProvider.getInt(anyInt())).thenReturn(mutationTimes);
+        }).when(randomProvider).getInt(anyInt());
+        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenReturn(mutationTimes);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
