@@ -58,13 +58,11 @@ public class MultipleMutatorTest {
         doAnswer(new Answer<Integer>() {
             private int count = 0;
             public Integer answer(InvocationOnMock invocation) {
-                count++;
-                if (count == 1) {
-                    return mutationTimes;
-                }
-                return mutationStep + count - 2;
+//                count++;
+                return mutationStep + count++;
             }
-        }).when(randomProvider).getInt(anyInt());
+        }).when(randomProvider).getIntFromRange(anyInt(), anyInt());
+        when(randomProvider.getInt(anyInt())).thenReturn(mutationTimes);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
