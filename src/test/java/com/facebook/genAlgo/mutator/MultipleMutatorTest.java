@@ -35,12 +35,10 @@ public class MultipleMutatorTest {
     @ValueSource(ints = {
         Character.MIN_VALUE, Character.MAX_VALUE, 0b1101_0010, 11, 100, 121, 1001, 10000, 56789, Character.MAX_VALUE - 1
     })
-    void mutateGuaranteed(int geneValue) {
+    void mutateGuaranteed(int initialGeneValue) {
         // given
         mutatorService = new MultipleMutator(randomProvider, 1);
-        gene.setValue((char) geneValue);
-        int initialGeneValue = gene.getValue();
-        when(randomProvider.getInt(anyInt())).thenCallRealMethod();
+        gene.setValue((char) initialGeneValue);
 
         // when
         mutatorService.mutate(gene);
