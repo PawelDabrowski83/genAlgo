@@ -5,6 +5,7 @@ import com.facebook.genAlgo.utils.RandomProvider;
 import com.facebook.genAlgo.utils.RandomProviderImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -30,23 +31,20 @@ public class MultipleMutatorTest {
         gene = new Gene(randomProvider);
     }
 
-    @DisplayName("Should mutate change Gene.value when mutation is guaranteed.")
+    @DisplayName("Should mutate change call gene.setValue when mutation is guaranteed.")
     @ParameterizedTest
-    @ValueSource(ints = {
-        Character.MIN_VALUE, Character.MAX_VALUE, 0b1101_0010, 11, 100, 121, 1001, 10000, 56789, Character.MAX_VALUE - 1
-    })
-    void mutateGuaranteed(int initialGeneValue) {
+    @ValueSource(ints = {1, 2, 5, 10, 15})
+    void mutateGuaranteed(int mutationTimes) {
         // given
+        gene = mock(Gene.class);
         mutatorService = new MultipleMutator(randomProvider, 1);
-        gene.setValue((char) initialGeneValue);
-        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenCallRealMethod();
+        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenReturn(mutationTimes);
 
         // when
         mutatorService.mutate(gene);
-        int actualGeneValue = gene.getValue();
 
         // then
-        assertNotEquals(initialGeneValue, actualGeneValue);
+        verify(gene, times(mutationTimes)).setValue(anyChar());
     }
 
     @DisplayName("Should mutate work properly when change occurs")
