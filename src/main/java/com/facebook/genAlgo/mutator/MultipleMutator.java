@@ -29,15 +29,12 @@ public class MultipleMutator implements MutatorService {
     public void mutate(Gene gene) {
         if (mutationOccurs()) {
             int bitsToMutate = randomProvider.getIntFromRange(1, GENE_VALUES_BIT_LIMIT);
-            char geneValue = gene.getValue();
 
-            for (int i = 0; i < bitsToMutate; i++) {
-                int bitIndex = randomProvider.getInt(GENE_VALUES_BIT_LIMIT);
-                int bit = bitwiseUtils.getBit(geneValue, bitIndex);
-                int oppositeBit = bit ^ 1;
-                geneValue = (char) bitwiseUtils.setBit(geneValue, bitIndex, oppositeBit);
+            MutatorService singleMutator = new SingleMutator(randomProvider, getMutationChance());
+            while (bitsToMutate-- > 0) {
+                singleMutator.mutate(gene);
             }
-            gene.setValue(geneValue);
+
         }
     }
 
@@ -45,4 +42,5 @@ public class MultipleMutator implements MutatorService {
         float mutationScore = randomProvider.getFloat();
         return mutationScore < mutationChance;
     }
+
 }
