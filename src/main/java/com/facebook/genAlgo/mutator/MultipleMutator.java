@@ -4,6 +4,8 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.BitwiseUtils;
 import com.facebook.genAlgo.utils.RandomProvider;
 
+import static com.facebook.genAlgo.crossover.CrossoverConfig.GENE_VALUES_BIT_LIMIT;
+
 public class MultipleMutator implements MutatorService {
 
     private final RandomProvider randomProvider;
@@ -26,13 +28,13 @@ public class MultipleMutator implements MutatorService {
     @Override
     public void mutate(Gene gene) {
         if (mutationOccurs()) {
-            int bitsToMutate = randomProvider.getInt(16);
+            int bitsToMutate = randomProvider.getInt(GENE_VALUES_BIT_LIMIT);
             char geneValue = gene.getValue();
 
             for (int i = 0; i < bitsToMutate; i++) {
-                int bitIndex = randomProvider.getInt(16);
+                int bitIndex = randomProvider.getInt(GENE_VALUES_BIT_LIMIT);
                 int bit = bitwiseUtils.getBit(geneValue, bitIndex);
-                int oppositeBit = bit == 0 ? 1 : 0;
+                int oppositeBit = bit ^ 1;
                 geneValue = (char) bitwiseUtils.setBit(geneValue, bitIndex, oppositeBit);
             }
             gene.setValue(geneValue);
@@ -41,6 +43,6 @@ public class MultipleMutator implements MutatorService {
 
     private boolean mutationOccurs() {
         float mutationScore = randomProvider.getFloat();
-        return mutationScore < mutationChance ? true : false;
+        return mutationScore < mutationChance;
     }
 }

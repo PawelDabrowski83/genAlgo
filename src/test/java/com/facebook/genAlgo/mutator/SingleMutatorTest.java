@@ -2,6 +2,7 @@ package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,6 +20,12 @@ public class SingleMutatorTest {
 
     RandomProvider randomProvider = mock(RandomProvider.class);
     MutatorService mutatorService;
+    Gene gene;
+
+    @BeforeEach
+    public void init() {
+        gene = new Gene(randomProvider);
+    }
 
     @DisplayName("Should mutate change Gene.value when mutation should be guaranteed.")
     @ParameterizedTest
@@ -26,7 +33,6 @@ public class SingleMutatorTest {
     void mutateGuaranteed(int geneValue) {
         // given
         mutatorService = new SingleMutator(randomProvider, 1);
-        Gene gene = new Gene(randomProvider);
         gene.setValue((char) geneValue);
         int initialGeneValue = gene.getValue();
 
@@ -52,14 +58,13 @@ public class SingleMutatorTest {
     @MethodSource("mutateArgumentsProvider")
     void mutate(char geneValue, char expectedGeneValue, int mutationStep, float mutationChance, float mutationScore) {
         // given
-        Gene gene = new Gene(randomProvider);
         gene.setValue(geneValue);
-        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+        mutatorService = new SingleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationStep);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
@@ -86,14 +91,13 @@ public class SingleMutatorTest {
     @MethodSource("mutateNoChanceArgumentsProvider")
     void mutateNoChance(char geneValue, char expectedGeneValue, int mutationStep, float mutationChance, float mutationScore) {
         // given
-        Gene gene = new Gene(randomProvider);
         gene.setValue(geneValue);
-        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+        mutatorService = new SingleMutator(randomProvider, mutationChance);
         when(randomProvider.getInt(anyInt())).thenReturn(mutationStep);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when
-        mutator.mutate(gene);
+        mutatorService.mutate(gene);
         char actualGeneValue = gene.getValue();
 
         // then
