@@ -19,14 +19,9 @@ import static org.mockito.Mockito.*;
 
 class GenePoolTest {
 
-    @Mock
-    RandomProvider randomProvider;
-
-    @Mock
-    MutatorService mutatorService;
-
-    @Mock
-    Evaluator evaluator;
+    RandomProvider randomProvider = mock(RandomProvider.class);
+    MutatorService mutatorService = mock(MutatorService.class);
+    Evaluator evaluator = mock(Evaluator.class);
 
     @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
     @ParameterizedTest
