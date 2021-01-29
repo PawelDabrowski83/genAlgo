@@ -42,6 +42,9 @@ public class GenePool {
     }
 
     public void evaluateFitness() {
+        for (Gene gene : poolOfGenes) {
+            evaluator.setFitness(gene);
+        }
     }
 
     public void performEvolution() {
