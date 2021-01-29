@@ -10,9 +10,9 @@ import java.util.List;
 
 public class GenePool {
 
-    private RandomProvider randomProvider;
-    private MutatorService mutatorService;
-    private Evaluator evaluator;
+    private final RandomProvider randomProvider;
+    private final MutatorService mutatorService;
+    private final Evaluator evaluator;
     private List<Gene> poolOfGenes;
     private int generation;
 
