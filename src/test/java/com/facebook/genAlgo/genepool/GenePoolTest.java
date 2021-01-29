@@ -19,8 +19,7 @@ import static org.mockito.Mockito.*;
 
 class GenePoolTest {
 
-    @Mock
-    RandomProvider randomProvider;
+    RandomProvider randomProvider = mock(RandomProvider.class);
 
     @Mock
     MutatorService mutatorService;
