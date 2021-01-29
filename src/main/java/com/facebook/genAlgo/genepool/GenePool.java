@@ -5,6 +5,7 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +25,14 @@ public class GenePool {
     }
 
     private List<Gene> initializeGenes(int size) {
-        return null;
+        if (size <= 0) {
+            return Collections.emptyList();
+        }
+        poolOfGenes = new ArrayList<>();
+        while (size-- > 0) {
+            poolOfGenes.add(new Gene(randomProvider));
+        }
+        return poolOfGenes;
     }
 
     public void makeMutation() {
