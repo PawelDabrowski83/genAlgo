@@ -28,11 +28,11 @@ public class GenePool {
         if (size <= 0) {
             return Collections.emptyList();
         }
-        poolOfGenes = new ArrayList<>();
+        List<Gene> listOfGenes = new ArrayList<>();
         while (size-- > 0) {
-            poolOfGenes.add(new Gene(randomProvider));
+            listOfGenes.add(new Gene(randomProvider));
         }
-        return poolOfGenes;
+        return listOfGenes;
     }
 
     public void makeMutation() {
@@ -46,10 +46,6 @@ public class GenePool {
 
     public List<Gene> getPoolOfGenes() {
         return poolOfGenes;
-    }
-
-    public void setPoolOfGenes(List<Gene> poolOfGenes) {
-        this.poolOfGenes = poolOfGenes;
     }
 
     public int getGeneration() {
