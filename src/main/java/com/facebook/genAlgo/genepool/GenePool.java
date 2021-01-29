@@ -42,6 +42,7 @@ public class GenePool {
     }
 
     public void performEvolution() {
+        generation++;
     }
 
     public List<Gene> getPoolOfGenes() {
