@@ -36,6 +36,9 @@ public class GenePool {
     }
 
     public void makeMutation() {
+        for (Gene gene : poolOfGenes) {
+            mutatorService.mutate(gene);
+        }
     }
 
     public void evaluateFitness() {
