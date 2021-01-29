@@ -14,14 +14,14 @@ public class GenePool {
     private final RandomProvider randomProvider;
     private final MutatorService mutatorService;
     private final Evaluator evaluator;
-    private List<Gene> poolOfGenes;
+    private final List<Gene> poolOfGenes;
     private int generation;
 
     public GenePool(RandomProvider randomProvider, MutatorService mutatorService, Evaluator evaluator, int size) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
-        initializeGenes(size);
+        this.poolOfGenes = initializeGenes(size);
     }
 
     private List<Gene> initializeGenes(int size) {
