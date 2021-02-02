@@ -49,6 +49,9 @@
 ## Stage 6
 <p>Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).</p>
 
+## Stage 7
+<p>Continue working on GenePool, improve tests for Mutator and Evaluator dependencies and make first implementation of GenePool.</p>
+
 ## Code Structure
 ### Gene
 ```
