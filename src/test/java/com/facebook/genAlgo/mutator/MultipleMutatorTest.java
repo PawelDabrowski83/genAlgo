@@ -2,11 +2,14 @@ package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
+import com.facebook.genAlgo.utils.RandomProviderImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -19,7 +22,7 @@ import static org.mockito.Mockito.*;
 
 public class MultipleMutatorTest {
 
-    RandomProvider randomProvider = mock(RandomProvider.class);
+    RandomProvider randomProvider = mock(RandomProviderImpl.class);
     MutatorService mutatorService;
     Gene gene;
 
@@ -28,31 +31,20 @@ public class MultipleMutatorTest {
         gene = new Gene(randomProvider);
     }
 
-    @DisplayName("Should mutate change Gene.value when mutation is guaranteed.")
+    @DisplayName("Should mutate change call gene.setValue when mutation is guaranteed.")
     @ParameterizedTest
-    @MethodSource("mutateGuaranteedArgumentsProvider")
-    void mutateGuaranteed(int geneValue) {
+    @ValueSource(ints = {1, 2, 5, 10, 15})
+    void mutateGuaranteed(int mutationTimes) {
         // given
+        gene = mock(Gene.class);
         mutatorService = new MultipleMutator(randomProvider, 1);
-        gene.setValue((char) geneValue);
-        int initialGeneValue = gene.getValue();
-        when(randomProvider.getInt(anyInt())).thenReturn(1);
+        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenReturn(mutationTimes);
 
         // when
         mutatorService.mutate(gene);
-        int actualGeneValue = gene.getValue();
 
         // then
-        assertNotEquals(initialGeneValue, actualGeneValue);
-    }
-
-    private static Stream<Arguments> mutateGuaranteedArgumentsProvider() {
-        return Stream.of(
-                Arguments.of(0),
-                Arguments.of(100),
-                Arguments.of(10000),
-                Arguments.of(Character.MAX_VALUE)
-        );
+        verify(gene, times(mutationTimes)).setValue(anyChar());
     }
 
     @DisplayName("Should mutate work properly when change occurs")
@@ -65,13 +57,11 @@ public class MultipleMutatorTest {
         doAnswer(new Answer<Integer>() {
             private int count = 0;
             public Integer answer(InvocationOnMock invocation) {
-                count++;
-                if (count == 1) {
-                    return mutationTimes;
-                }
-                return mutationStep + count - 2;
+//                count++;
+                return mutationStep + count++;
             }
         }).when(randomProvider).getInt(anyInt());
+        when(randomProvider.getIntFromRange(anyInt(), anyInt())).thenReturn(mutationTimes);
         when(randomProvider.getFloat()).thenReturn(mutationScore);
 
         // when

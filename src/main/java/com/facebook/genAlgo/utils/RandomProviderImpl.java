@@ -10,6 +10,11 @@ public class RandomProviderImpl implements RandomProvider {
     }
 
     @Override
+    public int getIntFromRange(int fromInclusive, int toExclusive) {
+        return ThreadLocalRandom.current().nextInt(fromInclusive, toExclusive);
+    }
+
+    @Override
     public float getFloat() {
         return ThreadLocalRandom.current().nextFloat();
     }
