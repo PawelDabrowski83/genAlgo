@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
 import java.util.List;
@@ -50,6 +51,26 @@ class GenePoolTest {
         // then
         verify(mutatorService, times(sizeExpected)).mutate(anyObject());
     }
+
+    @DisplayName("Should perform mutate method on each gene")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformMutationOnEachGene(int sizeExpected) {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
+        ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
+
+        // when
+        genePool.makeMutation();
+        verify(mutatorService, times(sizeExpected)).mutate(geneCaptor.capture());
+        List<Gene> allValues = geneCaptor.getAllValues();
+
+        // then
+        assertEquals(allValues.size(), sizeExpected);
+    }
+
+
+
 
     @DisplayName("Should perform evaluation of each gene when evaluateFitness() is called")
     @ParameterizedTest
