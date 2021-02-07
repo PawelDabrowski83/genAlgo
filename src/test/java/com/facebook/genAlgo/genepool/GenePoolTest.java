@@ -97,14 +97,14 @@ class GenePoolTest {
         // when
         genePool.evaluateFitness();
         verify(evaluator,times(sizeExpected)).setFitness(geneCaptor.capture());
-        List<Gene> captorAllValues = geneCaptor.getAllValues();
+        List<Gene> allCapturedGenes = geneCaptor.getAllValues();
 
-        List<Gene> collect = captorAllValues.stream()
+        List<Gene> distinctGeneList = allCapturedGenes.stream()
                 .distinct()
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(collect.size(), sizeExpected);
+        assertEquals(distinctGeneList.size(), sizeExpected);
     }
 
     @DisplayName("Should increase generation counter when performEvolution() is called")
