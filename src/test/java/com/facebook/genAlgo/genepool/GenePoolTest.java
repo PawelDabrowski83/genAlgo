@@ -13,6 +13,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Matchers.anyObject;
@@ -63,14 +64,15 @@ class GenePoolTest {
         // when
         genePool.makeMutation();
         verify(mutatorService, times(sizeExpected)).mutate(geneCaptor.capture());
-        List<Gene> allValues = geneCaptor.getAllValues();
+        List<Gene> allCapturedGenes = geneCaptor.getAllValues();
+
+        List<Gene> distinctGeneList = allCapturedGenes.stream()
+                .distinct()
+                .collect(Collectors.toList());
 
         // then
-        assertEquals(allValues.size(), sizeExpected);
+        assertEquals(distinctGeneList.size(), sizeExpected);
     }
-
-
-
 
     @DisplayName("Should perform evaluation of each gene when evaluateFitness() is called")
     @ParameterizedTest
