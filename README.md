@@ -5,6 +5,12 @@
 
 ![Class connection diagram](images/class-connection-diagram2-s5.png)
 
+## Algorithm Working Principle
+<ol>
+    <li>All Genes are initialized</li>
+    <li>Fitness is counted for each gene and assigned to it</li>
+</ol>
+
 ## Goals:
 <ul><li>working in small group</li>
 <li>practicing git branching, issues and documentation</li>
