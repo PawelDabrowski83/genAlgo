@@ -7,8 +7,14 @@
 
 ## Algorithm Working Principle
 <ol>
-    <li>All Genes are initialized</li>
-    <li>Fitness is counted for each gene and assigned to it</li>
+    <li>First Step</li>
+    -All Genes are initialized
+    -Fitness is counted for each gene and assigned to it
+    <li>Perform evolution Step<li>
+    -CrossoverHandler merge genes into pairs based on their fitness, and then crossover perform cross method on these genes
+    -Mutator check if mutation occurs, if yes then perform proper mutation 
+    -Evaluator count new fitness for each gene and assign them new value of fitness
+    -SolutionFinder chcecks final condition
 </ol>
 
 ## Goals:
