@@ -7,14 +7,14 @@
 
 ## Algorithm Working Principle
 
-Markup : 1. First Step
-            * All Genes are initialized
-            * Fitness is counted for each gene and assigned to it
-         2. Perform evolution Step
-            * CrossoverHandler merge genes into pairs based on their fitness, and then crossover perform cross method on these genes
-            * Mutator check if a mutation occurs, if yes then perform proper mutation 
-            * Evaluator count new fitness for each gene and assign them new value of fitness
-            * SolutionFinder checks final condition, if final conditions are not met then perform evolution step is repeated
+1. First Step
+   * All Genes are initialized
+   * Fitness is counted for each gene and assigned to it
+2. Perform evolution Step
+   * CrossoverHandler merge genes into pairs based on their fitness, and then crossover perform cross method on these genes
+   * Mutator check if a mutation occurs, if yes then perform proper mutation
+   * Evaluator count new fitness for each gene and assign them new value of fitness
+   * SolutionFinder checks final condition, if final conditions are not met then perform evolution step is repeated
 
 ## Goals:
 <ul><li>working in small group</li>
