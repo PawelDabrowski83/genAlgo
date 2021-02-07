@@ -8,8 +8,11 @@
 ## Algorithm Working Principle
 <ol>
     <li>First Step</li>
-    -All Genes are initialized
-    -Fitness is counted for each gene and assigned to it
+    <ul>
+    <li>All Genes are initialized</li>
+    <li>Fitness is counted for each gene and assigned to it</li>
+    </ul>
+    
     <li>Perform evolution Step<li>
     -CrossoverHandler merge genes into pairs based on their fitness, and then crossover perform cross method on these genes
     -Mutator check if mutation occurs, if yes then perform proper mutation 
