@@ -5,6 +5,17 @@
 
 ![Class connection diagram](images/class-connection-diagram2-s5.png)
 
+## Algorithm Working Principle
+
+1. First Step
+   * All Genes are initialized
+   * Fitness is counted for each gene and assigned to it
+2. Perform evolution Step
+   * CrossoverHandler merge genes into pairs based on their fitness, and then crossover perform cross method on these genes
+   * Mutator check if a mutation occurs, if yes then perform proper mutation
+   * Evaluator count new fitness for each gene and assign them new value of fitness
+   * SolutionFinder checks final condition, if final conditions are not met then perform evolution step is repeated
+
 ## Goals:
 <ul><li>working in small group</li>
 <li>practicing git branching, issues and documentation</li>
@@ -115,9 +126,9 @@ interface CrossoverService
 | BitPairCrossoverServiceImpl       | even bit pairs copied from g2 | even bit pairs copied from g1 |
 
 ### Mutator
-<p>MutatorService, an interface responsible for mutating gene values. Based on given strategies selected bits changing its value in order to
-    faster find target. </p>
-<p>Classes that implement MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different</p>
+<p>MutatorService an interface with single method mutate, responsible for mutating gene values. Based on given strategies selected bits changing its value in order to faster find target. </p>
+<p>Classes that implementing MutatorService have additional mutationChance float field that is set in setter (takes random value from 0 - 1) and represents probability of mutation in percent (0 - 100%). Set in seter because in each generation of Gene mutationChance can be different. </p>
+<p>Classes imlementing MutatorService use RandomProvider and BItwiseUtils to mutate gene in a proper way.</p>
 
 ```
 interface MutatorService    
@@ -131,7 +142,7 @@ interface MutatorService
 | SingleMutator    | take one bit from random position (0 - 15) and then assign opposite value for this bit (0 or 1)                  |
 | MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
 
-![Mutator class diagram](images/MutatorService-s5.png)
+![Mutator class](images/Mutator-s5.png)
 
 ### GenePool
 ```
