@@ -6,12 +6,12 @@ import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mock;
+import org.mockito.ArgumentCaptor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Matchers.anyObject;
@@ -37,7 +37,7 @@ class GenePoolTest {
         Assertions.assertEquals(sizeExpected, poolOfGenes.size());
     }
 
-    @DisplayName("Should perform mutation of each gene when makeMutation() is called")
+    @DisplayName("Should perform mutation given number of times when makeMutation is called")
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformMutation(int sizeExpected) {
@@ -51,7 +51,28 @@ class GenePoolTest {
         verify(mutatorService, times(sizeExpected)).mutate(anyObject());
     }
 
-    @DisplayName("Should perform evaluation of each gene when evaluateFitness() is called")
+    @DisplayName("Should perform mutate method on each gene when makeMutation is called")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformMutationOnEachGene(int sizeExpected) {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
+        ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
+
+        // when
+        genePool.makeMutation();
+        verify(mutatorService, times(sizeExpected)).mutate(geneCaptor.capture());
+        List<Gene> allCapturedGenes = geneCaptor.getAllValues();
+
+        List<Gene> distinctGeneList = allCapturedGenes.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        // then
+        assertEquals(distinctGeneList.size(), sizeExpected);
+    }
+
+    @DisplayName("Should perform evaluation given number of times when evaluateFitness is called")
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformEvaluation(int sizeExpected) {
@@ -63,6 +84,27 @@ class GenePoolTest {
 
         // then
         verify(evaluator, times(sizeExpected)).setFitness(anyObject());
+    }
+
+    @DisplayName("Should perform evaluation on each gene when evaluateFitness is called")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10, 30, 55, 1000})
+    public void shouldPerformEvaluationOnEachGene(int sizeExpected) {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, sizeExpected);
+        ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
+
+        // when
+        genePool.evaluateFitness();
+        verify(evaluator,times(sizeExpected)).setFitness(geneCaptor.capture());
+        List<Gene> allCapturedGenes = geneCaptor.getAllValues();
+
+        List<Gene> distinctGeneList = allCapturedGenes.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        // then
+        assertEquals(distinctGeneList.size(), sizeExpected);
     }
 
     @DisplayName("Should increase generation counter when performEvolution() is called")
