@@ -1,5 +1,9 @@
 package com.facebook.genAlgo.utils;
 
+import com.facebook.genAlgo.utils.exception.IllegalBitValueException;
+import com.facebook.genAlgo.utils.exception.IllegalByteValueException;
+import com.facebook.genAlgo.utils.exception.IllegalIndexValueException;
+
 public class BitwiseUtils {
 
     public static final int FULL_BIT_MASK = 0b1111_1111_1111_1111_1111_1111_1111_1111;
@@ -16,7 +20,7 @@ public class BitwiseUtils {
     public int setBit(int number, int index, int value) throws IllegalArgumentException {
         checkIndexNotNegative(index);
         if (value != 0 && value != 1) {
-            throw new IllegalArgumentException(INCORRECT_BIT_VALUE_EXCEPTION);
+            throw new IllegalBitValueException(INCORRECT_BIT_VALUE_EXCEPTION);
         }
         int currentBitValue = getBit(number, index);
         if (currentBitValue != value) {
@@ -38,7 +42,7 @@ public class BitwiseUtils {
     public int setByte(int number, int index, int value) throws IllegalArgumentException {
         checkIndexNotNegative(index);
         if (value > 0b1111_1111) {
-            throw new IllegalArgumentException(INCORRECT_BYTE_VALUE_EXCEPTION);
+            throw new IllegalByteValueException(INCORRECT_BYTE_VALUE_EXCEPTION);
         }
         int currentByte = getByte(number, index);
         if (currentByte != value) {
@@ -53,7 +57,7 @@ public class BitwiseUtils {
 
     private void checkIndexNotNegative(int index) {
         if (index < 0) {
-            throw new IllegalArgumentException(INDEX_BELOW_ZERO_EXCEPTION);
+            throw new IllegalIndexValueException(INDEX_BELOW_ZERO_EXCEPTION);
         }
     }
 }
