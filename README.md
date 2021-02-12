@@ -104,7 +104,10 @@ There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDelt
 > 65535 - value equal to Character.MAX_VALUE
 
 ![Evaluator class diagram](images/Evaluator-s5.png)
-
+### CrossoverHandler
+<p> CrossoverHandler is responsible for sorting genes according to their fitness descending, and picking pair of genes starting from the highest fitness and pass this pair as an argument to cross method from a crossover. </p>
+<p> Each pair of a gene must be put to the cross method only once. </p>
+  
 ### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
