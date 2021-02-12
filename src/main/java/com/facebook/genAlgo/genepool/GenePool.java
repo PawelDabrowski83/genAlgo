@@ -47,6 +47,10 @@ public class GenePool {
         }
     }
 
+    public void makeCross() {
+
+    }
+
     public void performEvolution() {
         generation++;
     }
