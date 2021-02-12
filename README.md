@@ -160,6 +160,7 @@ class GenePool
     private final RandomProvider randomProvider
     private final MutatorService mutator
     private final Evaluator evaluator
+    private final CrossoverHandler crossoverHandler
     private final List<Gene> poolOfGenes
     private int generation
     
@@ -168,10 +169,12 @@ class GenePool
     void makeMutation()
     void evaluateFitness()
     void performEvolution()
+    void makeCross()
 ```
 <p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
 <p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
 <p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
+<p>CrossoverHandler is used to perform cross method of pair of gene in proper way. Takes pair of gene in descending order according to fitness. </p>
 <p>Method performEvolution() should move all genes in GenePool step forward into next generation. In future, it will coordinate all other methods. </p>
 For now it is responsible for:<br/>
 
