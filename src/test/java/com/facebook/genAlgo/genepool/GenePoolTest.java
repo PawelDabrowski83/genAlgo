@@ -1,11 +1,13 @@
 package com.facebook.genAlgo.genepool;
 
+import com.facebook.genAlgo.crossover.CrossoverService;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
@@ -21,6 +23,7 @@ class GenePoolTest {
 
     RandomProvider randomProvider = mock(RandomProvider.class);
     MutatorService mutatorService = mock(MutatorService.class);
+    CrossoverService crossoverService = mock(CrossoverService.class);
     Evaluator evaluator = mock(Evaluator.class);
 
     @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
@@ -121,4 +124,27 @@ class GenePoolTest {
         // then
         assertEquals(++generation, genePool.getGeneration());
     }
+
+    @Test
+    public void shouldPerformCrossOnEachPairOfGene() {
+        // given
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, 10);
+        ArgumentCaptor<Gene> geneArgumentCaptor1 = ArgumentCaptor.forClass(Gene.class);
+        ArgumentCaptor<Gene> geneArgumentCaptor2 = ArgumentCaptor.forClass(Gene.class);
+
+        // when
+        genePool.makeCross();
+        verify(crossoverService, times(10))
+                .cross(geneArgumentCaptor1.capture(), geneArgumentCaptor2.capture());
+
+        List<Gene> allCapturedValues = geneArgumentCaptor1.getAllValues();
+        allCapturedValues.addAll(geneArgumentCaptor2.getAllValues());
+
+        List<Gene> distinctGenes = allCapturedValues.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        // then
+        assertEquals(10, distinctGenes.size());
+    }
+
 }
