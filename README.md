@@ -109,6 +109,8 @@ There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDelt
 
 ```
 class CrossoverHandler
+    private CrossoverService crossoverService
+    
     List<Gene> fitnessSort(List<Gene> genes)
 ```
   
