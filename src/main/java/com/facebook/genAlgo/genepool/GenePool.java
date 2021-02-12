@@ -1,5 +1,6 @@
 package com.facebook.genAlgo.genepool;
 
+import com.facebook.genAlgo.crossover.CrossoverHandler;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
@@ -14,13 +15,16 @@ public class GenePool {
     private final RandomProvider randomProvider;
     private final MutatorService mutatorService;
     private final Evaluator evaluator;
+    private final CrossoverHandler crossoverHandler;
     private final List<Gene> poolOfGenes;
     private int generation;
 
-    public GenePool(RandomProvider randomProvider, MutatorService mutatorService, Evaluator evaluator, int size) {
+    public GenePool(RandomProvider randomProvider, MutatorService mutatorService, Evaluator evaluator,
+                    CrossoverHandler crossoverHandler, int size) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
+        this.crossoverHandler = crossoverHandler;
         this.poolOfGenes = initializeGenes(size);
     }
 
@@ -48,7 +52,6 @@ public class GenePool {
     }
 
     public void makeCross() {
-
     }
 
     public void performEvolution() {
