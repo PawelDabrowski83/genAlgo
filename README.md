@@ -112,6 +112,7 @@ class CrossoverHandler
     private CrossoverService crossoverService
     
     List<Gene> fitnessSort(List<Gene> genes)
+    List<Gene> performCross()
 ```
   
 ### Crossover
