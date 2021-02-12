@@ -63,6 +63,9 @@
 ## Stage 7
 <p>Continue working on GenePool, improve tests for Mutator and Evaluator dependencies and make first implementation of GenePool.</p>
 
+## Stage 8
+<p>Continue working on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor. </p>
+
 ## Code Structure
 ### Gene
 ```
