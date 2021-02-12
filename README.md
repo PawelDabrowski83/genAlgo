@@ -66,6 +66,9 @@
 ## Stage 8
 <p>Continue working on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor. </p>
 
+## Stage 9
+<p>Continue working on GenePool, add CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation. </p>
+
 ## Code Structure
 ### Gene
 ```
