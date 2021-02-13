@@ -159,7 +159,7 @@ class GenePoolTest {
         ArgumentCaptor<Gene> geneArgumentCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
-        genePool.makeMutation();
+        genePool.makeCross();
         verify(crossoverService, times(sizeExpected / 2))
                 .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
 
