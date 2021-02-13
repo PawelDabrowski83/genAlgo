@@ -20,7 +20,6 @@ public class CrossoverHandler {
         }
     }
 
-
     private void fitnessSort(List<Gene> geneList) {
         geneList.sort(Comparator.comparing((x) -> x.getFitness()));
     }
