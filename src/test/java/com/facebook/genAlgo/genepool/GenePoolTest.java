@@ -148,7 +148,7 @@ class GenePoolTest {
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(10, distinctGenes.size());
+        assertEquals(sizeExpected, distinctGenes.size());
     }
 
     @DisplayName("Should perform cross on sorted list of gene")
