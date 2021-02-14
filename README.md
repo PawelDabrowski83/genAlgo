@@ -9,7 +9,8 @@
 [Development Progress](#development-progress)<br/>
 [Workflow](#workflow)<br/>
 [Branch naming convention](#branch-naming-convention)<br/>
-
+[Project history](#project-history)<br/>
+[Code structure](#code-structure)<br/>
 
 ![Class connection diagram](images/class-connection-diagram2-s5.png)
 
