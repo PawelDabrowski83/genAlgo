@@ -3,6 +3,14 @@
 <p>Simple implementation of <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny" target="_blank">genetic algorithm</a>. Shared project to practice group collaboration.</p>
 <p>Authors: Paweł Dąbrowski, Janusz Brodacki, Kamil Surowiec.</p>
 
+#### Table of contents:
+[Algorithm Working Principle](#algorithm-working-principle)<br/>
+[Goals](#goals)<br/>
+[Development Progress](#development-progress)<br/>
+[Workflow](#workflow)<br/>
+[Branch naming convention](#branch-naming-convention)<br/>
+
+
 ![Class connection diagram](images/class-connection-diagram2-s5.png)
 
 ## Algorithm Working Principle
