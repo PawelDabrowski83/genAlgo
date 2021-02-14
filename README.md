@@ -49,33 +49,33 @@
 - Task branches follow this pattern: <b>X-Label</b>, where X is number of an Issue and Label is short description.
 
 ## Project history
-## Stage 1
+### Stage 1
 <p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
 
-## Stage 2
+### Stage 2
 <p>Creation of Evaluator interface and its implementation. </p>
 
-## Stage 3
+### Stage 3
 <p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
 <p>Gene class refactor, gene has field with single char insted of char array.</p>
 
-## Stage 4
+### Stage 4
 <p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
 <p>Another Gene docs refactor.</p>
 
-## Stage 5
+### Stage 5
 <p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
     
-## Stage 6
+### Stage 6
 <p>Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).</p>
 
-## Stage 7
+### Stage 7
 <p>Continue working on GenePool, improve tests for Mutator and Evaluator dependencies and make first implementation of GenePool.</p>
 
-## Stage 8
+### Stage 8
 <p>Continue working on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor. </p>
 
-## Stage 9
+### Stage 9
 <p>Continue working on GenePool, add CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation. </p>
 
 ## Code Structure
