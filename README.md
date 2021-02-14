@@ -52,15 +52,15 @@
 ## Project history
 | Stage | Description                                                                                                        |
 | ------| -------------------------------------------------------------------------------------------------------------------|
-| 1     | Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes. |
-| 2     | Creation of Evaluator interface and its implementation. |
-| 3     | Documentation refactoring, added new section Code Structure which describe structure of program.<br/>Gene class refactor, gene has field with single char insted of char array. |
-| 4     | Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.<br/>Another Gene docs refactor.  |
-| 5     | Creation of MutatorService to provide mutation of gene values after cross recombination.  |
-| 6     | Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).  |
-| 7     | Continue working on GenePool, improve tests for Mutator and Evaluator dependencies and make first implementation of GenePool. |
-| 8     | Continue working on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor. |
-| 9     | Continue working on GenePool, add CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation. |
+| 1     | Creation of Gene class, which is a fundament of our model. Adding RandomProvider to test creation of random genes. |
+| 2     | Creation of Evaluator interface and its implementation.                                                            |
+| 3     | Documentation refactor, added section Code Structure.<br/>Gene value is now single char instead of an array.       |
+| 4     | Creation of CrossoverService to provide gene values recombination.<br/>Another Gene docs refactor.                 |
+| 5     | Creation of MutatorService to provide mutation of gene values after cross recombination.                           |
+| 6     | Creation GenePool as container for Gene objects. It uses dependencies to perform evolution during each generation. |
+| 7     | Working on GenePool, improving tests for Mutator and Evaluator dependencies and first implementation of GenePool.  |
+| 8     | Work on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor.  |
+| 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
 
 ## Code Structure
 ### Gene
