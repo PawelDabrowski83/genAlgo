@@ -226,3 +226,5 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 `throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
 
 ![BitwiseUtils class](images/BitwiseUtils-s5.png)
+
+[Go to top](#genalgo)
