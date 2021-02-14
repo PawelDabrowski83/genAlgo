@@ -48,6 +48,7 @@
 - Stage branches are formed as <b>dev-sX</b>, where X is number of development stage.
 - Task branches follow this pattern: <b>X-Label</b>, where X is number of an Issue and Label is short description.
 
+## Project history
 ## Stage 1
 <p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
 
