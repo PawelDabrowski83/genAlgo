@@ -33,5 +33,24 @@ class CrossoverHandlerTest {
             new Gene(randomProvider)
     );
 
+    @Test
+    public void shouldPerformCrossOnEachPairOfGene() {
+        // given
+        ArrayList<Gene> geneArrayList = new ArrayList<>(geneList);
+        CrossoverHandler crossoverHandler = new CrossoverHandler(crossoverService);
+        ArgumentCaptor<Gene> geneArgumentCaptor = ArgumentCaptor.forClass(Gene.class);
 
+        //when
+        crossoverHandler.performCross(geneArrayList);
+        verify(crossoverService, times(geneList.size() / 2))
+                .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
+
+        List<Gene> allValues = geneArgumentCaptor.getAllValues()
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        // then
+        Assertions.assertEquals(allValues.size(), geneList.size());
+    }
 }
