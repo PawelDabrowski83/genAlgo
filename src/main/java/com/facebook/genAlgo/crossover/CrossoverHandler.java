@@ -15,7 +15,7 @@ public class CrossoverHandler {
 
     public void performCross(List<Gene> geneList) {
         fitnessSort(geneList);
-        for (int i = 0; i < geneList.size(); i = i = i + 2) {
+        for (int i = 0; i < geneList.size(); i = i + 2) {
             crossoverService.cross(geneList.get(i), geneList.get(i + 1));
         }
     }
