@@ -141,26 +141,4 @@ class GenePoolTest {
         // then
         verify(crossoverHandler, times(1)).performCross(anyList());
     }
-
-    @ValueSource(ints = {2, 10, 30, 56, 1000})
-    @DisplayName("Should perform cross on sorted list of gene")
-    @ParameterizedTest
-    public void shouldPerformCrossOnPoolOfGeneInProperOrder(int sizeExpected) {
-        // given
-        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
-        ArgumentCaptor<Gene> geneArgumentCaptor = ArgumentCaptor.forClass(Gene.class);
-
-        // when
-        genePool.makeCross();
-        verify(crossoverService, times(sizeExpected / 2))
-                .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
-
-        List<Gene> allCapturedGene = geneArgumentCaptor.getAllValues();
-        List<Gene> sortedGeneList = allCapturedGene.stream()
-                .sorted(Comparator.comparing(gene -> gene.getFitness()))
-                .collect(Collectors.toList());
-
-        // then
-        assertEquals(allCapturedGene, sortedGeneList);
-    }
 }
