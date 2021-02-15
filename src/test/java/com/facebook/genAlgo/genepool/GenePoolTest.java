@@ -8,7 +8,6 @@ import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
@@ -27,7 +26,7 @@ class GenePoolTest {
     MutatorService mutatorService = mock(MutatorService.class);
     CrossoverService crossoverService = mock(CrossoverService.class);
     Evaluator evaluator = mock(Evaluator.class);
-    CrossoverHandler crossoverHandler = mock(CrossoverHandler.class);
+    CrossoverHandler crossoverHandler = spy(new CrossoverHandler(crossoverService));
 
     @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
     @ParameterizedTest
@@ -102,7 +101,7 @@ class GenePoolTest {
 
         // when
         genePool.evaluateFitness();
-        verify(evaluator,times(sizeExpected)).setFitness(geneCaptor.capture());
+        verify(evaluator, times(sizeExpected)).setFitness(geneCaptor.capture());
         List<Gene> allCapturedGenes = geneCaptor.getAllValues();
 
         List<Gene> distinctGeneList = allCapturedGenes.stream()
@@ -142,7 +141,6 @@ class GenePoolTest {
                 .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
 
         List<Gene> allCapturedValues = geneArgumentCaptor.getAllValues();
-
         List<Gene> distinctGenes = allCapturedValues.stream()
                 .distinct()
                 .collect(Collectors.toList());
@@ -151,21 +149,20 @@ class GenePoolTest {
         assertEquals(sizeExpected, distinctGenes.size());
     }
 
+    @ValueSource(ints = {2, 10, 30, 56, 1000})
     @DisplayName("Should perform cross on sorted list of gene")
-    @Test
-    public void shouldPerformCrossOnPoolOfGeneInProperOrder() {
+    @ParameterizedTest
+    public void shouldPerformCrossOnPoolOfGeneInProperOrder(int sizeExpected) {
         // given
-        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, crossoverHandler, 6);
-
+        GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
         ArgumentCaptor<Gene> geneArgumentCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
-        genePool.makeMutation();
-        verify(crossoverService, times(3))
+        genePool.makeCross();
+        verify(crossoverService, times(sizeExpected / 2))
                 .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
 
         List<Gene> allCapturedGene = geneArgumentCaptor.getAllValues();
-
         List<Gene> sortedGeneList = allCapturedGene.stream()
                 .sorted(Comparator.comparing(gene -> gene.getFitness()))
                 .collect(Collectors.toList());

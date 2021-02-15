@@ -52,6 +52,7 @@ public class GenePool {
     }
 
     public void makeCross() {
+        crossoverHandler.performCross(poolOfGenes);
     }
 
     public void performEvolution() {
