@@ -4,6 +4,7 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.utils.RandomProvider;
 import com.facebook.genAlgo.utils.RandomProviderImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -30,6 +31,7 @@ class CrossoverHandlerTest {
             new Gene(randomProvider)
     );
 
+    @DisplayName("Should perform cross on each pair of gene")
     @Test
     public void shouldPerformCrossOnEachPairOfGene() {
         // given
@@ -51,6 +53,7 @@ class CrossoverHandlerTest {
         Assertions.assertEquals(allCapturedGene.size(), geneList.size());
     }
 
+    @DisplayName("Should perform cross on sorted list of gene")
     @Test
     public void shouldPerformCrossOnPoolOfGeneInProperOrder() {
         // given
