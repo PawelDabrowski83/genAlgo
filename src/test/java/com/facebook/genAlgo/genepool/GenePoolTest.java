@@ -8,6 +8,7 @@ import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
@@ -127,26 +128,18 @@ class GenePoolTest {
         assertEquals(++generation, genePool.getGeneration());
     }
 
-    @DisplayName("Should perform cross on each pair of gene")
+    @DisplayName("Should perform cross when makeCross method is called")
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 56, 1000})
-    public void shouldPerformCrossOnEachPairOfGene(int sizeExpected) {
+    public void shouldPerformCrossWhenMakeCrossIsCalled(int sizeExpected) {
         // given
         GenePool genePool = new GenePool(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
-        ArgumentCaptor<Gene> geneArgumentCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
         genePool.makeCross();
-        verify(crossoverService, times(sizeExpected/2))
-                .cross(geneArgumentCaptor.capture(), geneArgumentCaptor.capture());
-
-        List<Gene> allCapturedValues = geneArgumentCaptor.getAllValues();
-        List<Gene> distinctGenes = allCapturedValues.stream()
-                .distinct()
-                .collect(Collectors.toList());
 
         // then
-        assertEquals(sizeExpected, distinctGenes.size());
+        verify(crossoverHandler, times(1)).performCross(anyList());
     }
 
     @ValueSource(ints = {2, 10, 30, 56, 1000})
