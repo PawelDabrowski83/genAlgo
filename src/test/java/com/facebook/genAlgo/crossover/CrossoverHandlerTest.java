@@ -19,7 +19,6 @@ class CrossoverHandlerTest {
 
     CrossoverService crossoverService = mock(CrossoverService.class);
     RandomProvider randomProvider = new RandomProviderImpl();
-
     List<Gene> geneList = List.of(
             new Gene(randomProvider),
             new Gene(randomProvider),
