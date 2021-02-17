@@ -3,6 +3,15 @@
 <p>Simple implementation of <a href="https://pl.wikipedia.org/wiki/Algorytm_genetyczny" target="_blank">genetic algorithm</a>. Shared project to practice group collaboration.</p>
 <p>Authors: Paweł Dąbrowski, Janusz Brodacki, Kamil Surowiec.</p>
 
+#### Table of contents:
+[Algorithm Working Principle](#algorithm-working-principle)<br/>
+[Goals](#goals)<br/>
+[Development Progress](#development-progress)<br/>
+[Workflow](#workflow)<br/>
+[Branch naming convention](#branch-naming-convention)<br/>
+[Project history](#project-history)<br/>
+[Code structure](#code-structure)<br/>
+
 ![Class connection diagram](images/class-connection-diagram2-s5.png)
 
 ## Algorithm Working Principle
@@ -40,28 +49,18 @@
 - Stage branches are formed as <b>dev-sX</b>, where X is number of development stage.
 - Task branches follow this pattern: <b>X-Label</b>, where X is number of an Issue and Label is short description.
 
-## Stage 1
-<p>Creation of Gene class, which is base fundament of our model. Adding RandomProvider interface to test creation of random genes.</p>
-
-## Stage 2
-<p>Creation of Evaluator interface and its implementation. </p>
-
-## Stage 3
-<p>Documentation refactoring, added new section Code Structure which describe structure of program.</p>
-<p>Gene class refactor, gene has field with single char insted of char array.</p>
-
-## Stage 4
-<p>Creation of CrossoverService to provide gene values recombination in order to find optimal solution in next generation.</p>
-<p>Another Gene docs refactor.</p>
-
-## Stage 5
-<p>Creation of MutatorService to provide mutation of gene values after cross recombination. </p>
-    
-## Stage 6
-<p>Introducing GenePool class, which is a container for all Gene objects. It also uses it dependencies of Evaluator and Mutator to perform genes evolution during each generation (iteration).</p>
-
-## Stage 7
-<p>Continue working on GenePool, improve tests for Mutator and Evaluator dependencies and make first implementation of GenePool.</p>
+## Project history
+| Stage | Description                                                                                                        |
+| ------| -------------------------------------------------------------------------------------------------------------------|
+| 1     | Creation of Gene class, which is a fundament of our model. Adding RandomProvider to test creation of random genes. |
+| 2     | Creation of Evaluator interface and its implementation.                                                            |
+| 3     | Documentation refactor, added section Code Structure.<br/>Gene value is now single char instead of an array.       |
+| 4     | Creation of CrossoverService to provide gene values recombination.<br/>Another Gene docs refactor.                 |
+| 5     | Creation of MutatorService to provide mutation of gene values after cross recombination.                           |
+| 6     | Creation GenePool as container for Gene objects. It uses dependencies to perform evolution during each generation. |
+| 7     | Working on GenePool, improving tests for Mutator and Evaluator dependencies and first implementation of GenePool.  |
+| 8     | Work on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor.  |
+| 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
 
 ## Code Structure
 ### Gene
@@ -104,7 +103,17 @@ There are two implementations of Evaluator: LogarithmicEvaluatorImpl and MaxDelt
 > 65535 - value equal to Character.MAX_VALUE
 
 ![Evaluator class diagram](images/Evaluator-s5.png)
+### CrossoverHandler
+<p> CrossoverHandler is responsible for sorting genes according to their fitness descending, and picking pair of genes starting from the highest fitness and pass this pair as an argument to cross method from a crossover. Each pair of a gene must be put to the cross method only once for each generation. CrossoverHandler uses CrossoverService and its cross method</p>
 
+```
+class CrossoverHandler
+    private CrossoverService crossoverService
+    
+    List<Gene> fitnessSort(List<Gene> genes)
+    List<Gene> performCross()
+```
+  
 ### Crossover
 <p>CrossoverService, an interface responsible for changing gene values (mix their values) to increase their chances 
 to match with optimal solution during next generation.</p>
@@ -150,6 +159,7 @@ class GenePool
     private final RandomProvider randomProvider
     private final MutatorService mutator
     private final Evaluator evaluator
+    private final CrossoverHandler crossoverHandler
     private final List<Gene> poolOfGenes
     private int generation
     
@@ -158,10 +168,12 @@ class GenePool
     void makeMutation()
     void evaluateFitness()
     void performEvolution()
+    void makeCross()
 ```
 <p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
 <p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
 <p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
+<p>CrossoverHandler is used to perform cross method of pair of gene in proper way. Takes pair of gene in descending order according to fitness. </p>
 <p>Method performEvolution() should move all genes in GenePool step forward into next generation. In future, it will coordinate all other methods. </p>
 For now it is responsible for:<br/>
 
@@ -197,3 +209,5 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 `throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
 
 ![BitwiseUtils class](images/BitwiseUtils-s5.png)
+
+[Go to top](#genalgo)
