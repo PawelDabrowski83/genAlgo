@@ -31,7 +31,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 9 on 16.02.2021 - GenePool.</p>
+<p>We are working to develop functioning Stage 10 on 24.02.2021 - GenePoolService.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
