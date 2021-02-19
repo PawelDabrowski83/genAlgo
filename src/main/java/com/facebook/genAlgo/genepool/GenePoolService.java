@@ -49,4 +49,8 @@ public class GenePoolService {
             evaluator.setFitness(gene);
         }
     }
+
+    public void makeCross() {
+        crossoverHandler.performCross(poolOfGenes);
+    }
 }
