@@ -43,4 +43,10 @@ public class GenePoolService {
             mutatorService.mutate(gene);
         }
     }
+
+    public void evaluateFitness() {
+        for (Gene gene : poolOfGenes) {
+            evaluator.setFitness(gene);
+        }
+    }
 }
