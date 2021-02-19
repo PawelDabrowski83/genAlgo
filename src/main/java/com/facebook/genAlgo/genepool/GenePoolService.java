@@ -37,4 +37,10 @@ public class GenePoolService {
         }
         return listOfGenes;
     }
+
+    public void makeMutation() {
+        for (Gene gene : poolOfGenes) {
+            mutatorService.mutate(gene);
+        }
+    }
 }
