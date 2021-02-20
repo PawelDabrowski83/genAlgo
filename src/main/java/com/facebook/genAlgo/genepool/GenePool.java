@@ -1,15 +1,5 @@
 package com.facebook.genAlgo.genepool;
 
-import com.facebook.genAlgo.crossover.CrossoverHandler;
-import com.facebook.genAlgo.evaluator.Evaluator;
-import com.facebook.genAlgo.gene.Gene;
-import com.facebook.genAlgo.mutator.MutatorService;
-import com.facebook.genAlgo.utils.RandomProvider;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class GenePool {
 
     private GenePoolService genePoolService;
