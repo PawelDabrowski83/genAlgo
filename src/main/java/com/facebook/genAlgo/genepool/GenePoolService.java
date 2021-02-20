@@ -53,4 +53,9 @@ public class GenePoolService {
     public void makeCross() {
         crossoverHandler.performCross(poolOfGenes);
     }
+
+    public List<Gene> getPoolOfGenes() {
+        return poolOfGenes;
+    }
+
 }
