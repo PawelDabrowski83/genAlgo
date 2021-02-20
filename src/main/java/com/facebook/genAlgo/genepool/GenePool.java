@@ -20,6 +20,8 @@ public class GenePool {
     }
 
     public void performEvolution() {
+        genePoolService.makeCross();
+        genePoolService.makeMutation();
         generation++;
     }
 
