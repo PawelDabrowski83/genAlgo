@@ -28,32 +28,6 @@ public class GenePool {
         this.poolOfGenes = initializeGenes(size);
     }
 
-    private List<Gene> initializeGenes(int size) {
-        if (size <= 0) {
-            return Collections.emptyList();
-        }
-        List<Gene> listOfGenes = new ArrayList<>();
-        while (size-- > 0) {
-            listOfGenes.add(new Gene(randomProvider));
-        }
-        return listOfGenes;
-    }
-
-    public void makeMutation() {
-        for (Gene gene : poolOfGenes) {
-            mutatorService.mutate(gene);
-        }
-    }
-
-    public void evaluateFitness() {
-        for (Gene gene : poolOfGenes) {
-            evaluator.setFitness(gene);
-        }
-    }
-
-    public void makeCross() {
-        crossoverHandler.performCross(poolOfGenes);
-    }
 
     public void performEvolution() {
         generation++;
