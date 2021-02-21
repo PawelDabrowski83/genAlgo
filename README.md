@@ -195,7 +195,6 @@ For now it is responsible for:<br/>
 * incrementing generation count
 * performing evolution until a solution is found
 
-![GenePool class diagram](images/GenePool-s6.png)    
 
 ### Utils
 #### RandomProvider
