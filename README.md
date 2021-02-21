@@ -169,7 +169,7 @@ class GenePoolService
     void getPoolOfGenes()
 ```
 
-<p>GenePoolService class carry all logic responsible for gene evolution by evoking methods in proper order.GenePool is also a container for genes.</p>
+<p>GenePoolService class carry all logic responsible for gene evolution by evoking methods in proper order.GenePoolService is also a container for genes.</p>
 <p>List of Genes is initialized with class creation with int argument given to constructor (specifying number of gene in a pool), using method generateGenes(int number).</p>
 <p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
 <p>CrossoverHandler is used to perform cross method of pair of gene in proper way. Takes pair of gene in descending order according to fitness. </p>
@@ -182,30 +182,18 @@ For now it is responsible for:<br/>
 ### GenePool
 ```
 class GenePool
-    private final RandomProvider randomProvider
-    private final MutatorService mutator
-    private final Evaluator evaluator
-    private final CrossoverHandler crossoverHandler
-    private final List<Gene> poolOfGenes
+    private GenePoolService
     private int generation
     
-    // getters and setters
-    List<Gene> initializeGenes()
-    void makeMutation()
-    void evaluateFitness()
     void performEvolution()
-    void makeCross()
+    int getGeneration()
 ```
-<p>GenePool class is responsible for gene evolution by evoking methods in proper order. GenePool is also a container for genes.</p>
-<p>List of Genes is initialized with class creation with int argument given to constructor, using method generateGenes(int number).</p>
-<p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
-<p>CrossoverHandler is used to perform cross method of pair of gene in proper way. Takes pair of gene in descending order according to fitness. </p>
-<p>Method performEvolution() should move all genes in GenePool step forward into next generation. In future, it will coordinate all other methods. </p>
+<p>GenePool class is responsible for performing evolution by evoking GenePoolService methods.</p>
+<p>GenePool has performEvolution method that evokes all cycle of evolution and this cycle is repeated until a solution is found.</p>
 For now it is responsible for:<br/>
 
 * incrementing generation count
-* checking mutation by evoking makeMutation()
-* updating genes by evoking evaluateFitness()
+* performing evolution until a solution is found
 
 ![GenePool class diagram](images/GenePool-s6.png)    
 
