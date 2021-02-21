@@ -112,4 +112,18 @@ class GenePoolServiceTest {
         assertEquals(distinctGeneList.size(), sizeExpected);
     }
 
+    @DisplayName("Should perform cross when makeCross method is called")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 10, 30, 56, 1000})
+    public void shouldPerformCrossWhenMakeCrossIsCalled(int sizeExpected) {
+        // given
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+
+        // when
+        genePoolService.makeCross();
+
+        // then
+        verify(crossoverHandler, times(1)).performCross(anyList());
+    }
+
 }
