@@ -153,6 +153,22 @@ interface MutatorService
 
 ![Mutator class](images/Mutator-s5.png)
 
+### GenePoolService
+```
+class GenePoolService
+    private final RandomProvider randomProvider
+    private final MutatorService mutator
+    private final Evaluator evaluator
+    private final CrossoverHandler crossoverHandler
+    private final List<Gene> poolOfGenes
+    
+    List<Gene> initializeGenes()
+    void makeMutation()
+    void evaluateFitness()
+    void makeCross()
+    void getPoolOfGenes()
+```
+
 ### GenePool
 ```
 class GenePool
