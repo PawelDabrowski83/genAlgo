@@ -162,7 +162,6 @@ class GenePoolService
     private final CrossoverHandler crossoverHandler
     private final List<Gene> poolOfGenes
     
-    List<Gene> initializeGenes()
     void makeMutation()
     void evaluateFitness()
     void makeCross()
@@ -170,7 +169,6 @@ class GenePoolService
 ```
 
 <p>GenePoolService class carry all logic responsible for gene evolution by evoking methods in proper order.GenePoolService is also a container for genes.</p>
-<p>List of Genes is initialized with class creation with int argument given to constructor (specifying number of gene in a pool), using method generateGenes(int number).</p>
 <p>Mutator and Evaluator dependencies are used by methods makeMutation() and evaluateFitness() and perform operations for each gene in poolOfGenes.</p>
 <p>CrossoverHandler is used to perform cross method of pair of gene in proper way. Takes pair of gene in descending order according to fitness. </p>
 For now it is responsible for:<br/>
@@ -183,12 +181,15 @@ For now it is responsible for:<br/>
 ```
 class GenePool
     private GenePoolService
+    private final List<Gene> poolOfGenes
     private int generation
     
+    List<Gene> initializeGenes()
     void performEvolution()
     int getGeneration()
 ```
-<p>GenePool class is responsible for performing evolution by evoking GenePoolService methods.</p>
+<p>GenePool class is a container for pool of genes and is responsible for performing evolution by evoking GenePoolService methods.</p>
+<p>List of Genes is initialized with class creation with int argument given to constructor (specifying number of gene in a pool), using method generateGenes(int number).</p>
 <p>GenePool has performEvolution method that evokes all cycle of evolution and this cycle is repeated until a solution is found.</p>
 For now it is responsible for:<br/>
 
