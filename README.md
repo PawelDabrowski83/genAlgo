@@ -154,6 +154,16 @@ interface MutatorService
 
 ![Mutator class](images/Mutator-s5.png)
 
+### SolutionFinder
+```
+class SolutionFinder
+    privite char targer
+    
+    boolean findSolution(List<Gene>)
+```
+
+
+
 ### GenePoolService
 ```
 class GenePoolService
