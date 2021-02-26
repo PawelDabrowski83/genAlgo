@@ -25,10 +25,23 @@ class SolutionFinderTest {
     );
 
     @Test
-    public void shouldReturnTrueWhenFindSolution() {
+    public void shouldReturnTrueWhenFoundSolution() {
         // given
         char target = 'A';
         geneList.get(2).setFitness(target);
+        SolutionFinder solutionFinder = new SolutionFinder(target);
+
+        // when
+        Boolean result = solutionFinder.findSolution(geneList);
+
+        // then
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void shouldReturnFalseWhenNotFoundSolution() {
+        // given
         SolutionFinder solutionFinder = new SolutionFinder(target);
 
         // when
