@@ -62,7 +62,7 @@
 | 8     | Work on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor.  |
 | 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
 | 10    | Working on GenePoolService and refactor of GenePool and its test.                                                  |
-| 11    | Working on first working app.                                                                                      |
+| 11    | Working on first working app. Start with integration tests for whole app.                                          |
 
 ## Code Structure
 ### Gene
