@@ -155,6 +155,17 @@ interface MutatorService
 
 ![Mutator class](images/Mutator-s5.png)
 
+### SolutionFinder
+```
+class SolutionFinder
+    private char target
+    
+    boolean findSolution(List<Gene>)
+```
+<p>SolutionFinder is a class responsible for checking if any gene has value equal to target.
+   This checking is done by evoking findSolution method</p>
+
+
 ### GenePoolService
 ```
 class GenePoolService
