@@ -157,7 +157,7 @@ interface MutatorService
 ### SolutionFinder
 ```
 class SolutionFinder
-    privite char targer
+    private char target
     
     boolean findSolution(List<Gene>)
 ```
