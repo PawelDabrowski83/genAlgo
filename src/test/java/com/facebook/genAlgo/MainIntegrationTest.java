@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MainIntegrationTest {
 
     @Test
-    public void shouldPerformSomeEvolutionOnSolve() {
+    public void shouldNumberOfGenerationsBeGreaterThanZeroWhenSolveIsEvoked() {
         // given
         char target = 'Z';
         float mutationChance = 0.01f;
