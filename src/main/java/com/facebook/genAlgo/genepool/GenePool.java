@@ -22,4 +22,8 @@ public class GenePool {
     public void setGeneration(int generation) {
         this.generation = generation;
     }
+
+    public int solve() {
+        return 0;
+    }
 }
