@@ -13,5 +13,6 @@ public class SolutionFinder {
     }
 
     public Boolean findSolution(List<Gene> geneList) {
+        return null;
     }
 }
