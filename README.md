@@ -31,7 +31,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 11 on 03.03.2021 - first working app.</p>
+<p>We are working to develop functioning Stage 12 on 10.03.2021 - first working app.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
@@ -61,7 +61,8 @@
 | 7     | Working on GenePool, improving tests for Mutator and Evaluator dependencies and first implementation of GenePool.  |
 | 8     | Work on GenePool, improve tests for Mutator and Evaluator to use ArgumentCaptor. BitwiseUtils exception refactor.  |
 | 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
-| 10    | Working on GenePoolService and refactor of GenePool and its test.                                                 |
+| 10    | Working on GenePoolService and refactor of GenePool and its test.                                                  |
+| 11    | Working on first working app. Start with integration tests for whole app.                                          |
 
 ## Code Structure
 ### Gene
@@ -153,6 +154,17 @@ interface MutatorService
 | MultipleMutator  | first take random number that represents number of bits to mutate (0 - 15), then in a loop take one bit from random <br> position (0 - 15) and assign opposite value to this bit (0 or 1). We allow that the same bit can change many times.  |
 
 ![Mutator class](images/Mutator-s5.png)
+
+### SolutionFinder
+```
+class SolutionFinder
+    private char target
+    
+    boolean findSolution(List<Gene>)
+```
+<p>SolutionFinder is a class responsible for checking if any gene has value equal to target.
+   This checking is done by evoking findSolution method</p>
+
 
 ### GenePoolService
 ```
