@@ -5,6 +5,7 @@ import com.facebook.genAlgo.crossover.CrossoverService;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
+import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -25,6 +26,7 @@ class GenePoolServiceTest {
     RandomProvider randomProvider = mock(RandomProvider.class);
     MutatorService mutatorService = mock(MutatorService.class);
     CrossoverService crossoverService = mock(CrossoverService.class);
+    SolutionFinder solutionFinder = mock(SolutionFinder.class);
     Evaluator evaluator = mock(Evaluator.class);
     CrossoverHandler crossoverHandler = spy(new CrossoverHandler(crossoverService));
 
@@ -33,7 +35,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 40, 55, 287})
     public void shouldInitializeGenes(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
 
         // when
         List<Gene> poolOfGenes = genePoolService.getPoolOfGenes();
@@ -47,7 +50,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformMutation(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
 
         // when
         genePoolService.makeMutation();
@@ -61,7 +65,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformMutationOnEachGene(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
         ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
@@ -82,7 +87,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformEvaluation(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
 
         // when
         genePoolService.evaluateFitness();
@@ -96,7 +102,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 30, 55, 1000})
     public void shouldPerformEvaluationOnEachGene(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
         ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
@@ -117,7 +124,8 @@ class GenePoolServiceTest {
     @ValueSource(ints = {2, 10, 30, 56, 1000})
     public void shouldPerformCrossWhenMakeCrossIsCalled(int sizeExpected) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder, sizeExpected);
 
         // when
         genePoolService.makeCross();
