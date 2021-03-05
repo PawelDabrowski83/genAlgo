@@ -4,6 +4,7 @@ import com.facebook.genAlgo.crossover.CrossoverHandler;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
+import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
 
 import java.util.ArrayList;
@@ -16,15 +17,18 @@ public class GenePoolService {
     private final MutatorService mutatorService;
     private final Evaluator evaluator;
     private final CrossoverHandler crossoverHandler;
+    private final SolutionFinder solutionFinder;
     private final List<Gene> poolOfGenes;
 
     public GenePoolService(RandomProvider randomProvider, MutatorService mutatorService,
-                           Evaluator evaluator, CrossoverHandler crossoverHandler, int size) {
+                           Evaluator evaluator, CrossoverHandler crossoverHandler, SolutionFinder solutionFinder,
+                           int size) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
         this.crossoverHandler = crossoverHandler;
         this.poolOfGenes = initializeGenes(size);
+        this.solutionFinder = solutionFinder;
     }
 
     private List<Gene> initializeGenes(int size) {
