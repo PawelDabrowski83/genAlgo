@@ -5,7 +5,7 @@ import com.facebook.genAlgo.gene.Gene;
 import java.util.List;
 
 public class SolutionFinder {
-    
+
     private final char target;
 
     public SolutionFinder(char target) {
@@ -13,11 +13,11 @@ public class SolutionFinder {
     }
 
     public Boolean findSolution(List<Gene> geneList) {
-     for (Gene gene : geneList) {
-         if (gene.getFitness() == 1) {
-             return true;
-         }
-     }
-     return false;
+        for (Gene gene : geneList) {
+            if (gene.getValue() == target) {
+                return true;
+            }
+        }
+        return false;
     }
 }
