@@ -13,6 +13,11 @@ public class SolutionFinder {
     }
 
     public Boolean findSolution(List<Gene> geneList) {
-        return null;
+     for (Gene gene : geneList) {
+         if (gene.getFitness() == 1) {
+             return true;
+         }
+     }
+     return false;
     }
 }
