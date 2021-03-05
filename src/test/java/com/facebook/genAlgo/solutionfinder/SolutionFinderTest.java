@@ -23,7 +23,7 @@ class SolutionFinderTest {
     public void shouldReturnTrueWhenFoundSolution() {
         // given
         char target = 'A';
-        geneList.get(2).setFitness(target);
+        geneList.get(2).setValue(target);
         SolutionFinder solutionFinder = new SolutionFinder(target);
 
         // when
