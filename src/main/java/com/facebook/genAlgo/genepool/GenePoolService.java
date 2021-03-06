@@ -18,7 +18,6 @@ public class GenePoolService {
     private final Evaluator evaluator;
     private final CrossoverHandler crossoverHandler;
     private final SolutionFinder solutionFinder;
-    private final List<Gene> poolOfGenes;
 
     public GenePoolService(RandomProvider randomProvider, MutatorService mutatorService,
                            Evaluator evaluator, CrossoverHandler crossoverHandler, SolutionFinder solutionFinder,
@@ -27,11 +26,10 @@ public class GenePoolService {
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
         this.crossoverHandler = crossoverHandler;
-        this.poolOfGenes = initializeGenes(size);
         this.solutionFinder = solutionFinder;
     }
 
-    private List<Gene> initializeGenes(int size) {
+    public List<Gene> initializeGenes(int size) {
         if (size <= 0) {
             return Collections.emptyList();
         }
@@ -42,24 +40,20 @@ public class GenePoolService {
         return listOfGenes;
     }
 
-    public void makeMutation() {
+    public void makeMutation(List<Gene> poolOfGenes) {
         for (Gene gene : poolOfGenes) {
             mutatorService.mutate(gene);
         }
     }
 
-    public void evaluateFitness() {
+    public void evaluateFitness(List<Gene> poolOfGenes) {
         for (Gene gene : poolOfGenes) {
             evaluator.setFitness(gene);
         }
     }
 
-    public void makeCross() {
+    public void makeCross(List<Gene> poolOfGenes) {
         crossoverHandler.performCross(poolOfGenes);
-    }
-
-    public List<Gene> getPoolOfGenes() {
-        return poolOfGenes;
     }
 
 }
