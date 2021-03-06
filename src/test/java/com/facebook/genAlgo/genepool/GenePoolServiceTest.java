@@ -7,19 +7,16 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
@@ -31,16 +28,17 @@ class GenePoolServiceTest {
     SolutionFinder solutionFinder = mock(SolutionFinder.class);
     Evaluator evaluator = mock(Evaluator.class);
     CrossoverHandler crossoverHandler = spy(new CrossoverHandler(crossoverService));
-    List<Gene> geneTestList;
+    List<Gene> geneTestList = new ArrayList<>();
 
     @BeforeEach
     public void initializeGeneList() {
-        geneTestList = List.of(new Gene(randomProvider),
+        geneTestList.addAll(List.of(new Gene(randomProvider),
+                new Gene(randomProvider),
                 new Gene(randomProvider),
                 new Gene(randomProvider),
                 new Gene(randomProvider),
                 new Gene(randomProvider)
-                );
+                ));
     }
 
     @DisplayName("Should perform mutation given number of times when makeMutation is called")
@@ -126,5 +124,4 @@ class GenePoolServiceTest {
         // then
         verify(crossoverHandler, times(1)).performCross(anyList());
     }
-
 }
