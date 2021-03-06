@@ -20,8 +20,7 @@ public class GenePoolService {
     private final SolutionFinder solutionFinder;
 
     public GenePoolService(RandomProvider randomProvider, MutatorService mutatorService,
-                           Evaluator evaluator, CrossoverHandler crossoverHandler, SolutionFinder solutionFinder,
-                           int size) {
+                           Evaluator evaluator, CrossoverHandler crossoverHandler, SolutionFinder solutionFinder) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
