@@ -16,12 +16,12 @@ class GenePoolTest {
     @DisplayName("Should initialize List of genes when GenePool is created")
     @ParameterizedTest
     @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldInitializeListOfGenesWhenGenePoolIsCreated(int size) {
+    public void shouldCallInitializeGenesWhenGenePoolIsCreated(int size) {
         // given
         GenePool genePool = new GenePool(genePoolService, size);
 
         // then
-        assertThat(genePool.getPoolOfGenes().size()).isEqualTo(size);
+        verify(genePoolService, times(1)).initializeGenes(size);
     }
 
     @DisplayName("Should increase generation counter when performEvolution() is called")
