@@ -51,6 +51,10 @@ public class GenePoolService {
         }
     }
 
+    public boolean verifySolution(List<Gene> poolOfGenes) {
+        return solutionFinder.findSolution(poolOfGenes);
+    }
+
     public void makeCross(List<Gene> poolOfGenes) {
         crossoverHandler.performCross(poolOfGenes);
     }
