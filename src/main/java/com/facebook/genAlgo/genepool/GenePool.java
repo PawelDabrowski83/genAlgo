@@ -33,4 +33,7 @@ public class GenePool {
         return 0;
     }
 
+    public List<Gene> getPoolOfGenes() {
+        return poolOfGenes;
+    }
 }
