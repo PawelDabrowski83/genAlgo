@@ -7,15 +7,19 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -39,6 +43,21 @@ class GenePoolServiceTest {
                 new Gene(randomProvider),
                 new Gene(randomProvider)
                 ));
+    }
+
+    @DisplayName("Should create list of genes when initializeGenes method was called")
+    @ParameterizedTest
+    @ValueSource(ints = {10, 30, 40, 100, 500})
+    public void shouldCreateListOfGenesWhenInitializeGenesMethodWasCalled(int poolSize) {
+        // given
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
+
+        // when
+        List<Gene> genes = genePoolService.initializeGenes(poolSize);
+
+        // then
+        assertThat(genes.size()).isEqualTo(poolSize);
     }
 
     @DisplayName("Should perform mutation given number of times when makeMutation is called")
@@ -73,7 +92,7 @@ class GenePoolServiceTest {
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(distinctGeneList.size(), geneTestList.size());
+        assertThat(distinctGeneList.size()).isEqualTo(geneTestList.size());
     }
 
     @DisplayName("Should perform evaluation given number of times when evaluateFitness is called")
@@ -108,7 +127,7 @@ class GenePoolServiceTest {
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(distinctGeneList.size(), geneTestList.size());
+        assertThat(distinctGeneList.size()).isEqualTo(geneTestList.size());
     }
 
     @DisplayName("Should perform cross when makeCross method is called")
