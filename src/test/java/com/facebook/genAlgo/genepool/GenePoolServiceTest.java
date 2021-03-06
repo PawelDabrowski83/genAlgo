@@ -7,7 +7,6 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
@@ -142,5 +140,19 @@ class GenePoolServiceTest {
 
         // then
         verify(crossoverHandler, times(1)).performCross(anyList());
+    }
+
+    @DisplayName("Should perform checking for solution and invoke findSolution method on solutionFinder object")
+    @Test
+    public void shouldPerformCheckingForSolutionWhenVerifySolutionWasCalled() {
+        // given
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
+
+        // when
+        genePoolService.verifySolution(geneTestList);
+
+        // then
+        verify(solutionFinder, times(1)).findSolution(geneTestList);
     }
 }
