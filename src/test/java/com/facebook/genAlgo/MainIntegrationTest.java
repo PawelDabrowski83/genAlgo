@@ -31,7 +31,7 @@ public class MainIntegrationTest {
         CrossoverHandler crossoverHandler = new CrossoverHandler(crossoverService);
         SolutionFinder solutionFinder = new SolutionFinder(target);
 
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutator, evaluator, crossoverHandler, solutionFinder, genePoolSize);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutator, evaluator, crossoverHandler, solutionFinder);
         GenePool genePool = new GenePool(genePoolService, 10);
 
         // when
