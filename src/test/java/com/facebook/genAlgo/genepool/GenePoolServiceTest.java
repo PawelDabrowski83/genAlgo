@@ -43,21 +43,6 @@ class GenePoolServiceTest {
                 );
     }
 
-    @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 40, 55, 287})
-    public void shouldInitializeGenes(int sizeExpected) {
-        // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
-                solutionFinder, sizeExpected);
-
-        // when
-        List<Gene> poolOfGenes = genePoolService.getPoolOfGenes();
-
-        // then
-        Assertions.assertEquals(sizeExpected, poolOfGenes.size());
-    }
-
     @DisplayName("Should perform mutation given number of times when makeMutation is called")
     @Test
     public void shouldPerformMutation() {
