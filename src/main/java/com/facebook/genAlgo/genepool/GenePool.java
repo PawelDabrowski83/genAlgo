@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GenePool {
 
-    private GenePoolService genePoolService;
+    private final GenePoolService genePoolService;
     private int generation;
     private final List<Gene> poolOfGenes;
 
