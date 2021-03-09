@@ -30,7 +30,10 @@ public class GenePool {
     }
 
     public int solve() {
-        return 0;
+        while(!genePoolService.verifySolution(getPoolOfGenes())) {
+            performEvolution();
+        }
+        return generation;
     }
 
     public List<Gene> getPoolOfGenes() {
