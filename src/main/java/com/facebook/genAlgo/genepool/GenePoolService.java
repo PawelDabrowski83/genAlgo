@@ -4,6 +4,7 @@ import com.facebook.genAlgo.crossover.CrossoverHandler;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
+import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
 
 import java.util.ArrayList;
@@ -16,18 +17,18 @@ public class GenePoolService {
     private final MutatorService mutatorService;
     private final Evaluator evaluator;
     private final CrossoverHandler crossoverHandler;
-    private final List<Gene> poolOfGenes;
+    private final SolutionFinder solutionFinder;
 
     public GenePoolService(RandomProvider randomProvider, MutatorService mutatorService,
-                           Evaluator evaluator, CrossoverHandler crossoverHandler, int size) {
+                           Evaluator evaluator, CrossoverHandler crossoverHandler, SolutionFinder solutionFinder) {
         this.randomProvider = randomProvider;
         this.mutatorService = mutatorService;
         this.evaluator = evaluator;
         this.crossoverHandler = crossoverHandler;
-        this.poolOfGenes = initializeGenes(size);
+        this.solutionFinder = solutionFinder;
     }
 
-    private List<Gene> initializeGenes(int size) {
+    public List<Gene> initializeGenes(int size) {
         if (size <= 0) {
             return Collections.emptyList();
         }
@@ -38,24 +39,24 @@ public class GenePoolService {
         return listOfGenes;
     }
 
-    public void makeMutation() {
+    public void makeMutation(List<Gene> poolOfGenes) {
         for (Gene gene : poolOfGenes) {
             mutatorService.mutate(gene);
         }
     }
 
-    public void evaluateFitness() {
+    public void evaluateFitness(List<Gene> poolOfGenes) {
         for (Gene gene : poolOfGenes) {
             evaluator.setFitness(gene);
         }
     }
 
-    public void makeCross() {
-        crossoverHandler.performCross(poolOfGenes);
+    public boolean verifySolution(List<Gene> poolOfGenes) {
+        return solutionFinder.findSolution(poolOfGenes);
     }
 
-    public List<Gene> getPoolOfGenes() {
-        return poolOfGenes;
+    public void makeCross(List<Gene> poolOfGenes) {
+        crossoverHandler.performCross(poolOfGenes);
     }
 
 }
