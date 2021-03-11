@@ -18,21 +18,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainIntegrationTest {
 
+    char target = 'Z';
+    float mutationChance = 0.01f;
+    int genePoolSize = 1000;
+    RandomProvider randomProvider = new RandomProviderImpl();
+    Evaluator evaluator = new LogarithmicEvaluatorImpl(target);
+    MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
+    CrossoverService crossoverService = new BitPairCrossoverServiceImpl();
+    CrossoverHandler crossoverHandler = new CrossoverHandler(crossoverService);
+    SolutionFinder solutionFinder = new SolutionFinder(target);
+
     @Test
     public void shouldNumberOfGenerationsBeGreaterThanZeroWhenSolveIsEvoked() {
         // given
-        char target = 'Z';
-        float mutationChance = 0.01f;
-        int genePoolSize = 1000;
-        RandomProvider randomProvider = new RandomProviderImpl();
-        Evaluator evaluator = new LogarithmicEvaluatorImpl(target);
-        MutatorService mutator = new SingleMutator(randomProvider, mutationChance);
-        CrossoverService crossoverService = new BitPairCrossoverServiceImpl();
-        CrossoverHandler crossoverHandler = new CrossoverHandler(crossoverService);
-        SolutionFinder solutionFinder = new SolutionFinder(target);
-
         GenePoolService genePoolService = new GenePoolService(randomProvider, mutator, evaluator, crossoverHandler, solutionFinder);
-        GenePool genePool = new GenePool(genePoolService, 10);
+        GenePool genePool = new GenePool(genePoolService, genePoolSize);
 
         // when
         int numberOfGenerationsToSolve = genePool.solve();
