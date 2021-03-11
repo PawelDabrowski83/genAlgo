@@ -5,18 +5,20 @@ import com.facebook.genAlgo.crossover.CrossoverService;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
+import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Matchers.anyObject;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
@@ -25,48 +27,62 @@ class GenePoolServiceTest {
     RandomProvider randomProvider = mock(RandomProvider.class);
     MutatorService mutatorService = mock(MutatorService.class);
     CrossoverService crossoverService = mock(CrossoverService.class);
+    SolutionFinder solutionFinder = mock(SolutionFinder.class);
     Evaluator evaluator = mock(Evaluator.class);
     CrossoverHandler crossoverHandler = spy(new CrossoverHandler(crossoverService));
+    List<Gene> geneTestList = new ArrayList<>();
 
-    @DisplayName("Should initialize poolOfGene when GenePool constructor is called")
+    @BeforeEach
+    public void initializeGeneList() {
+        geneTestList.addAll(List.of(new Gene(randomProvider),
+                new Gene(randomProvider),
+                new Gene(randomProvider),
+                new Gene(randomProvider),
+                new Gene(randomProvider),
+                new Gene(randomProvider)
+                ));
+    }
+
+    @DisplayName("Should create list of genes when initializeGenes method was called")
     @ParameterizedTest
-    @ValueSource(ints = {2, 10, 40, 55, 287})
-    public void shouldInitializeGenes(int sizeExpected) {
+    @ValueSource(ints = {10, 30, 40, 100, 500})
+    public void shouldCreateListOfGenesWhenInitializeGenesMethodWasCalled(int poolSize) {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
 
         // when
-        List<Gene> poolOfGenes = genePoolService.getPoolOfGenes();
+        List<Gene> genes = genePoolService.initializeGenes(poolSize);
 
         // then
-        Assertions.assertEquals(sizeExpected, poolOfGenes.size());
+        assertThat(genes.size()).isEqualTo(poolSize);
     }
 
     @DisplayName("Should perform mutation given number of times when makeMutation is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldPerformMutation(int sizeExpected) {
+    @Test
+    public void shouldPerformMutation() {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
 
         // when
-        genePoolService.makeMutation();
+        genePoolService.makeMutation(geneTestList);
 
         // then
-        verify(mutatorService, times(sizeExpected)).mutate(anyObject());
+        verify(mutatorService, times(geneTestList.size())).mutate(any());
     }
 
     @DisplayName("Should perform mutate method on each gene when makeMutation is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldPerformMutationOnEachGene(int sizeExpected) {
+    @Test
+    public void shouldPerformMutationOnEachGene() {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
         ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
-        genePoolService.makeMutation();
-        verify(mutatorService, times(sizeExpected)).mutate(geneCaptor.capture());
+        genePoolService.makeMutation(geneTestList);
+        verify(mutatorService, times(geneTestList.size())).mutate(geneCaptor.capture());
         List<Gene> allCapturedGenes = geneCaptor.getAllValues();
 
         List<Gene> distinctGeneList = allCapturedGenes.stream()
@@ -74,34 +90,34 @@ class GenePoolServiceTest {
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(distinctGeneList.size(), sizeExpected);
+        assertThat(distinctGeneList.size()).isEqualTo(geneTestList.size());
     }
 
     @DisplayName("Should perform evaluation given number of times when evaluateFitness is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldPerformEvaluation(int sizeExpected) {
+    @Test
+    public void shouldPerformEvaluation() {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
 
         // when
-        genePoolService.evaluateFitness();
+        genePoolService.evaluateFitness(geneTestList);
 
         // then
-        verify(evaluator, times(sizeExpected)).setFitness(anyObject());
+        verify(evaluator, times(geneTestList.size())).setFitness(any());
     }
 
     @DisplayName("Should perform evaluation on each gene when evaluateFitness is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 55, 1000})
-    public void shouldPerformEvaluationOnEachGene(int sizeExpected) {
+    @Test
+    public void shouldPerformEvaluationOnEachGene() {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
         ArgumentCaptor<Gene> geneCaptor = ArgumentCaptor.forClass(Gene.class);
 
         // when
-        genePoolService.evaluateFitness();
-        verify(evaluator, times(sizeExpected)).setFitness(geneCaptor.capture());
+        genePoolService.evaluateFitness(geneTestList);
+        verify(evaluator, times(geneTestList.size())).setFitness(geneCaptor.capture());
         List<Gene> allCapturedGenes = geneCaptor.getAllValues();
 
         List<Gene> distinctGeneList = allCapturedGenes.stream()
@@ -109,21 +125,34 @@ class GenePoolServiceTest {
                 .collect(Collectors.toList());
 
         // then
-        assertEquals(distinctGeneList.size(), sizeExpected);
+        assertThat(distinctGeneList.size()).isEqualTo(geneTestList.size());
     }
 
     @DisplayName("Should perform cross when makeCross method is called")
-    @ParameterizedTest
-    @ValueSource(ints = {2, 10, 30, 56, 1000})
-    public void shouldPerformCrossWhenMakeCrossIsCalled(int sizeExpected) {
+    @Test
+    public void shouldPerformCrossWhenMakeCrossIsCalled() {
         // given
-        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler, sizeExpected);
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
 
         // when
-        genePoolService.makeCross();
+        genePoolService.makeCross(geneTestList);
 
         // then
         verify(crossoverHandler, times(1)).performCross(anyList());
     }
 
+    @DisplayName("Should perform checking for solution and invoke findSolution method on solutionFinder object")
+    @Test
+    public void shouldPerformCheckingForSolutionWhenVerifySolutionWasCalled() {
+        // given
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutatorService, evaluator, crossoverHandler,
+                solutionFinder);
+
+        // when
+        genePoolService.verifySolution(geneTestList);
+
+        // then
+        verify(solutionFinder, times(1)).findSolution(geneTestList);
+    }
 }
