@@ -37,6 +37,10 @@ public class GenePool {
         return generation;
     }
 
+    public List<Gene> getSolve() {
+        return genePoolService.getSolution(getPoolOfGenes());
+    }
+
     public List<Gene> getPoolOfGenes() {
         return poolOfGenes;
     }
