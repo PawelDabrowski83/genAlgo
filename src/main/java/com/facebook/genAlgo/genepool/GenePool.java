@@ -2,11 +2,12 @@ package com.facebook.genAlgo.genepool;
 
 import com.facebook.genAlgo.gene.Gene;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GenePool {
 
-    private GenePoolService genePoolService;
+    private final GenePoolService genePoolService;
     private int generation;
     private final List<Gene> poolOfGenes;
 
@@ -30,7 +31,10 @@ public class GenePool {
     }
 
     public int solve() {
-        return 0;
+        while(!genePoolService.verifySolution(getPoolOfGenes())) {
+            performEvolution();
+        }
+        return generation;
     }
 
     public List<Gene> getPoolOfGenes() {
