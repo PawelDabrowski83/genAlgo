@@ -63,6 +63,7 @@
 | 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
 | 10    | Working on GenePoolService and refactor of GenePool and its test.                                                  |
 | 11    | Working on first working app. Start with integration tests for whole app.                                          |
+| 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
 
 ## Code Structure
 ### Gene
