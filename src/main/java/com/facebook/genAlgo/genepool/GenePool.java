@@ -3,7 +3,6 @@ package com.facebook.genAlgo.genepool;
 import com.facebook.genAlgo.gene.Gene;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class GenePool {
