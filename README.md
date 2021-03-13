@@ -63,6 +63,7 @@
 | 9     | Added CrossoverHandler and SolutionFinder to GenePool. Create table of content for documentation.                  |
 | 10    | Working on GenePoolService and refactor of GenePool and its test.                                                  |
 | 11    | Working on first working app. Start with integration tests for whole app.                                          |
+| 12    | Working on first working app. Create solve method in GenePool to make integration test work correctly              |
 | 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
 
 ## Code Structure
@@ -201,10 +202,12 @@ class GenePool
     List<Gene> initializeGenes()
     void performEvolution()
     int getGeneration()
+    int solve()
 ```
 <p>GenePool class is a container for pool of genes and is responsible for performing evolution by evoking GenePoolService methods.</p>
 <p>List of Genes is initialized with class creation with int argument given to constructor (specifying number of gene in a pool), using method generateGenes(int number).</p>
 <p>GenePool has performEvolution method that evokes all cycle of evolution and this cycle is repeated until a solution is found.</p>
+<p>solve method is responsible for searching the target, as a result method returns number of generation in which solution (target) was found.</p> 
 For now it is responsible for:<br/>
 
 * incrementing generation count

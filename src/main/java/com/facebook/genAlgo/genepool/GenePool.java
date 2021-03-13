@@ -1,17 +1,23 @@
 package com.facebook.genAlgo.genepool;
 
+import com.facebook.genAlgo.gene.Gene;
+
+import java.util.List;
+
 public class GenePool {
 
-    private GenePoolService genePoolService;
+    private final GenePoolService genePoolService;
     private int generation;
+    private final List<Gene> poolOfGenes;
 
-    public GenePool(GenePoolService genePoolService) {
+    public GenePool(GenePoolService genePoolService, int genePoolSize) {
         this.genePoolService = genePoolService;
+        poolOfGenes = genePoolService.initializeGenes(genePoolSize);
     }
 
     public void performEvolution() {
-        genePoolService.makeCross();
-        genePoolService.makeMutation();
+        genePoolService.makeCross(poolOfGenes);
+        genePoolService.makeMutation(poolOfGenes);
         generation++;
     }
 
@@ -24,6 +30,13 @@ public class GenePool {
     }
 
     public int solve() {
-        return 0;
+        while(!genePoolService.verifySolution(getPoolOfGenes())) {
+            performEvolution();
+        }
+        return generation;
+    }
+
+    public List<Gene> getPoolOfGenes() {
+        return poolOfGenes;
     }
 }
