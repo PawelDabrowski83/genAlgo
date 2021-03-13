@@ -2,6 +2,7 @@ package com.facebook.genAlgo.genepool;
 
 import com.facebook.genAlgo.gene.Gene;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenePool {
@@ -30,10 +31,19 @@ public class GenePool {
     }
 
     public int solve() {
-        while(!genePoolService.verifySolution(getPoolOfGenes())) {
+        while (!genePoolService.verifySolution(getPoolOfGenes())) {
             performEvolution();
         }
         return generation;
+    }
+
+    public List<Gene> getSolve() {
+        List<Gene> solvedGenes = new ArrayList<>();
+        while (solvedGenes.isEmpty()) {
+            performEvolution();
+            solvedGenes = genePoolService.getSolution(getPoolOfGenes());
+        }
+        return solvedGenes;
     }
 
     public List<Gene> getPoolOfGenes() {
