@@ -64,6 +64,7 @@
 | 10    | Working on GenePoolService and refactor of GenePool and its test.                                                  |
 | 11    | Working on first working app. Start with integration tests for whole app.                                          |
 | 12    | Working on first working app. Create solve method in GenePool to make integration test work correctly              |
+| 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
 
 ## Code Structure
 ### Gene
