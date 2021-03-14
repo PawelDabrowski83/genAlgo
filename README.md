@@ -200,9 +200,9 @@ class GenePool
     private int generation
     
     List<Gene> getPoolOfGenes()
-    void performEvolution()
     int getGeneration()
     setGeneration(int)
+    void performEvolution()
     int solve()
     List<Gene> getSolve()
 ```
