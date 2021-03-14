@@ -199,6 +199,7 @@ class GenePool
     private final List<Gene> poolOfGenes
     private int generation
     
+    List<Gene> getPoolOfGenes()
     void performEvolution()
     int getGeneration()
     setGeneration(int)
