@@ -201,6 +201,7 @@ class GenePool
     
     void performEvolution()
     int getGeneration()
+    setGeneration(int)
     int solve()
 ```
 <p>GenePool class is a container for pool of genes and is responsible for performing evolution by evoking GenePoolService methods.</p> 
