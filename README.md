@@ -203,10 +203,12 @@ class GenePool
     int getGeneration()
     setGeneration(int)
     int solve()
+    List<Gene> getSolve()
 ```
 <p>GenePool class is a container for pool of genes and is responsible for performing evolution by evoking GenePoolService methods.</p> 
 <p>GenePool has performEvolution method that evokes all cycle of evolution and this cycle is repeated until a solution is found.</p>
 <p>solve method is responsible for searching the target, as a result method returns number of generation in which solution (target) was found.</p> 
+<p>getSolve method is returning list of genes which are solution of given genepool</p>
 For now it is responsible for:<br/>
 
 * incrementing generation count
