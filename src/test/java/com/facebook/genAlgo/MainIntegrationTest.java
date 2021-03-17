@@ -59,4 +59,18 @@ public class MainIntegrationTest {
         // then
         assertThat(solvedGenes).isNotEmpty();
     }
+
+    @DisplayName("Should return list of Genes with value equal to target")
+    @Test
+    public void shouldReturnListOfGeneWithTargetValue() {
+        // given
+        GenePoolService genePoolService = new GenePoolService(randomProvider, mutator, evaluator, crossoverHandler, solutionFinder);
+        GenePool genePool = new GenePool(genePoolService, genePoolSize);
+
+        // when
+        List<Gene> solvedGenes = genePool.getSolve();
+
+        // then
+        solvedGenes.stream().allMatch(gene -> gene.getValue() == target);
+    }
 }
