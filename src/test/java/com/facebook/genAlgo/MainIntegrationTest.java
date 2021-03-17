@@ -13,6 +13,7 @@ import com.facebook.genAlgo.mutator.SingleMutator;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
 import com.facebook.genAlgo.utils.RandomProviderImpl;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class MainIntegrationTest {
     CrossoverHandler crossoverHandler = new CrossoverHandler(crossoverService);
     SolutionFinder solutionFinder = new SolutionFinder(target);
 
+    @DisplayName("Should return generation number bigger than 0 when solve() is evoked")
     @Test
     public void shouldNumberOfGenerationsBeGreaterThanZeroWhenSolveIsEvoked() {
         // given
@@ -44,6 +46,7 @@ public class MainIntegrationTest {
         assertThat(numberOfGenerationsToSolve).isGreaterThan(0);
     }
 
+    @DisplayName("Should return not empty list of Genes when getSolve() is evoked")
     @Test
     public void shouldReturnListOfGeneWhenGetSolveIsEvoked() {
         // given
