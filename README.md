@@ -253,6 +253,7 @@ class MutatorFactory
 MutatorFactory is a factory returning MutatorService object. Evoked without arguments it returns default configuration, but can take also optional PARAMS and float mutationChance.</br>
 Default values are:</br>
 `mutationChance` == 0.05f</br>
-`MutatorService implementation` => SingleMutator</br>
+`MutatorService implementation` => SingleMutator</br></br>
+
 
 [Go to top](#genalgo)
