@@ -243,4 +243,16 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 
 ![BitwiseUtils class](images/BitwiseUtils-s5.png)
 
+### Factory
+#### MutatorFactory
+```
+class MutatorFactory
+    MutatorService getMutator()
+    MutatorService getMutator(float mutationChance, PARAMS...)
+```
+MutatorFactory is a factory returning MutatorService object. Evoked without arguments it returns default configuration, but can take also optional PARAMS and float mutationChance.</br>
+Default values are:</br>
+`mutationChance` == 0.05f</br>
+`MutatorService implementation` => SingleMutator</br>
+
 [Go to top](#genalgo)
