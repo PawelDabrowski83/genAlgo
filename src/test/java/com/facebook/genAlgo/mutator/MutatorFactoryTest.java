@@ -35,5 +35,33 @@ public class MutatorFactoryTest {
         assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
     }
 
+    @DisplayName("Should return instance of MultipleMutator when getMutator() method without parameter is called")
+    @Test
+    public void shouldReturnInstanceOfMultipleMutatorWhenGetMutatorIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.2f;
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.MULTIPLE);
+
+        // then
+        assertThat(mutator).isInstanceOf(MultipleMutator.class);
+    }
+
+    @DisplayName("Should return MultipleMutator with mutationChance equal 0.3 when getMutator() method without parameter is called")
+    @Test
+    public void shouldReturnMultipleMutatorWithGivenMutationChanceWhenGetMutatorIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.3f;
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.MULTIPLE);
+
+        // then
+        assertThat(((MultipleMutator)mutator).getMutationChance()).isEqualTo(mutationChance);
+    }
+
 
 }
