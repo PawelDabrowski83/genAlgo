@@ -1,7 +1,6 @@
 package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.mutator.MutatorFactory.MutatorEnum;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
