@@ -71,6 +71,6 @@ public class MainIntegrationTest {
         List<Gene> solvedGenes = genePool.getSolve();
 
         // then
-        solvedGenes.stream().allMatch(gene -> gene.getValue() == target);
+        assertThat(solvedGenes.stream().allMatch(gene -> gene.getValue() == target)).isTrue();
     }
 }
