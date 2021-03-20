@@ -91,5 +91,31 @@ public class MutatorFactoryTest {
         assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
     }
 
+    @DisplayName("Should return SingleMutator when getMutator() with ZERO enum as parameter is called")
+    @Test
+    public void shouldReturnSingleMutatorWhenGetMutatorIsEvokedWithZeroEnumParameter() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.3f;
 
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.ZERO);
+
+        // then
+        assertThat(mutator).isInstanceOf(SingleMutator.class);
+    }
+
+    @DisplayName("Should return SingleMutator with mutationChance equal 0 when getMutator() with ZERO enum as parameter is called")
+    @Test
+    public void shouldReturnSingleMutatorWithZeroMutationChanceWhenGetMutatorIsEvokedWithZeroEnumParameter() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.3f;
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.ZERO);
+
+        // then
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0);
+    }
 }
