@@ -3,7 +3,10 @@ package com.facebook.genAlgo.mutator;
 public class MutatorFactory {
 
     public enum MutatorEnum {
-
+        ZERO,
+        SINGLE,
+        MULTIPLE,
+        DEFAULT
     }
 
     MutatorService getMutator(){
