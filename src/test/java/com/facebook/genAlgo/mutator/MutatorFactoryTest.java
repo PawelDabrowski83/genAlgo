@@ -63,5 +63,33 @@ public class MutatorFactoryTest {
         assertThat(((MultipleMutator)mutator).getMutationChance()).isEqualTo(mutationChance);
     }
 
+    @DisplayName("Should return SingleMutator when getMutator() with DEFAULT enum as parameter is called")
+    @Test
+    public void shouldReturnSingleMutatorWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.3f;
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.DEFAULT);
+
+        // then
+        assertThat(mutator).isInstanceOf(SingleMutator.class);
+    }
+
+    @DisplayName("Should return SingleMutator with mutationChance equal 0.05 when getMutator() with DEFAULT enum as parameter is called")
+    @Test
+    public void shouldReturnSingleMutatorWithDefaultMutationChanceWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+        float mutationChance = 0.3f;
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.DEFAULT);
+
+        // then
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+    }
+
 
 }
