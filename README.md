@@ -261,4 +261,11 @@ OPTION:</br>
 `MutatorEnum.MULTIPLE` - MultipleMutator</br>
 `MutatorEnum.DEFAULT` - mutationChance = 0.05f, SingleMutator</br>
 
+#### CrossoverServiceFactory
+```
+class CrossoverServiceFactory
+    CrossoverService getCrossoverService()
+    CrossoverService getCrossoverService(OPTION)
+```
+
 [Go to top](#genalgo)
