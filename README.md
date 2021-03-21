@@ -261,4 +261,11 @@ OPTION:</br>
 `MutatorEnum.MULTIPLE` - MultipleMutator</br>
 `MutatorEnum.DEFAULT` - mutationChance = 0.05f, SingleMutator</br>
 
+#### EvaluatorFactory
+```
+class EvaluatorFactory
+    Evaluator getEvaluator()
+    Evalaator getEvaluator(OPTION)
+```
+
 [Go to top](#genalgo)
