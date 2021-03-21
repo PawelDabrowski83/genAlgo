@@ -261,4 +261,20 @@ OPTION:</br>
 `MutatorEnum.MULTIPLE` - MultipleMutator</br>
 `MutatorEnum.DEFAULT` - mutationChance = 0.05f, SingleMutator</br>
 
+#### CrossoverServiceFactory
+```
+class CrossoverServiceFactory
+    CrossoverService getCrossoverService()
+    CrossoverService getCrossoverService(OPTION)
+```
+CrossoverServiceFactory is a factory returning CrossoverService instance. Evoked without arguments it returns default configuration.
+
+| OPTION                                | description                           |
+| ------------------------------------- | ------------------------------------- |
+| CrossoverServiceEnum.DEFAULT          | BirPairCrossoverServiceImpl           |
+| CrossoverServiceEnum.BIT_PAIR         | BitPairCrossoverServiceImpl           |
+| CrossoverServiceEnum.EVEN_BITS        | EvenBitsCrossoverServiceImpl          |
+| CrossoverServiceEnum.MIXING_HALVES    | MixingHalvesCrossoverServiceImpl      |
+| CrossoverServiceEnum.ODD_BITS         | OddBitsCrossoverServiceImpl           |
+
 [Go to top](#genalgo)
