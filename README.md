@@ -267,5 +267,6 @@ class CrossoverServiceFactory
     CrossoverService getCrossoverService()
     CrossoverService getCrossoverService(OPTION)
 ```
+CrossoverServiceFactory is a factory returning CrossoverService instance. Evoked without arguments it returns default configuration.
 
 [Go to top](#genalgo)
