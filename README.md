@@ -263,4 +263,7 @@ Default values are:</br>
 | `MutatorEnum.MULTIPLE`| mutationChance = 0.05, MultipleMutator    |
 | `MutatorEnum.DEFAULT` | mutationChance = 0.05, SingleMutator      |
 
+When evoked `getMutator(float mutationChance, OPTION)` mutationChance is taken from first argument and overrides information from OPTION.<br/>
+When `getMutator(float X, MutatorEnum.ZERO)` and X is other than zero throws `IllegalArgumentException`.
+
 [Go to top](#genalgo)
