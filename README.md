@@ -268,4 +268,7 @@ class EvaluatorFactory
     Evalaator getEvaluator(OPTION)
 ```
 
+EvaluatorFactory is a factory returning Evaluator object. Evoked without arguments returns default configuration.
+
+
 [Go to top](#genalgo)
