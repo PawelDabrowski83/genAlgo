@@ -277,4 +277,5 @@ CrossoverServiceFactory is a factory returning CrossoverService instance. Evoked
 | CrossoverServiceEnum.MIXING_HALVES    | MixingHalvesCrossoverServiceImpl      |
 | CrossoverServiceEnum.ODD_BITS         | OddBitsCrossoverServiceImpl           |
 
+
 [Go to top](#genalgo)
