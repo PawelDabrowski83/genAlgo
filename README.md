@@ -264,8 +264,8 @@ OPTION:</br>
 #### EvaluatorFactory
 ```
 class EvaluatorFactory
-    Evaluator getEvaluator()
-    Evalaator getEvaluator(OPTION)
+    Evaluator getEvaluator(char target)
+    Evalaator getEvaluator(char target, OPTION)
 ```
 
 EvaluatorFactory is a factory returning Evaluator object. Evoked without arguments returns default configuration.
