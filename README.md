@@ -248,6 +248,7 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 ```
 class MutatorFactory
     MutatorService getMutator()
+    MutatorService getMutator(OPTION)
     MutatorService getMutator(float mutationChance, OPTION...)
 ```
 MutatorFactory is a factory returning MutatorService object. Evoked without arguments it returns default configuration, but can take also optional PARAMS and float mutationChance.</br>
