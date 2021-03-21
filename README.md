@@ -268,7 +268,7 @@ class EvaluatorFactory
     Evalaator getEvaluator(char target, OPTION)
 ```
 
-EvaluatorFactory is a factory returning Evaluator object. Evoked without arguments returns default configuration.
+EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION argument returns default configuration.
 
 | OPTION                    | description                           |
 | ------------------------- | ------------------------------------- |
