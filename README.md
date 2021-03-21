@@ -256,10 +256,11 @@ Default values are:</br>
 `mutationChance` == 0.05f</br>
 `MutatorService implementation` => SingleMutator</br></br>
 
-OPTION:</br>
-`MutatorEnum.ZERO` - mutationChance = 0, SingleMutator</br>
-`MutatorEnum.SINGLE` - SingleMutator</br>
-`MutatorEnum.MULTIPLE` - MultipleMutator</br>
-`MutatorEnum.DEFAULT` - mutationChance = 0.05f, SingleMutator</br>
+| OPTION                |                                           |
+| --------------------- | ----------------------------------------- |
+| `MutatorEnum.ZERO`    | mutationChance = 0, SingleMutator         | 
+| `MutatorEnum.SINGLE`  | mutationChance = 0.05, SingleMutator      |
+| `MutatorEnum.MULTIPLE`| mutationChance = 0.05, MultipleMutator    |
+| `MutatorEnum.DEFAULT` | mutationChance = 0.05, SingleMutator      |
 
 [Go to top](#genalgo)
