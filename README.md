@@ -270,5 +270,10 @@ class EvaluatorFactory
 
 EvaluatorFactory is a factory returning Evaluator object. Evoked without arguments returns default configuration.
 
+| OPTION                    | description                           |
+| ------------------------- | ------------------------------------- |
+| EvaluatorEnum.DEFAULT     | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
 
 [Go to top](#genalgo)
