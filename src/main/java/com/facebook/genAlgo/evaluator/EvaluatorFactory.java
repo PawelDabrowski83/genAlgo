@@ -7,4 +7,11 @@ public class EvaluatorFactory {
         MAX_DELTA,
         LOG
     }
+
+    Evaluator getEvaluator(char target) {
+        return null;
+    }
+    Evaluator getEvaluator(char target, EvaluatorEnum option) {
+        return null;
+    }
 }
