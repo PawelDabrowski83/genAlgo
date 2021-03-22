@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MutatorFactoryTest {
 
+    public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
+
     @DisplayName("Should return SingleMutator when getMutator() method without parameters is called")
     @Test
     public void shouldReturnSingleMutatorWhenGetMutatorIsEvoked() {
@@ -31,10 +33,10 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator();
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
     }
 
-    @DisplayName("Should return instance of MultipleMutator when getMutator() method without parameter is called")
+    @DisplayName("Should return instance of MultipleMutator when getMutator() with MULTIPLE enum as parameter is called")
     @Test
     public void shouldReturnInstanceOfMultipleMutatorWhenGetMutatorIsEvoked() {
         // given
@@ -48,7 +50,7 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(MultipleMutator.class);
     }
 
-    @DisplayName("Should return MultipleMutator with mutationChance equal 0.3 when getMutator() method without parameter is called")
+    @DisplayName("Should return MultipleMutator with mutationChance equal 0.3 when getMutator() with MULTIPLE enum as parameter is called")
     @Test
     public void shouldReturnMultipleMutatorWithGivenMutationChanceWhenGetMutatorIsEvoked() {
         // given
@@ -76,9 +78,9 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(SingleMutator.class);
     }
 
-    @DisplayName("Should return SingleMutator with mutationChance equal 0.05 when getMutator() with DEFAULT enum as parameter is called")
+    @DisplayName("Should return SingleMutator with mutationChance equal 0.3 when getMutator() with DEFAULT enum as parameter is called")
     @Test
-    public void shouldReturnSingleMutatorWithDefaultMutationChanceWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
+    public void shouldReturnSingleMutatorWithGivenMutationChanceWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
         // given
         MutatorFactory mutatorFactory = new MutatorFactory();
         float mutationChance = 0.3f;
@@ -87,15 +89,15 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.DEFAULT);
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(mutationChance);
     }
 
-    @DisplayName("Should return SingleMutator when getMutator() with ZERO enum as parameter is called")
+    @DisplayName("Should return SingleMutator when getMutator() with ZERO enum and mutationChance equal 0 as parameter is called")
     @Test
     public void shouldReturnSingleMutatorWhenGetMutatorIsEvokedWithZeroEnumParameter() {
         // given
         MutatorFactory mutatorFactory = new MutatorFactory();
-        float mutationChance = 0.3f;
+        float mutationChance = 0f;
 
         // when
         MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.ZERO);
@@ -104,17 +106,119 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(SingleMutator.class);
     }
 
-    @DisplayName("Should return SingleMutator with mutationChance equal 0 when getMutator() with ZERO enum as parameter is called")
+    @DisplayName("Should throw exception when getMutator() with ZERO enum as parameter is called")
     @Test
-    public void shouldReturnSingleMutatorWithZeroMutationChanceWhenGetMutatorIsEvokedWithZeroEnumParameter() {
+    public void shouldThrowExceptionWhenMutatorWithZeroMutationChanceWhenGetMutatorIsEvokedWithZeroEnumParameter() {
         // given
         MutatorFactory mutatorFactory = new MutatorFactory();
         float mutationChance = 0.3f;
 
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> mutatorFactory.getMutator(mutationChance, MutatorEnum.ZERO));
+    }
+
+    @DisplayName("Should return instance of MultipleMutator when getMutator() with single parameter MULTIPLE enum is called")
+    @Test
+    public void shouldReturnInstanceOfMultipleMutatorWhenGetMutatorWithSingleParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
         // when
-        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.ZERO);
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.MULTIPLE);
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0);
+        assertThat(mutator).isInstanceOf(MultipleMutator.class);
+    }
+
+    @DisplayName("Should return instance of MultipleMutator with default mutationChance when getMutator() with single parameter MULTIPLE enum is called")
+    @Test
+    public void shouldReturnInstanceOfMultipleMutatorWithDefaultMutationChanceWhenGetMutatorWithSingleParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.MULTIPLE);
+
+        // then
+        assertThat(((MultipleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
+    }
+
+    @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter SINGLE enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWhenGetMutatorWithSingleParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.SINGLE);
+
+        // then
+        assertThat(mutator).isInstanceOf(SingleMutator.class);
+    }
+
+    @DisplayName("Should return instance of SingleMutator with default mutationChance when getMutator() with single parameter SINGLE enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWithDefaultMutationChanceWhenGetMutatorWithSingleParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.SINGLE);
+
+        // then
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
+    }
+
+    @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter DEFAULT enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWhenGetMutatorWithSingleDefaultParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.DEFAULT);
+
+        // then
+        assertThat(mutator).isInstanceOf(SingleMutator.class);
+    }
+
+    @DisplayName("Should return instance of SingleMutator with default mutationChance when getMutator() with single parameter DEFAULT enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWithDefaultMutationChanceWhenGetMutatorWithSingleDefaultParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.DEFAULT);
+
+        // then
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
+    }
+
+    @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter ZERO enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWhenGetMutatorWithSingleZeroParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.ZERO);
+
+        // then
+        assertThat(mutator).isInstanceOf(SingleMutator.class);
+    }
+
+    @DisplayName("Should return instance of SingleMutator with zero mutationChance when getMutator() with single parameter ZERO enum is called")
+    @Test
+    public void shouldReturnInstanceOfSingleMutatorWithZeroMutationChanceWhenGetMutatorWithSingleDefaultParamIsEvoked() {
+        // given
+        MutatorFactory mutatorFactory = new MutatorFactory();
+
+        // when
+        MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.ZERO);
+
+        // then
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0f);
     }
 }

@@ -12,6 +12,8 @@ public class MutatorFactory {
     MutatorService getMutator(){
         return null;
     }
+    MutatorService getMutator(MutatorEnum option) {
+        return null; }
     MutatorService getMutator(float mutationChance, MutatorEnum option) {
         return null;
     }
