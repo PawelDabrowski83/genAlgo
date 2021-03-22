@@ -5,6 +5,7 @@ import com.facebook.genAlgo.utils.RandomProviderImpl;
 public class MutatorFactory {
 
     public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
+    public static final float ZERO_MUTATION_CHANCE = 0f;
 
     public enum MutatorEnum {
         ZERO,
@@ -18,30 +19,29 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator(MutatorEnum option) {
+        MutatorService mutator = null;
         switch (option) {
             case ZERO -> {
-                return new SingleMutator(new RandomProviderImpl(), 0f);
+                mutator = new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
             }
             case SINGLE, DEFAULT -> {
-                return new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
+                mutator = new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
             }
             case MULTIPLE -> {
-                return new MultipleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
-            }
-            default -> {
-                throw new IllegalArgumentException();
+                mutator = new MultipleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
             }
         }
+        return mutator;
     }
 
     public MutatorService getMutator(float mutationChance, MutatorEnum option) {
         MutatorService mutator = null;
         switch (option) {
             case ZERO -> {
-                if (mutationChance != 0f) {
+                if (mutationChance != ZERO_MUTATION_CHANCE) {
                     throw new IllegalArgumentException();
                 }
-                mutator =  new SingleMutator(new RandomProviderImpl(), 0f);
+                mutator =  new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
             }
             case SINGLE, DEFAULT -> {
                 mutator = new SingleMutator(new RandomProviderImpl(), mutationChance);
