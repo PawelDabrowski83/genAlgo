@@ -1,9 +1,17 @@
 package com.facebook.genAlgo.evaluator;
 
+import com.facebook.genAlgo.mutator.MutatorFactory;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static com.facebook.genAlgo.evaluator.EvaluatorFactory.EvaluatorEnum;
 
 public class EvaluatorFactoryTest {
 
@@ -25,33 +33,23 @@ public class EvaluatorFactoryTest {
         assertThat(evaluator).isInstanceOf(MaxDeltaEvaluatorImpl.class);
     }
 
-    @Test
-    public void shouldReturnMaxDeltaEvaluatorWhenGetEvaluatorWithDefaultArgIsEvoked() {
+    @DisplayName("Should EvaluatorFactory return proper instance of Evaluator given enum argument")
+    @ParameterizedTest
+    @MethodSource("evaluatorFactoryTestArgumentsProvider")
+    void shouldEvaluatorFactoryReturnProperInstanceOfEvaluator(Class<Evaluator> expected, EvaluatorEnum option) {
         // when
-        Evaluator evaluator = evaluatorFactory.getEvaluator(target, EvaluatorFactory.EvaluatorEnum.DEFAULT);
+        Evaluator actualEvaluator = evaluatorFactory.getEvaluator(target, option);
 
         // then
-        assertThat(evaluator).isInstanceOf(MaxDeltaEvaluatorImpl.class);
+        assertThat(actualEvaluator).isInstanceOf(expected);
     }
 
-
-    @Test
-    public void shouldReturnMaxDeltaEvaluatorWhenGetEvaluatorWithMaxDeltaArgIsEvoked() {
-        // when
-        Evaluator evaluator = evaluatorFactory.getEvaluator(target, EvaluatorFactory.EvaluatorEnum.MAX_DELTA);
-
-        // then
-        assertThat(evaluator).isInstanceOf(MaxDeltaEvaluatorImpl.class);
+    private static Stream<Arguments> evaluatorFactoryTestArgumentsProvider() {
+        return Stream.of(
+                Arguments.of(MaxDeltaEvaluatorImpl.class, EvaluatorEnum.DEFAULT),
+                Arguments.of(MaxDeltaEvaluatorImpl.class, EvaluatorEnum.MAX_DELTA),
+                Arguments.of(LogarithmicEvaluatorImpl.class, EvaluatorEnum.LOG)
+        );
     }
-
-    @Test
-    public void shouldReturnLogarithmicEvaluatorWhenGetEvaluatorWithLogArgIsEvoked() {
-        // when
-        Evaluator evaluator = evaluatorFactory.getEvaluator(target, EvaluatorFactory.EvaluatorEnum.LOG);
-
-        // then
-        assertThat(evaluator).isInstanceOf(LogarithmicEvaluatorImpl.class);
-    }
-
 
 }
