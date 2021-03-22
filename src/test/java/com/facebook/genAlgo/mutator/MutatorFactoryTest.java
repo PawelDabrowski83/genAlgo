@@ -121,7 +121,6 @@ public class MutatorFactoryTest {
     public void shouldReturnInstanceOfMultipleMutatorWhenGetMutatorWithSingleParamIsEvoked() {
         // given
         MutatorFactory mutatorFactory = new MutatorFactory();
-        float mutationChance = 0.2f;
 
         // when
         MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.MULTIPLE);
