@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MutatorFactoryTest {
 
+    public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
+
     @DisplayName("Should return SingleMutator when getMutator() method without parameters is called")
     @Test
     public void shouldReturnSingleMutatorWhenGetMutatorIsEvoked() {
@@ -31,7 +33,7 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator();
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
     }
 
     @DisplayName("Should return instance of MultipleMutator when getMutator() with MULTIPLE enum as parameter is called")
@@ -139,7 +141,7 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.MULTIPLE);
 
         // then
-        assertThat(((MultipleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((MultipleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
     }
 
     @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter SINGLE enum is called")
@@ -165,7 +167,7 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.SINGLE);
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
     }
 
     @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter DEFAULT enum is called")
@@ -191,7 +193,7 @@ public class MutatorFactoryTest {
         MutatorService mutator = mutatorFactory.getMutator(MutatorEnum.DEFAULT);
 
         // then
-        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0.05f);
+        assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(DEFAULT_MUTATION_CHANCE);
     }
 
     @DisplayName("Should return instance of SingleMutator when getMutator() with single parameter ZERO enum is called")
