@@ -13,9 +13,10 @@ public class MutatorFactory {
         DEFAULT
     }
 
-    public MutatorService getMutator(){
+    public MutatorService getMutator() {
         return new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
     }
+
     public MutatorService getMutator(MutatorEnum option) {
         switch (option) {
             case ZERO -> {
@@ -34,6 +35,21 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator(float mutationChance, MutatorEnum option) {
-        return null;
+        MutatorService mutator = null;
+        switch (option) {
+            case ZERO -> {
+                if (mutationChance != 0f) {
+                    throw new IllegalArgumentException();
+                }
+                mutator =  new SingleMutator(new RandomProviderImpl(), 0f);
+            }
+            case SINGLE, DEFAULT -> {
+                mutator = new SingleMutator(new RandomProviderImpl(), mutationChance);
+            }
+            case MULTIPLE -> {
+                mutator = new MultipleMutator(new RandomProviderImpl(), mutationChance);
+            }
+        }
+        return mutator;
     }
 }
