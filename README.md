@@ -283,4 +283,19 @@ CrossoverServiceFactory is a factory returning CrossoverService instance. Evoked
 | CrossoverServiceEnum.MIXING_HALVES    | MixingHalvesCrossoverServiceImpl      |
 | CrossoverServiceEnum.ODD_BITS         | OddBitsCrossoverServiceImpl           |
 
+#### EvaluatorFactory
+```
+class EvaluatorFactory
+    Evaluator getEvaluator(char target)
+    Evalaator getEvaluator(char target, OPTION)
+```
+
+EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION argument returns default configuration.
+
+| OPTION                    | description                           |
+| ------------------------- | ------------------------------------- |
+| EvaluatorEnum.DEFAULT     | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
+
 [Go to top](#genalgo)
