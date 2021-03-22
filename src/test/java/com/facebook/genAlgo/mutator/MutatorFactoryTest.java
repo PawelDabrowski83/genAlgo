@@ -221,7 +221,4 @@ public class MutatorFactoryTest {
         // then
         assertThat(((SingleMutator)mutator).getMutationChance()).isEqualTo(0f);
     }
-
-
-
 }
