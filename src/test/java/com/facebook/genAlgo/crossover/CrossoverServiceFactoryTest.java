@@ -1,9 +1,9 @@
 package com.facebook.genAlgo.crossover;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AssertionsKt;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,6 +19,16 @@ public class CrossoverServiceFactoryTest {
     @BeforeEach
     public void setUp() {
         crossoverServiceFactory = new CrossoverServiceFactory();
+    }
+
+    @DisplayName("Should return default instance of CrossoverService when getCrossoverService method W/O parameter is called")
+    @Test
+    public void shouldReturnDefaultInstanceOfCrossoverService() {
+        // when
+        CrossoverService crossoverService = crossoverServiceFactory.getCrossoverService();
+
+        // then
+        Assertions.assertThat(crossoverService).isInstanceOf(BitPairCrossoverServiceImpl.class);
     }
 
     @DisplayName("Should return proper instance of CrossoverService when getCrossoverService with enum parameter is called")
@@ -41,5 +51,4 @@ public class CrossoverServiceFactoryTest {
                 Arguments.of(OddBitsCrossoverServiceImpl.class, CrossoverServiceEnum.ODD_BITS)
         );
     }
-
 }
