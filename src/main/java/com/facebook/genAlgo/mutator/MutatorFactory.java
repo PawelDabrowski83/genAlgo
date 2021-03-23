@@ -22,13 +22,10 @@ public class MutatorFactory {
         MutatorService mutator = null;
         switch (option) {
             case ZERO -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
+                mutator = getMutator(ZERO_MUTATION_CHANCE, option);
             }
-            case SINGLE, DEFAULT -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
-            }
-            case MULTIPLE -> {
-                mutator = new MultipleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
+            case SINGLE, DEFAULT, MULTIPLE -> {
+                mutator = getMutator(DEFAULT_MUTATION_CHANCE, option);
             }
         }
         return mutator;
