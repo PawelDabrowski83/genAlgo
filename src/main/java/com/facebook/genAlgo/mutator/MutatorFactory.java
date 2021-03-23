@@ -19,16 +19,10 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator(MutatorEnum option) {
-        MutatorService mutator = null;
-        switch (option) {
-            case ZERO -> {
-                mutator = getMutator(ZERO_MUTATION_CHANCE, option);
-            }
-            case SINGLE, DEFAULT, MULTIPLE -> {
-                mutator = getMutator(DEFAULT_MUTATION_CHANCE, option);
-            }
+        if (MutatorEnum.ZERO.equals(option)) {
+            return getMutator(ZERO_MUTATION_CHANCE, option);
         }
-        return mutator;
+        return getMutator(DEFAULT_MUTATION_CHANCE, option);
     }
 
     public MutatorService getMutator(float mutationChance, MutatorEnum option) {
