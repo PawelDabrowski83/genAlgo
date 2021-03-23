@@ -30,15 +30,9 @@ public class MutatorFactory {
             throw new IllegalArgumentException();
         }
 
-        MutatorService mutator = null;
-        switch (option) {
-            case ZERO, SINGLE, DEFAULT -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), mutationChance);
-            }
-            case MULTIPLE -> {
-                mutator = new MultipleMutator(new RandomProviderImpl(), mutationChance);
-            }
+        if (MutatorEnum.MULTIPLE.equals(option)) {
+            return new MultipleMutator(new RandomProviderImpl(), mutationChance);
         }
-        return mutator;
+        return new SingleMutator(new RandomProviderImpl(), mutationChance);
     }
 }
