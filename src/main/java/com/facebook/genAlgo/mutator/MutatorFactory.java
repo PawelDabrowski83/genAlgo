@@ -32,15 +32,13 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator(float mutationChance, MutatorEnum option) {
+        if (MutatorEnum.ZERO.equals(option) && mutationChance != ZERO_MUTATION_CHANCE) {
+            throw new IllegalArgumentException();
+        }
+
         MutatorService mutator = null;
         switch (option) {
-            case ZERO -> {
-                if (mutationChance != ZERO_MUTATION_CHANCE) {
-                    throw new IllegalArgumentException();
-                }
-                mutator =  new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
-            }
-            case SINGLE, DEFAULT -> {
+            case ZERO, SINGLE, DEFAULT -> {
                 mutator = new SingleMutator(new RandomProviderImpl(), mutationChance);
             }
             case MULTIPLE -> {
