@@ -15,7 +15,7 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator() {
-        return new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
+        return getMutator(DEFAULT_MUTATION_CHANCE, MutatorEnum.DEFAULT);
     }
 
     public MutatorService getMutator(MutatorEnum option) {
