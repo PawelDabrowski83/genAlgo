@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
@@ -33,7 +34,7 @@ public class CrossoverServiceFactoryTest {
 
     @DisplayName("Should return proper instance of CrossoverService when getCrossoverService with enum parameter is called")
     @ParameterizedTest
-    @ValueSource
+    @MethodSource
     public void shouldReturnProperInstanceOfCrossoverService(Class<? extends CrossoverService> instanceType, CrossoverServiceEnum option) {
         // when
         CrossoverService crossoverService = crossoverServiceFactory.getCrossoverService(option);
