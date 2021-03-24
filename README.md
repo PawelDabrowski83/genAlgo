@@ -65,6 +65,7 @@
 | 11    | Working on first working app. Start with integration tests for whole app.                                          |
 | 12    | Working on first working app. Create solve method in GenePool to make integration test work correctly              |
 | 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
+| 14    | Create factory classes for Mutator, CrossoverService.                                                              |
 
 ## Code Structure
 ### Gene
@@ -242,5 +243,59 @@ BitwiseUtils provides methods to read and write bits and bytes from given number
 `throws IllegalArgumentException` when `index` is negative number or `value` is out of expected range.
 
 ![BitwiseUtils class](images/BitwiseUtils-s5.png)
+
+### Factory
+#### MutatorFactory
+```
+class MutatorFactory
+    MutatorService getMutator()
+    MutatorService getMutator(OPTION)
+    MutatorService getMutator(float mutationChance, OPTION...)
+```
+MutatorFactory is a factory returning MutatorService object. Evoked without arguments it returns default configuration, but can take also optional PARAMS and float mutationChance.</br>
+Default values are:</br>
+`mutationChance` == 0.05f</br>
+`MutatorService implementation` => SingleMutator</br></br>
+
+| OPTION                |                                           |
+| --------------------- | ----------------------------------------- |
+| `MutatorEnum.ZERO`    | mutationChance = 0, SingleMutator         | 
+| `MutatorEnum.SINGLE`  | mutationChance = 0.05, SingleMutator      |
+| `MutatorEnum.MULTIPLE`| mutationChance = 0.05, MultipleMutator    |
+| `MutatorEnum.DEFAULT` | mutationChance = 0.05, SingleMutator      |
+
+When evoked `getMutator(float mutationChance, OPTION)` mutationChance is taken from first argument and overrides information from OPTION.<br/>
+When `getMutator(float X, MutatorEnum.ZERO)` and X is other than zero throws `IllegalArgumentException`.
+
+#### CrossoverServiceFactory
+```
+class CrossoverServiceFactory
+    CrossoverService getCrossoverService()
+    CrossoverService getCrossoverService(OPTION)
+```
+CrossoverServiceFactory is a factory returning CrossoverService instance. Evoked without arguments it returns default configuration.
+
+| OPTION                                | description                           |
+| ------------------------------------- | ------------------------------------- |
+| CrossoverServiceEnum.DEFAULT          | BirPairCrossoverServiceImpl           |
+| CrossoverServiceEnum.BIT_PAIR         | BitPairCrossoverServiceImpl           |
+| CrossoverServiceEnum.EVEN_BITS        | EvenBitsCrossoverServiceImpl          |
+| CrossoverServiceEnum.MIXING_HALVES    | MixingHalvesCrossoverServiceImpl      |
+| CrossoverServiceEnum.ODD_BITS         | OddBitsCrossoverServiceImpl           |
+
+#### EvaluatorFactory
+```
+class EvaluatorFactory
+    Evaluator getEvaluator(char target)
+    Evalaator getEvaluator(char target, OPTION)
+```
+
+EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION argument returns default configuration.
+
+| OPTION                    | description                           |
+| ------------------------- | ------------------------------------- |
+| EvaluatorEnum.DEFAULT     | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl                 |
+| EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
 
 [Go to top](#genalgo)
