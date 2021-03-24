@@ -15,41 +15,24 @@ public class MutatorFactory {
     }
 
     public MutatorService getMutator() {
-        return new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
+        return getMutator(DEFAULT_MUTATION_CHANCE, MutatorEnum.DEFAULT);
     }
 
     public MutatorService getMutator(MutatorEnum option) {
-        MutatorService mutator = null;
-        switch (option) {
-            case ZERO -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
-            }
-            case SINGLE, DEFAULT -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
-            }
-            case MULTIPLE -> {
-                mutator = new MultipleMutator(new RandomProviderImpl(), DEFAULT_MUTATION_CHANCE);
-            }
+        if (MutatorEnum.ZERO.equals(option)) {
+            return getMutator(ZERO_MUTATION_CHANCE, option);
         }
-        return mutator;
+        return getMutator(DEFAULT_MUTATION_CHANCE, option);
     }
 
     public MutatorService getMutator(float mutationChance, MutatorEnum option) {
-        MutatorService mutator = null;
-        switch (option) {
-            case ZERO -> {
-                if (mutationChance != ZERO_MUTATION_CHANCE) {
-                    throw new IllegalArgumentException();
-                }
-                mutator =  new SingleMutator(new RandomProviderImpl(), ZERO_MUTATION_CHANCE);
-            }
-            case SINGLE, DEFAULT -> {
-                mutator = new SingleMutator(new RandomProviderImpl(), mutationChance);
-            }
-            case MULTIPLE -> {
-                mutator = new MultipleMutator(new RandomProviderImpl(), mutationChance);
-            }
+        if (MutatorEnum.ZERO.equals(option) && mutationChance != ZERO_MUTATION_CHANCE) {
+            throw new IllegalArgumentException();
         }
-        return mutator;
+
+        if (MutatorEnum.MULTIPLE.equals(option)) {
+            return new MultipleMutator(new RandomProviderImpl(), mutationChance);
+        }
+        return new SingleMutator(new RandomProviderImpl(), mutationChance);
     }
 }
