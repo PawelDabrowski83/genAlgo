@@ -10,7 +10,8 @@ public class CrossoverServiceFactory {
         ODD_BITS
     }
 
-    public CrossoverService getCrossoverService() { return null;
+    public CrossoverService getCrossoverService() {
+        return getCrossoverService(CrossoverServiceEnum.DEFAULT);
     }
 
     public CrossoverService getCrossoverService(CrossoverServiceEnum option) {
