@@ -9,7 +9,7 @@ public class EvaluatorFactory {
     }
 
     Evaluator getEvaluator(char target) {
-        return null;
+        return getEvaluator(target, EvaluatorEnum.DEFAULT);
     }
 
     Evaluator getEvaluator(char target, EvaluatorEnum option) {
