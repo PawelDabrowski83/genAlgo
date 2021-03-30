@@ -9,9 +9,13 @@ public class EvaluatorFactory {
     }
 
     Evaluator getEvaluator(char target) {
-        return null;
+        return getEvaluator(target, EvaluatorEnum.DEFAULT);
     }
+
     Evaluator getEvaluator(char target, EvaluatorEnum option) {
-        return null;
+        if (EvaluatorEnum.LOG.equals(option)) {
+            return new LogarithmicEvaluatorImpl(target);
+        }
+        return new MaxDeltaEvaluatorImpl(target);
     }
 }
