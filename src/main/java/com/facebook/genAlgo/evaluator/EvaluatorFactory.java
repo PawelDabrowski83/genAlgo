@@ -13,11 +13,9 @@ public class EvaluatorFactory {
     }
 
     Evaluator getEvaluator(char target, EvaluatorEnum option) {
-        Evaluator evaluator = null;
-        switch (option) {
-            case DEFAULT, MAX_DELTA -> evaluator = new MaxDeltaEvaluatorImpl(target);
-            case LOG -> evaluator = new LogarithmicEvaluatorImpl(target);
+        if (EvaluatorEnum.LOG.equals(option)) {
+            return new LogarithmicEvaluatorImpl(target);
         }
-        return evaluator;
+        return new MaxDeltaEvaluatorImpl(target);
     }
 }
