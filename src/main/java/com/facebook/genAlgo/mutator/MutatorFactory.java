@@ -6,15 +6,6 @@ import static com.facebook.genAlgo.mutator.MutatorConfig.*;
 
 public class MutatorFactory {
 
-
-
-    public enum MutatorEnum {
-        ZERO,
-        SINGLE,
-        MULTIPLE,
-        DEFAULT
-    }
-
     public MutatorService getMutator() {
         return getMutator(DEFAULT_MUTATION_CHANCE, MutatorEnum.DEFAULT);
     }
