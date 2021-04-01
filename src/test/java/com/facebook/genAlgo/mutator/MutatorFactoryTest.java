@@ -107,7 +107,7 @@ public class MutatorFactoryTest {
 
     @DisplayName("Should throw exception when getMutator() with conflicting ZERO enum as parameter and nonzero mutationChance is called")
     @ParameterizedTest
-    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 0, 1, 0.99f, 0.0001f})
+    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 1, 0.99f, 0.0001f})
     public void shouldThrowExceptionWhenGetMutatorIsEvokedWithNonZeroMutationChanceAndZeroEnumParameter(float mutationChance) {
         // given
         option = MutatorEnum.ZERO;
