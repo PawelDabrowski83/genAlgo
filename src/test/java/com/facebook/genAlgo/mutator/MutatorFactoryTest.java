@@ -28,7 +28,7 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(SingleMutator.class);
     }
 
-    @DisplayName("Should return SingleMutator with mutationChance equal 0.05 when getMutator() method without parameter is called")
+    @DisplayName("Should return SingleMutator with mutationChance equal default value when getMutator() method without parameter is called")
     @Test
     public void shouldReturnSingleMutatorWithDefaultMutationChanceWhenGetMutatorIsEvoked() {
         // when
