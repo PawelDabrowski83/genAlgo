@@ -43,9 +43,10 @@ public class MutatorFactoryTest {
     public void shouldReturnInstanceOfMultipleMutatorWhenGetMutatorIsEvoked() {
         // given
         float mutationChance = 0.2f;
+        MutatorEnum option = MutatorEnum.MULTIPLE;
 
         // when
-        MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.MULTIPLE);
+        MutatorService mutator = mutatorFactory.getMutator(mutationChance, option);
 
         // then
         assertThat(mutator).isInstanceOf(MultipleMutator.class);
