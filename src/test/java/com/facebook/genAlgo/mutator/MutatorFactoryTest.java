@@ -66,11 +66,9 @@ public class MutatorFactoryTest {
     }
 
     @DisplayName("Should return SingleMutator when getMutator() with DEFAULT enum as parameter is called")
-    @Test
-    public void shouldReturnSingleMutatorWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
-        // given
-        float mutationChance = 0.3f;
-
+    @ParameterizedTest
+    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 0, 1, 0.99f, 0.0001f})
+    public void shouldReturnSingleMutatorWhenGetMutatorIsEvokedWithDefaultEnumParameter(float mutationChance) {
         // when
         MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.DEFAULT);
 
