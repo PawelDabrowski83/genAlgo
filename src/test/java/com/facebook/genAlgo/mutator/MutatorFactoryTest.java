@@ -14,6 +14,7 @@ public class MutatorFactoryTest {
     public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
 
     MutatorFactory mutatorFactory;
+    MutatorEnum option;
 
     @BeforeEach
     public void init() {
