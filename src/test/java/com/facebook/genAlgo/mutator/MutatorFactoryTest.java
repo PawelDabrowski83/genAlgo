@@ -105,11 +105,11 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(SingleMutator.class);
     }
 
-    @DisplayName("Should throw exception when getMutator() with ZERO enum as parameter is called")
-    @Test
-    public void shouldThrowExceptionWhenMutatorWithZeroMutationChanceWhenGetMutatorIsEvokedWithZeroEnumParameter() {
+    @DisplayName("Should throw exception when getMutator() with conflicting ZERO enum as parameter and nonzero mutationChance is called")
+    @ParameterizedTest
+    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 0, 1, 0.99f, 0.0001f})
+    public void shouldThrowExceptionWhenGetMutatorIsEvokedWithNonZeroMutationChanceAndZeroEnumParameter(float mutationChance) {
         // given
-        float mutationChance = 0.3f;
         option = MutatorEnum.ZERO;
 
         // then
