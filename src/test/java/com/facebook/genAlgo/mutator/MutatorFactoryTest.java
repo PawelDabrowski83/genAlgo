@@ -76,12 +76,10 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(SingleMutator.class);
     }
 
-    @DisplayName("Should return SingleMutator with mutationChance equal 0.3 when getMutator() with DEFAULT enum as parameter is called")
-    @Test
-    public void shouldReturnSingleMutatorWithGivenMutationChanceWhenGetMutatorIsEvokedWithDefaultEnumParameter() {
-        // given
-        float mutationChance = 0.3f;
-
+    @DisplayName("Should given mutationChance override default while DEFAULT enum as parameter is called")
+    @ParameterizedTest
+    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 0, 1, 0.99f, 0.0001f})
+    public void shouldReturnSingleMutatorWithGivenMutationChanceWhenGetMutatorIsEvokedWithDefaultEnumParameter(float mutationChance) {
         // when
         MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.DEFAULT);
 
