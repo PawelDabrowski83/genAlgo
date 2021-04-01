@@ -4,6 +4,8 @@ import com.facebook.genAlgo.mutator.MutatorFactory.MutatorEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -52,12 +54,10 @@ public class MutatorFactoryTest {
         assertThat(mutator).isInstanceOf(MultipleMutator.class);
     }
 
-    @DisplayName("Should return MultipleMutator with mutationChance equal 0.3 when getMutator() with MULTIPLE enum as parameter is called")
-    @Test
-    public void shouldReturnMultipleMutatorWithGivenMutationChanceWhenGetMutatorIsEvoked() {
-        // given
-        float mutationChance = 0.3f;
-
+    @DisplayName("Should return MultipleMutator with given mutationChance when getMutator() with MULTIPLE enum as parameter is called")
+    @ParameterizedTest
+    @ValueSource(floats = {0.3f, 0.1f, 0.157f, 0, 1, 0.99f, 0.0001f})
+    public void shouldReturnMultipleMutatorWithGivenMutationChanceWhenGetMutatorIsEvoked(float mutationChance) {
         // when
         MutatorService mutator = mutatorFactory.getMutator(mutationChance, MutatorEnum.MULTIPLE);
 
