@@ -1,6 +1,7 @@
 package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.mutator.MutatorFactory.MutatorEnum;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,13 @@ import static org.assertj.core.api.Assertions.*;
 public class MutatorFactoryTest {
 
     public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
+
+    MutatorFactory mutatorFactory;
+
+    @BeforeEach
+    public void init() {
+        mutatorFactory = new MutatorFactory();
+    }
 
     @DisplayName("Should return SingleMutator when getMutator() method without parameters is called")
     @Test
