@@ -196,12 +196,20 @@ For now it is responsible for:<br/>
 #### GenePoolService Builder
 Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
 
-| DEFAULT               | instance                          |
-| --------------------- | --------------------------------- |
-| RandomProvider        | RandomProvider                    |
-| MutatorService        | SingleMutator                     |
-| Evaluator             | MaxDeltaEvaluator                 |
-| CrossoverHandler      | CrossoverHandler                  |
+| builder method        | option                    | instance                  |
+| --------------------- | ------------------------- | ------------------------- |
+| mutator               | MutatorEnum.SINGLE        | SingleMutator             |
+| mutator               | MutatorEnum.MULTIPLE      | MultipleMutator           |
+| mutator               | MutatorEnum.DEFAULT       | SingleMutator             |
+| mutator               | MutatorEnum.ZERO          | SingleMutator             |
+| mutationChance        | float given               | mutationChance == given   |
+| mutationChance        | MutatorEnum.ZERO          | mutationChance == 0f      |
+| mutationChance        | MutatorEnum.*             | mutationChance == DEFAULT |
+| evaluator             | EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl     |
+| evaluator             | EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl  |
+| evaluator             | EvaluatorEnum.DEFAULT     | MaxDeltaEvaluatorImpl     |
+| crossover             | CrossoverServiceEnum.
+| CrossoverHandler      | CrossoverHandler          |
 | SolutionFinder        | SolutionFinder                    |
 
 ### GenePool

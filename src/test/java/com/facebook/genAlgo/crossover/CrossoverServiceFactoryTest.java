@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -35,7 +34,7 @@ public class CrossoverServiceFactoryTest {
     @DisplayName("Should return proper instance of CrossoverService when getCrossoverService with enum parameter is called")
     @ParameterizedTest
     @MethodSource
-    public void shouldReturnProperInstanceOfCrossoverService(Class<? extends CrossoverService> instanceType, CrossoverServiceEnum option) {
+    public void shouldReturnProperInstanceOfCrossoverService(Class<? extends CrossoverService> instanceType, CrossoverEnum option) {
         // when
         CrossoverService crossoverService = crossoverServiceFactory.getCrossoverService(option);
 
@@ -45,11 +44,11 @@ public class CrossoverServiceFactoryTest {
 
     private static Stream<Arguments> shouldReturnProperInstanceOfCrossoverService() {
         return Stream.of(
-                Arguments.of(BitPairCrossoverServiceImpl.class, CrossoverServiceEnum.DEFAULT),
-                Arguments.of(BitPairCrossoverServiceImpl.class, CrossoverServiceEnum.BIT_PAIR),
-                Arguments.of(EvenBitsCrossoverServiceImpl.class, CrossoverServiceEnum.EVEN_BITS),
-                Arguments.of(MixingHalvesCrossoverServiceImpl.class, CrossoverServiceEnum.MIXING_HALVES),
-                Arguments.of(OddBitsCrossoverServiceImpl.class, CrossoverServiceEnum.ODD_BITS)
+                Arguments.of(BitPairCrossoverServiceImpl.class, CrossoverEnum.DEFAULT),
+                Arguments.of(BitPairCrossoverServiceImpl.class, CrossoverEnum.BIT_PAIR),
+                Arguments.of(EvenBitsCrossoverServiceImpl.class, CrossoverEnum.EVEN_BITS),
+                Arguments.of(MixingHalvesCrossoverServiceImpl.class, CrossoverEnum.MIXING_HALVES),
+                Arguments.of(OddBitsCrossoverServiceImpl.class, CrossoverEnum.ODD_BITS)
         );
     }
 }
