@@ -298,4 +298,6 @@ EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION 
 | EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl                 |
 | EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
 
+### Builders
+
 [Go to top](#genalgo)
