@@ -303,4 +303,12 @@ EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION 
 
 Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
 
+| DEFAULT               | instance                          |
+| --------------------- | --------------------------------- |
+| RandomProvider        | RandomProvider                    |
+| MutatorService        | SingleMutator                     |
+| Evaluator             | MaxDeltaEvaluator                 |
+| CrossoverHandler      | CrossoverHandler                  |
+| SolutionFinder        | SolutionFinder                    |
+
 [Go to top](#genalgo)
