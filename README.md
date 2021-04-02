@@ -193,6 +193,17 @@ For now it is responsible for:<br/>
 * performing cross by evoking makeCross()  
 * updating genes by evoking evaluateFitness()
 
+#### GenePoolService Builder
+Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
+
+| DEFAULT               | instance                          |
+| --------------------- | --------------------------------- |
+| RandomProvider        | RandomProvider                    |
+| MutatorService        | SingleMutator                     |
+| Evaluator             | MaxDeltaEvaluator                 |
+| CrossoverHandler      | CrossoverHandler                  |
+| SolutionFinder        | SolutionFinder                    |
+
 ### GenePool
 ```
 class GenePool
@@ -297,18 +308,5 @@ EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION 
 | EvaluatorEnum.DEFAULT     | MaxDeltaEvaluatorImpl                 |
 | EvaluatorEnum.MAX_DELTA   | MaxDeltaEvaluatorImpl                 |
 | EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
-
-### Builders
-#### GenePoolServiceBuilder
-
-Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
-
-| DEFAULT               | instance                          |
-| --------------------- | --------------------------------- |
-| RandomProvider        | RandomProvider                    |
-| MutatorService        | SingleMutator                     |
-| Evaluator             | MaxDeltaEvaluator                 |
-| CrossoverHandler      | CrossoverHandler                  |
-| SolutionFinder        | SolutionFinder                    |
 
 [Go to top](#genalgo)
