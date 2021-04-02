@@ -299,5 +299,8 @@ EvaluatorFactory is a factory returning Evaluator object. Evoked without OPTION 
 | EvaluatorEnum.LOG         | LogarithmicEvaluatorImpl              |
 
 ### Builders
+#### GenePoolServiceBuilder
+
+Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
 
 [Go to top](#genalgo)
