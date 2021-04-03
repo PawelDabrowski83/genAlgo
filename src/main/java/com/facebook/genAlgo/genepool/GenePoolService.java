@@ -34,6 +34,30 @@ public class GenePoolService {
         private Evaluator evaluator;
         private CrossoverHandler crossoverHandler;
         private SolutionFinder solutionFinder;
+
+        public Builder randomProvider(RandomProvider randomProvider) {
+            return null;
+        }
+
+        public Builder mutatorService(MutatorService mutatorService) {
+            return null;
+        }
+
+        public Builder evaluator(Evaluator evaluator) {
+            return null;
+        }
+
+        public Builder crossoverHandler(CrossoverHandler crossoverHandler) {
+            return null;
+        }
+
+        public Builder solutionFinder(SolutionFinder solutionFinder) {
+            return null;
+        }
+
+        public GenePoolService build() {
+            return null;
+        }
     }
 
     public List<Gene> initializeGenes(int size) {
