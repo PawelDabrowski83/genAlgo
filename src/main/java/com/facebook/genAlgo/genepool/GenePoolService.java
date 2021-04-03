@@ -28,6 +28,14 @@ public class GenePoolService {
         this.solutionFinder = solutionFinder;
     }
 
+    public static final class Builder {
+        private RandomProvider randomProvider;
+        private MutatorService mutatorService;
+        private Evaluator evaluator;
+        private CrossoverHandler crossoverHandler;
+        private SolutionFinder solutionFinder;
+    }
+
     public List<Gene> initializeGenes(int size) {
         if (size <= 0) {
             return Collections.emptyList();
