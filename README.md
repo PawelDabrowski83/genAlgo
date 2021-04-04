@@ -244,7 +244,18 @@ For now it is responsible for:<br/>
 #### GenePool builder
 Builer to fabricate preconfigured GenePool objects.
 
+| builder method        | option                        | instance                          |
+| --------------------- | ----------------------------- | --------------------------------- |
+| poolSize              | int given                     | genePoolSize == given             |
+| generation            | int given                     | generaton == given                |
+| genePoolService       | GenePoolService instance      | GenePoolService instance          |
 
+Default values:
+```
+poolSize == 100
+generation == 0
+genePoolService == genePoolServiceBuilder default
+```
 
 ### Utils
 #### RandomProvider
