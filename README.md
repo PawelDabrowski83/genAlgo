@@ -241,6 +241,8 @@ For now it is responsible for:<br/>
 * incrementing generation count
 * performing evolution until a solution is found
 
+#### GenePool builder
+
 
 ### Utils
 #### RandomProvider
