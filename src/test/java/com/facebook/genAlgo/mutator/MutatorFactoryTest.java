@@ -13,6 +13,10 @@ import static org.assertj.core.api.Assertions.*;
 import static com.facebook.genAlgo.mutator.MutatorConfig.*;
 
 public class MutatorFactoryTest {
+    MutatorFactory mutatorFactory;
+    MutatorEnum option;
+
+
 
     @DisplayName("Should return SingleMutator when getMutator() method without parameters is called")
     @Test
