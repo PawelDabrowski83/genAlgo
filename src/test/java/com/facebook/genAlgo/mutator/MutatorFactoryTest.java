@@ -1,5 +1,6 @@
 package com.facebook.genAlgo.mutator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +17,10 @@ public class MutatorFactoryTest {
     MutatorFactory mutatorFactory;
     MutatorEnum option;
 
-
+    @BeforeEach
+    public void init() {
+        mutatorFactory = new MutatorFactory();
+    }
 
     @DisplayName("Should return SingleMutator when getMutator() method without parameters is called")
     @Test
@@ -146,7 +150,7 @@ public class MutatorFactoryTest {
         return Stream.of(
                 Arguments.of(MutatorEnum.MULTIPLE, MultipleMutator.class, DEFAULT_MUTATION_CHANCE),
                 Arguments.of(MutatorEnum.SINGLE, SingleMutator.class, DEFAULT_MUTATION_CHANCE),
-                Arguments.of(MutatorEnum.ZERO, SingleMutator.class, MutatorFactory.ZERO_MUTATION_CHANCE),
+                Arguments.of(MutatorEnum.ZERO, SingleMutator.class, ZERO_MUTATION_CHANCE),
                 Arguments.of(MutatorEnum.DEFAULT, SingleMutator.class, DEFAULT_MUTATION_CHANCE)
         );
     }
