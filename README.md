@@ -242,6 +242,8 @@ For now it is responsible for:<br/>
 * performing evolution until a solution is found
 
 #### GenePool builder
+Builer to fabricate preconfigured GenePool objects.
+
 
 
 ### Utils
