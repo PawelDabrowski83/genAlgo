@@ -242,6 +242,21 @@ For now it is responsible for:<br/>
 * incrementing generation count
 * performing evolution until a solution is found
 
+#### GenePool builder
+Builer to fabricate preconfigured GenePool objects.
+
+| builder method        | option                        | instance                          |
+| --------------------- | ----------------------------- | --------------------------------- |
+| poolSize              | int given                     | genePoolSize == given             |
+| generation            | int given                     | generaton == given                |
+| genePoolService       | GenePoolService instance      | GenePoolService instance          |
+
+Default values:
+```
+poolSize == 100
+generation == 0
+genePoolService == genePoolServiceBuilder default
+```
 
 ### Utils
 #### RandomProvider
