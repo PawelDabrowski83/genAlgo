@@ -2,17 +2,9 @@ package com.facebook.genAlgo.mutator;
 
 import com.facebook.genAlgo.utils.RandomProviderImpl;
 
+import static com.facebook.genAlgo.mutator.MutatorConfig.*;
+
 public class MutatorFactory {
-
-    public static final float DEFAULT_MUTATION_CHANCE = 0.05f;
-    public static final float ZERO_MUTATION_CHANCE = 0f;
-
-    public enum MutatorEnum {
-        ZERO,
-        SINGLE,
-        MULTIPLE,
-        DEFAULT
-    }
 
     public MutatorService getMutator() {
         return getMutator(DEFAULT_MUTATION_CHANCE, MutatorEnum.DEFAULT);

@@ -66,6 +66,7 @@
 | 12    | Working on first working app. Create solve method in GenePool to make integration test work correctly              |
 | 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
 | 14    | Create factory classes for Mutator, CrossoverService.                                                              |
+| 15    | Working on builders for GenePool and GenePoolService.                                                              |
 
 ## Code Structure
 ### Gene
@@ -193,6 +194,31 @@ For now it is responsible for:<br/>
 * performing cross by evoking makeCross()  
 * updating genes by evoking evaluateFitness()
 
+#### GenePoolService Builder
+Builder for GenePoolService returns object with default configuration. Optional parameters are taken to specify configuration.
+
+| builder method        | option                        | instance                          |
+| --------------------- | ----------------------------- | --------------------------------- |
+| mutator               | MutatorEnum.SINGLE            | SingleMutator                     |
+| mutator               | MutatorEnum.MULTIPLE          | MultipleMutator                   |
+| mutator               | MutatorEnum.DEFAULT           | SingleMutator                     |
+| mutator               | MutatorEnum.ZERO              | SingleMutator                     |
+| mutationChance        | float given                   | mutationChance == given           |
+| mutationChance        | MutatorEnum.ZERO              | mutationChance == 0f              |
+| mutationChance        | MutatorEnum.*                 | mutationChance == DEFAULT         |
+| evaluator             | EvaluatorEnum.MAX_DELTA       | MaxDeltaEvaluatorImpl             |
+| evaluator             | EvaluatorEnum.LOG             | LogarithmicEvaluatorImpl          |
+| evaluator             | EvaluatorEnum.DEFAULT         | MaxDeltaEvaluatorImpl             |
+| target                | not set                       | evaluatorTarget == '0'            |
+| target                | not set                       | solutionFinderTarget == '0'       |
+| target                | char given                    | evaluatorTarget == given          |
+| target                | char given                    | solutionFinderTarget == given     |
+| crossover             | CrossoverEnum.DEFAULT         | BirPairCrossoverServiceImpl       |
+| crossover             | CrossoverEnum.BIT_PAIR        | BitPairCrossoverServiceImpl       |
+| crossover             | CrossoverEnum.EVEN_BITS       | EvenBitsCrossoverServiceImpl      |
+| crossover             | CrossoverEnum.MIXING_HALVES   | MixingHalvesCrossoverServiceImpl  |
+| crossover             | CrossoverEnum.ODD_BITS        | OddBitsCrossoverServiceImpl       |
+
 ### GenePool
 ```
 class GenePool
@@ -216,6 +242,21 @@ For now it is responsible for:<br/>
 * incrementing generation count
 * performing evolution until a solution is found
 
+#### GenePool builder
+Builer to fabricate preconfigured GenePool objects.
+
+| builder method        | option                        | instance                          |
+| --------------------- | ----------------------------- | --------------------------------- |
+| poolSize              | int given                     | genePoolSize == given             |
+| generation            | int given                     | generaton == given                |
+| genePoolService       | GenePoolService instance      | GenePoolService instance          |
+
+Default values:
+```
+poolSize == 100
+generation == 0
+genePoolService == genePoolServiceBuilder default
+```
 
 ### Utils
 #### RandomProvider

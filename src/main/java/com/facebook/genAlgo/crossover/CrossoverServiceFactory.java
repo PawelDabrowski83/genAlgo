@@ -2,7 +2,7 @@ package com.facebook.genAlgo.crossover;
 
 public class CrossoverServiceFactory {
 
-    public enum CrossoverServiceEnum {
+    public enum CrossoverEnum {
         DEFAULT,
         BIT_PAIR,
         EVEN_BITS,
@@ -11,10 +11,17 @@ public class CrossoverServiceFactory {
     }
 
     public CrossoverService getCrossoverService() {
-        return null;
+        return getCrossoverService(CrossoverEnum.DEFAULT);
     }
 
-    public CrossoverService getCrossoverService(CrossoverServiceEnum option) {
-        return null;
+    public CrossoverService getCrossoverService(CrossoverEnum option) {
+        CrossoverService crossoverService = null;
+        switch (option) {
+            case DEFAULT, BIT_PAIR -> crossoverService = new BitPairCrossoverServiceImpl();
+            case EVEN_BITS -> crossoverService = new EvenBitsCrossoverServiceImpl();
+            case MIXING_HALVES -> crossoverService = new MixingHalvesCrossoverServiceImpl();
+            case ODD_BITS -> crossoverService = new OddBitsCrossoverServiceImpl();
+        }
+        return crossoverService;
     }
 }
