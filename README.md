@@ -31,7 +31,7 @@
 <li>using TDD</li></ul>
 
 ## Development progress
-<p>We are working to develop functioning Stage 15 on 30.03.2021 - builders for GenePoolService and GenePool.</p>
+<p>We are working to develop functioning Stage 16 on 14.04.2021 - builder for GenePoolService.</p>
 
 ## Workflow
 - We use separate branches to develop each stage of project.
