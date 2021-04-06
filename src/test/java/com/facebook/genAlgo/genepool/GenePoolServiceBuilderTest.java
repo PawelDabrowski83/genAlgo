@@ -2,7 +2,6 @@ package com.facebook.genAlgo.genepool;
 
 import com.facebook.genAlgo.crossover.*;
 import com.facebook.genAlgo.evaluator.Evaluator;
-import com.facebook.genAlgo.evaluator.EvaluatorFactory;
 import com.facebook.genAlgo.evaluator.EvaluatorFactory.EvaluatorEnum;
 import com.facebook.genAlgo.evaluator.LogarithmicEvaluatorImpl;
 import com.facebook.genAlgo.evaluator.MaxDeltaEvaluatorImpl;
