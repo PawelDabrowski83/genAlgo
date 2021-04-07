@@ -8,11 +8,11 @@ public class EvaluatorFactory {
         LOG
     }
 
-    Evaluator getEvaluator(char target) {
+    public Evaluator getEvaluator(char target) {
         return getEvaluator(target, EvaluatorEnum.DEFAULT);
     }
 
-    Evaluator getEvaluator(char target, EvaluatorEnum option) {
+    public Evaluator getEvaluator(char target, EvaluatorEnum option) {
         if (EvaluatorEnum.LOG.equals(option)) {
             return new LogarithmicEvaluatorImpl(target);
         }
