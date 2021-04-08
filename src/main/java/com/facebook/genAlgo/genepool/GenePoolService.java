@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import static com.facebook.genAlgo.mutator.MutatorConfig.MutatorEnum;
 import static com.facebook.genAlgo.crossover.CrossoverServiceFactory.CrossoverEnum;
+import static com.facebook.genAlgo.evaluator.EvaluatorFactory.EvaluatorEnum;
 
 public class GenePoolService {
 
@@ -51,7 +52,7 @@ public class GenePoolService {
             return null;
         }
 
-        public Builder evaluator(EvaluatorFactory.EvaluatorEnum evaluator) {
+        public Builder evaluator(EvaluatorEnum evaluator) {
             return null;
         }
 
