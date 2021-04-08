@@ -33,7 +33,7 @@ class GenePoolServiceBuilderTest {
     }
 
     @ParameterizedTest
-    @MethodSource
+    @MethodSource("shouldReturnInstanceOfGenePoolServiceWithSetCrossover")
     public void shouldReturnInstanceOfGenePoolServiceWithSetCrossover(CrossoverEnum crossoverEnum, Class<CrossoverService> instance) {
         // given
 
@@ -46,7 +46,7 @@ class GenePoolServiceBuilderTest {
         assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
     }
 
-    public static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
+    private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
         return Stream.of(
                 Arguments.of(CrossoverEnum.DEFAULT, BitPairCrossoverServiceImpl.class),
                 Arguments.of(CrossoverEnum.BIT_PAIR, BitPairCrossoverServiceImpl.class),
@@ -57,7 +57,7 @@ class GenePoolServiceBuilderTest {
     }
 
     @ParameterizedTest
-    @MethodSource
+    @MethodSource("shouldReturnInstanceOfGenePoolServiceWithSetEvaluator")
     public void shouldReturnInstanceOfGenePoolServiceWithSetEvaluator(EvaluatorEnum evaluatorEnum, Class<Evaluator> instance) {
         // given
 
@@ -70,7 +70,7 @@ class GenePoolServiceBuilderTest {
         assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
     }
 
-    public static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetEvaluator() {
+    private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetEvaluator() {
         return Stream.of(
                 Arguments.of(EvaluatorEnum.DEFAULT, MaxDeltaEvaluatorImpl.class),
                 Arguments.of(EvaluatorEnum.MAX_DELTA, MaxDeltaEvaluatorImpl.class),
