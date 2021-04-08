@@ -33,6 +33,14 @@ public class GenePoolService {
         this.solutionFinder = solutionFinder;
     }
 
+    private GenePoolService(Builder builder) {
+        this.randomProvider = builder.randomProvider;
+        this.mutatorService = builder.mutatorService;
+        this.evaluator = builder.evaluator;
+        this.crossoverHandler = builder.crossoverHandler;
+        this.solutionFinder = builder.solutionFinder;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -65,7 +73,7 @@ public class GenePoolService {
         }
 
         public GenePoolService build() {
-            return null;
+            return new GenePoolService(this);
         }
     }
 
