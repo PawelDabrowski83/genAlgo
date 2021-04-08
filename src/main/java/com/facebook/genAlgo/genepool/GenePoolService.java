@@ -12,7 +12,8 @@ import com.facebook.genAlgo.utils.RandomProvider;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import static com.facebook.genAlgo.mutator.MutatorConfig.*;
+import static com.facebook.genAlgo.mutator.MutatorConfig.MutatorEnum;
+import static com.facebook.genAlgo.crossover.CrossoverServiceFactory.CrossoverEnum;
 
 public class GenePoolService {
 
@@ -54,7 +55,7 @@ public class GenePoolService {
             return null;
         }
 
-        public Builder crossoverHandler(CrossoverServiceFactory.CrossoverServiceEnum crossoverHandler) {
+        public Builder crossoverHandler(CrossoverEnum option) {
             return null;
         }
 
