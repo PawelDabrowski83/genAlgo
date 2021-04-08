@@ -65,6 +65,7 @@ public class GenePoolService {
         }
 
         public Builder evaluator(EvaluatorEnum evaluator) {
+            this.evaluator = new EvaluatorFactory().getEvaluator('0', evaluator);
             return this;
         }
 
