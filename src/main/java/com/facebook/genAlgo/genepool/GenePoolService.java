@@ -50,7 +50,7 @@ public class GenePoolService {
     public static final class Builder {
         private RandomProvider randomProvider = new RandomProviderImpl();
         private MutatorService mutatorService = new MutatorFactory().getMutator();
-        private Evaluator evaluator;
+        private Evaluator evaluator = new EvaluatorFactory().getEvaluator('0');
         private CrossoverHandler crossoverHandler;
         private SolutionFinder solutionFinder;
 
@@ -65,7 +65,7 @@ public class GenePoolService {
         }
 
         public Builder evaluator(EvaluatorEnum evaluator) {
-            return null;
+            return this;
         }
 
         public Builder crossoverHandler(CrossoverEnum option) {
