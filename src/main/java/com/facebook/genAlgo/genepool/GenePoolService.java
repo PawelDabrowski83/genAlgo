@@ -5,6 +5,7 @@ import com.facebook.genAlgo.crossover.CrossoverServiceFactory;
 import com.facebook.genAlgo.evaluator.Evaluator;
 import com.facebook.genAlgo.evaluator.EvaluatorFactory;
 import com.facebook.genAlgo.gene.Gene;
+import com.facebook.genAlgo.mutator.MutatorFactory;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
@@ -48,17 +49,19 @@ public class GenePoolService {
 
     public static final class Builder {
         private RandomProvider randomProvider = new RandomProviderImpl();
-        private MutatorService mutatorService;
+        private MutatorService mutatorService = new MutatorFactory().getMutator();
         private Evaluator evaluator;
         private CrossoverHandler crossoverHandler;
         private SolutionFinder solutionFinder;
 
         public Builder randomProvider(RandomProvider randomProvider) {
-            return null;
+            this.randomProvider = randomProvider;
+            return this;
         }
 
         public Builder mutatorService(MutatorEnum option) {
-            return null;
+            this.mutatorService = new MutatorFactory().getMutator(option);
+            return this;
         }
 
         public Builder evaluator(EvaluatorEnum evaluator) {
