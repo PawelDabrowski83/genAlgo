@@ -34,7 +34,7 @@ class GenePoolServiceBuilderTest {
 
     @ParameterizedTest
     @MethodSource
-    public void shouldReturnInstanceOfGenePoolServiceWithSetCrossover(CrossoverServiceEnum crossoverEnum, Class<CrossoverService> instance) {
+    public void shouldReturnInstanceOfGenePoolServiceWithSetCrossover(CrossoverEnum crossoverEnum, Class<CrossoverService> instance) {
         // given
 
         // when
@@ -48,11 +48,11 @@ class GenePoolServiceBuilderTest {
 
     public static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
         return Stream.of(
-                Arguments.of(CrossoverServiceEnum.DEFAULT, BitPairCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.BIT_PAIR, BitPairCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.ODD_BITS, OddBitsCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.EVEN_BITS, EvenBitsCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.MIXING_HALVES, MixingHalvesCrossoverServiceImpl.class)
+                Arguments.of(CrossoverEnum.DEFAULT, BitPairCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.BIT_PAIR, BitPairCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.ODD_BITS, OddBitsCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.EVEN_BITS, EvenBitsCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.MIXING_HALVES, MixingHalvesCrossoverServiceImpl.class)
         );
     }
 
