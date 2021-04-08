@@ -51,7 +51,7 @@ public class GenePoolService {
         private RandomProvider randomProvider = new RandomProviderImpl();
         private MutatorService mutatorService = new MutatorFactory().getMutator();
         private Evaluator evaluator = new EvaluatorFactory().getEvaluator('0');
-        private CrossoverHandler crossoverHandler;
+        private CrossoverHandler crossoverHandler = new CrossoverHandler(new CrossoverServiceFactory().getCrossoverService());
         private SolutionFinder solutionFinder;
 
         public Builder randomProvider(RandomProvider randomProvider) {
@@ -69,7 +69,8 @@ public class GenePoolService {
         }
 
         public Builder crossoverHandler(CrossoverEnum option) {
-            return null;
+            this.crossoverHandler = new CrossoverHandler(new CrossoverServiceFactory().getCrossoverService(option));
+            return this;
         }
 
         public Builder solutionFinder(SolutionFinder solutionFinder) {
