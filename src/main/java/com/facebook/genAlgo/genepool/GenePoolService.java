@@ -8,6 +8,7 @@ import com.facebook.genAlgo.gene.Gene;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
+import com.facebook.genAlgo.utils.RandomProviderImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +47,7 @@ public class GenePoolService {
     }
 
     public static final class Builder {
-        private RandomProvider randomProvider;
+        private RandomProvider randomProvider = new RandomProviderImpl();
         private MutatorService mutatorService;
         private Evaluator evaluator;
         private CrossoverHandler crossoverHandler;
