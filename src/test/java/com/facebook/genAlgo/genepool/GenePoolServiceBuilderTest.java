@@ -29,7 +29,7 @@ class GenePoolServiceBuilderTest {
         // then
         assertThat(genePoolService.getMutatorService()).isInstanceOf(SingleMutator.class);
         assertThat(genePoolService.getEvaluator()).isInstanceOf(MaxDeltaEvaluatorImpl.class);
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(BitPairCrossoverServiceImpl.class);
+        assertThat(genePoolService.getCrossoverHandler().getCrossoverService()).isInstanceOf(BitPairCrossoverServiceImpl.class);
     }
 
     @ParameterizedTest
@@ -43,7 +43,7 @@ class GenePoolServiceBuilderTest {
                 .build();
 
         // then
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
+        assertThat(genePoolService.getCrossoverHandler().getCrossoverService()).isInstanceOf(instance);
     }
 
     private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
