@@ -67,7 +67,7 @@ class GenePoolServiceBuilderTest {
                 .build();
 
         // then
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
+        assertThat(genePoolService.getEvaluator()).isInstanceOf(instance);
     }
 
     private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetEvaluator() {
