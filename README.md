@@ -67,6 +67,7 @@
 | 13    | Working on improve integration tests. Add new getSolve method with new functionalities.                            |
 | 14    | Create factory classes for Mutator, CrossoverService.                                                              |
 | 15    | Working on builders for GenePool and GenePoolService.                                                              |
+| 16    | Continue working on builders for GenePoolService and GenePool.                                                     |
 
 ## Code Structure
 ### Gene
