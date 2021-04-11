@@ -9,6 +9,10 @@ public class CrossoverHandler {
 
     private final CrossoverService crossoverService;
 
+    public CrossoverService getCrossoverService() {
+        return crossoverService;
+    }
+
     public CrossoverHandler(CrossoverService crossoverService) {
         this.crossoverService = crossoverService;
     }
