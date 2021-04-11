@@ -9,10 +9,14 @@ import com.facebook.genAlgo.mutator.MutatorFactory;
 import com.facebook.genAlgo.mutator.MutatorService;
 import com.facebook.genAlgo.solutionfinder.SolutionFinder;
 import com.facebook.genAlgo.utils.RandomProvider;
+import com.facebook.genAlgo.utils.RandomProviderImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import static com.facebook.genAlgo.mutator.MutatorConfig.MutatorEnum;
+import static com.facebook.genAlgo.crossover.CrossoverServiceFactory.CrossoverEnum;
+import static com.facebook.genAlgo.evaluator.EvaluatorFactory.EvaluatorEnum;
 
 public class GenePoolService {
 
@@ -31,39 +35,52 @@ public class GenePoolService {
         this.solutionFinder = solutionFinder;
     }
 
+    private GenePoolService(Builder builder) {
+        this.randomProvider = builder.randomProvider;
+        this.mutatorService = builder.mutatorService;
+        this.evaluator = builder.evaluator;
+        this.crossoverHandler = builder.crossoverHandler;
+        this.solutionFinder = builder.solutionFinder;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
     public static final class Builder {
-        private RandomProvider randomProvider;
-        private MutatorService mutatorService;
-        private Evaluator evaluator;
-        private CrossoverHandler crossoverHandler;
-        private SolutionFinder solutionFinder;
+        private RandomProvider randomProvider = new RandomProviderImpl();
+        private MutatorService mutatorService = new MutatorFactory().getMutator();
+        private Evaluator evaluator = new EvaluatorFactory().getEvaluator('0');
+        private CrossoverHandler crossoverHandler = new CrossoverHandler(new CrossoverServiceFactory().getCrossoverService());
+        private SolutionFinder solutionFinder = new SolutionFinder('0');
 
         public Builder randomProvider(RandomProvider randomProvider) {
-            return null;
+            this.randomProvider = randomProvider;
+            return this;
         }
 
-        public Builder mutatorService(MutatorFactory.MutatorEnum mutatorService) {
-            return null;
+        public Builder mutatorService(MutatorEnum option) {
+            this.mutatorService = new MutatorFactory().getMutator(option);
+            return this;
         }
 
-        public Builder evaluator(EvaluatorFactory.EvaluatorEnum evaluator) {
-            return null;
+        public Builder evaluator(EvaluatorEnum evaluator) {
+            this.evaluator = new EvaluatorFactory().getEvaluator('0', evaluator);
+            return this;
         }
 
-        public Builder crossoverHandler(CrossoverServiceFactory.CrossoverServiceEnum crossoverHandler) {
-            return null;
+        public Builder crossoverHandler(CrossoverEnum option) {
+            this.crossoverHandler = new CrossoverHandler(new CrossoverServiceFactory().getCrossoverService(option));
+            return this;
         }
 
         public Builder solutionFinder(SolutionFinder solutionFinder) {
-            return null;
+            this.solutionFinder = new SolutionFinder('0');
+            return this;
         }
 
         public GenePoolService build() {
-            return null;
+            return new GenePoolService(this);
         }
     }
 

@@ -29,12 +29,12 @@ class GenePoolServiceBuilderTest {
         // then
         assertThat(genePoolService.getMutatorService()).isInstanceOf(SingleMutator.class);
         assertThat(genePoolService.getEvaluator()).isInstanceOf(MaxDeltaEvaluatorImpl.class);
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(BitPairCrossoverServiceImpl.class);
+        assertThat(genePoolService.getCrossoverHandler().getCrossoverService()).isInstanceOf(BitPairCrossoverServiceImpl.class);
     }
 
     @ParameterizedTest
-    @MethodSource
-    public void shouldReturnInstanceOfGenePoolServiceWithSetCrossover(CrossoverServiceEnum crossoverEnum, Class<CrossoverService> instance) {
+    @MethodSource("shouldReturnInstanceOfGenePoolServiceWithSetCrossover")
+    public void shouldReturnInstanceOfGenePoolServiceWithSetCrossover(CrossoverEnum crossoverEnum, Class<CrossoverService> instance) {
         // given
 
         // when
@@ -43,21 +43,21 @@ class GenePoolServiceBuilderTest {
                 .build();
 
         // then
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
+        assertThat(genePoolService.getCrossoverHandler().getCrossoverService()).isInstanceOf(instance);
     }
 
-    public static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
+    private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetCrossover() {
         return Stream.of(
-                Arguments.of(CrossoverServiceEnum.DEFAULT, BitPairCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.BIT_PAIR, BitPairCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.ODD_BITS, OddBitsCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.EVEN_BITS, EvenBitsCrossoverServiceImpl.class),
-                Arguments.of(CrossoverServiceEnum.MIXING_HALVES, MixingHalvesCrossoverServiceImpl.class)
+                Arguments.of(CrossoverEnum.DEFAULT, BitPairCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.BIT_PAIR, BitPairCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.ODD_BITS, OddBitsCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.EVEN_BITS, EvenBitsCrossoverServiceImpl.class),
+                Arguments.of(CrossoverEnum.MIXING_HALVES, MixingHalvesCrossoverServiceImpl.class)
         );
     }
 
     @ParameterizedTest
-    @MethodSource
+    @MethodSource("shouldReturnInstanceOfGenePoolServiceWithSetEvaluator")
     public void shouldReturnInstanceOfGenePoolServiceWithSetEvaluator(EvaluatorEnum evaluatorEnum, Class<Evaluator> instance) {
         // given
 
@@ -67,10 +67,10 @@ class GenePoolServiceBuilderTest {
                 .build();
 
         // then
-        assertThat(genePoolService.getCrossoverHandler()).isInstanceOf(instance);
+        assertThat(genePoolService.getEvaluator()).isInstanceOf(instance);
     }
 
-    public static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetEvaluator() {
+    private static Stream<Arguments> shouldReturnInstanceOfGenePoolServiceWithSetEvaluator() {
         return Stream.of(
                 Arguments.of(EvaluatorEnum.DEFAULT, MaxDeltaEvaluatorImpl.class),
                 Arguments.of(EvaluatorEnum.MAX_DELTA, MaxDeltaEvaluatorImpl.class),
